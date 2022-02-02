@@ -4,5 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="YourTasks.Views.TasksView">
-  Welcome to Avalonia!
+  
+	<DockPanel>
+
+		<TabControl>
+
+			<TabItem/>
+
+			<TabControl.ItemTemplate>
+				<DataTemplate>
+				</DataTemplate>
+			</TabControl.ItemTemplate>
+
+			<TabControl.ContentTemplate>
+				<DataTemplate>
+				</DataTemplate>
+			</TabControl.ContentTemplate>
+
+		</TabControl>
+
+	</DockPanel>
+
 </UserControl>
