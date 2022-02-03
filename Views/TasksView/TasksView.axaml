@@ -5,24 +5,49 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="YourTasks.Views.TasksView">
   
-	<DockPanel>
+	<Grid RowDefinitions="50, *">
 
-		<TabControl>
+		<!-- Header -->
+		<ContentControl Grid.Row="0">
+			<Grid ColumnDefinitions="*22, *78">
+				
+				<!-- Settings -->
+				<StackPanel Grid.Column="0">
 
-			<TabItem/>
+				</StackPanel>
 
-			<TabControl.ItemTemplate>
-				<DataTemplate>
-				</DataTemplate>
-			</TabControl.ItemTemplate>
+				<!-- Description -->
+				<Border Grid.Column="1">
 
-			<TabControl.ContentTemplate>
-				<DataTemplate>
-				</DataTemplate>
-			</TabControl.ContentTemplate>
+				</Border>
 
-		</TabControl>
+			</Grid>
+		</ContentControl>
 
-	</DockPanel>
+		<!-- Main space -->
+		<DockPanel Grid.Row="1">
 
+			<TabControl TabStripPlacement="Left">
+
+				<TabItem/>
+
+				<TabControl.ItemTemplate>
+					<DataTemplate>
+					</DataTemplate>
+				</TabControl.ItemTemplate>
+
+				<TabControl.ItemsPanel>
+					<StackPanel/>
+				</TabControl.ItemsPanel>
+
+				<TabControl.ContentTemplate>
+					<DataTemplate>
+					</DataTemplate>
+				</TabControl.ContentTemplate>
+
+			</TabControl>
+
+		</DockPanel>
+
+	</Grid>
 </UserControl>
