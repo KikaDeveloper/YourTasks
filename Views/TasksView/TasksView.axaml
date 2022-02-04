@@ -7,22 +7,45 @@
   
 	<Grid RowDefinitions="50, *">
 
-		<!-- Header -->
-		<ContentControl Grid.Row="0">
-			<Grid ColumnDefinitions="*22, *78">
-				
-				<!-- Settings -->
-				<StackPanel Grid.Column="0">
+		<!-- Header decorator -->
+		<Border Grid.Row="0"
+				BorderThickness="0 0 0 2"
+				BorderBrush="{DynamicResource BorderBrushColor}">
 
-				</StackPanel>
+			<!-- Header -->
+			<ContentControl Background="{DynamicResource HeaderBackground}"
+						VerticalContentAlignment="Center">
+				<Grid ColumnDefinitions="22*, 78*">
+					
+					<!-- Settings -->
+					<StackPanel Grid.Column="0"
+								Orientation="Horizontal"
+								Spacing="30"
+								Margin="18 0">
+						<!-- Setting button -->
+						<Button Background="Transparent">
+							<Path Width="25" Height="25"
+									VerticalAlignment="Center" 
+									Data="{StaticResource SettingIcon}" 
+									Fill="{DynamicResource SettingIconColor}"/>
+						</Button>
 
-				<!-- Description -->
-				<Border Grid.Column="1">
+						<!-- Theme mode button -->
+						<ToggleSwitch>
 
-				</Border>
+						</ToggleSwitch>
+					</StackPanel>
 
-			</Grid>
-		</ContentControl>
+					<!-- Description -->
+					<Border Grid.Column="1"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center">
+						<TextBlock Text="Description" FontSize="18"/>
+					</Border>
+
+				</Grid>
+			</ContentControl>
+		</Border>
 
 		<!-- Main space -->
 		<DockPanel Grid.Row="1">
@@ -30,18 +53,25 @@
 			<TabControl TabStripPlacement="Left">
 
 				<TabItem/>
+				<TabItem/>
 
 				<TabControl.ItemTemplate>
 					<DataTemplate>
+						<TextBlock Text="Project"/>
 					</DataTemplate>
 				</TabControl.ItemTemplate>
 
 				<TabControl.ItemsPanel>
-					<StackPanel/>
+					<ItemsPanelTemplate>
+						<StackPanel MinWidth="200" 
+									Background="{DynamicResource TabItemsPanelBackground}"/>
+					</ItemsPanelTemplate>
 				</TabControl.ItemsPanel>
 
 				<TabControl.ContentTemplate>
 					<DataTemplate>
+						<Panel Margin="0" 
+								Background="{DynamicResource TabContentPanelBackground}"/>
 					</DataTemplate>
 				</TabControl.ContentTemplate>
 
