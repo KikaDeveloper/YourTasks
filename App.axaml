@@ -9,4 +9,15 @@
     <Application.Styles>
         <FluentTheme Mode="Light"/>
     </Application.Styles>
+
+    <!-- App resources -->
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Resources/Base.axaml"/>
+                <ResourceInclude Source="/Resources/Theme/LightMode.axaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+
 </Application>
