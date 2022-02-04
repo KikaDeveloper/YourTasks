@@ -11,6 +11,7 @@
         <!-- Styles -->
         <StyleInclude Source="/Styles/TabControl.axaml"/>
         <StyleInclude Source="/Styles/TaskItem.axaml"/>
+        <StyleInclude Source="/Styles/Header.axaml"/>
     </Application.Styles>
 
     <!-- App resources -->
