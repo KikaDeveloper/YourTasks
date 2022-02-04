@@ -5,42 +5,38 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="YourTasks.Views.TasksView">
   
-	<Grid RowDefinitions="50, *">
+	<Grid RowDefinitions="40, *">
 
 		<!-- Header decorator -->
 		<Border Grid.Row="0"
-				BorderThickness="0 0 0 2"
-				BorderBrush="{DynamicResource BorderBrushColor}">
+				Classes="header_decorator">
 
 			<!-- Header -->
 			<ContentControl Background="{DynamicResource HeaderBackground}"
-						VerticalContentAlignment="Center">
+							VerticalContentAlignment="Center">
 				<Grid ColumnDefinitions="22*, 78*">
 					
 					<!-- Settings -->
 					<StackPanel Grid.Column="0"
-								Orientation="Horizontal"
-								Spacing="30"
-								Margin="18 0">
+								Classes="settings_panel">
+
 						<!-- Setting button -->
-						<Button Background="Transparent">
-							<Path Width="25" Height="25"
-									VerticalAlignment="Center" 
-									Data="{StaticResource SettingIcon}" 
-									Fill="{DynamicResource SettingIconColor}"/>
+						<Button Classes="settings_button">
+							<PathIcon Classes="settings_icon"
+									Data="{StaticResource SettingIcon}"/>
 						</Button>
 
 						<!-- Theme mode button -->
-						<ToggleSwitch>
+						<ToggleSwitch Classes="theme_mode">
 
 						</ToggleSwitch>
 					</StackPanel>
 
 					<!-- Description -->
 					<Border Grid.Column="1"
-							HorizontalAlignment="Center"
-							VerticalAlignment="Center">
-						<TextBlock Text="Description" FontSize="18"/>
+							Classes="header_description">
+						<TextBlock Text="Description" 
+									Classes="header_description"/>
 					</Border>
 
 				</Grid>
@@ -55,16 +51,24 @@
 				<TabItem/>
 				<TabItem/>
 
+				<!-- TabItem template -->
 				<TabControl.ItemTemplate>
 					<DataTemplate>
-						<TextBlock Text="Project"/>
+						<StackPanel Classes="task_item">
+							<Ellipse Width="{StaticResource TaskItemElipceSize}"
+									Height="{StaticResource TaskItemElipceSize}" 
+									Fill="{DynamicResource TaskItemElipceColor}"/>
+							<TextBlock Classes="task_item"
+										MaxWidth="150"
+										MinWidth="90"
+										Text="home"/>
+						</StackPanel>
 					</DataTemplate>
 				</TabControl.ItemTemplate>
 
 				<TabControl.ItemsPanel>
 					<ItemsPanelTemplate>
-						<StackPanel MinWidth="200" 
-									Background="{DynamicResource TabItemsPanelBackground}"/>
+							<StackPanel  Background="{DynamicResource TabItemsPanelBackground}"/>
 					</ItemsPanelTemplate>
 				</TabControl.ItemsPanel>
 
