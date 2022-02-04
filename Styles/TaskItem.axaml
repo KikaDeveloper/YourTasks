@@ -1,20 +1,5 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  
-	<Design.PreviewWith>
-    	<Border Padding="20">
-      	<!-- Add Controls for Previewer Here -->
-		  <StackPanel Classes="task_item">
-			<Ellipse Width="{StaticResource TaskItemElipceSize}"
-					Height="{StaticResource TaskItemElipceSize}" 
-					Fill="{DynamicResource TaskItemElipceColor}"/>
-			<TextBlock FontSize="20"
-						MaxWidth="150"
-						MinWidth="90"
-						Text="home"/>
-			</StackPanel>
-    	</Border>
-  	</Design.PreviewWith>
 
 	<Style Selector="StackPanel.task_item">
 		<Setter Property="Orientation" Value="Horizontal"/>
@@ -27,6 +12,7 @@
 	<Style Selector="TextBlock.task_item">
 		<Setter Property="TextAlignment" Value="Center"/>
 		<Setter Property="TextTrimming" Value="WordEllipsis"/>
+		<Setter Property="FontSize" Value="{DynamicResource TaskItemFontSize}"/>
 	</Style>
 
 </Styles>
