@@ -1,0 +1,27 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+  	<Design.PreviewWith>
+    	<Border Padding="20">
+      		<!-- Add Controls for Previewer Here -->
+    	</Border>
+  	</Design.PreviewWith>
+
+  	<Style Selector="TabItem">
+		<Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel Background="{TemplateBinding Background}">
+                  <ContentPresenter Name="PART_ContentPresenter"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Content="{TemplateBinding Header}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Margin="0"/>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+	</Style>
+
+</Styles>
