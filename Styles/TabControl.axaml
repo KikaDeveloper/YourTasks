@@ -24,4 +24,31 @@
         </Setter>
 	</Style>
 
+    <Style Selector="TabControl">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Template">
+          <ControlTemplate>
+                <DockPanel>
+                    <ScrollViewer AllowAutoHide="true"
+                                  VerticalScrollBarVisibility="Hidden"
+                                  DockPanel.Dock="{TemplateBinding TabStripPlacement}">
+                        <Border BorderThickness="0 0 2 0"
+                                BorderBrush="{DynamicResource BorderBrushColor}">
+                            <ItemsPresenter Name="PART_ItemsPresenter"
+                                            Items="{TemplateBinding Items}"
+                                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                                            ItemTemplate="{TemplateBinding ItemTemplate}"/>
+                        </Border>
+                    </ScrollViewer>
+                    <ContentPresenter Name="PART_SelectedContentHost"
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding SelectedContent}"
+                                    ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                </DockPanel>
+          </ControlTemplate>
+        </Setter>
+    </Style>
+
 </Styles>
