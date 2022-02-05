@@ -102,12 +102,12 @@
 									
 									<ItemsControl.ItemTemplate>
 										<DataTemplate>
-											<StackPanel Orientation="Horizontal"
-														Height="50">
-												<CheckBox/>
-												<TextBlock Text="Task"/>
+											<StackPanel Classes="task_item_panel">
+												<CheckBox Classes="task_item_checkbox"/>
+												<TextBlock Text="Task"
+															Classes="task_item_text"/>
 												<TextBlock Text="6 december 12:35"
-															HorizontalAlignment="Right"/>
+															Classes="task_item_datetime"/>
 											</StackPanel>
 										</DataTemplate>
 									</ItemsControl.ItemTemplate>

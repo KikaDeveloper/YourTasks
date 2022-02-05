@@ -22,7 +22,7 @@
 
 	<!-- TextBlocks -->
 	<Style Selector="TextBlock.tasks_group">
-		<Setter Property="FontSize" Value="20"/>
+		<Setter Property="FontSize" Value="18"/>
 	</Style>
 
 	<!-- TotalGroupSwitcher -->
