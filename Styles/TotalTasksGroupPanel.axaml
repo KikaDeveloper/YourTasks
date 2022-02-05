@@ -1,10 +1,37 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <Design.PreviewWith>
-    <Border Padding="20">
-      <!-- Add Controls for Previewer Here -->
-    </Border>
-  </Design.PreviewWith>
 
-  <!-- Add Styles Here -->
+  	<Design.PreviewWith>
+    	<Border Padding="20">
+      	<!-- Add Controls for Previewer Here -->
+    	</Border>
+  	</Design.PreviewWith>
+
+	<!-- Panels -->
+	<Style Selector="Panel.total_task_group_panel">
+		<Setter Property="Height" Value="{DynamicResource TotalTasksGroupPanelHeight}"/>
+		<Setter Property="Background" Value="{DynamicResource TotalTasksGroupPanelBackground}"/>
+	</Style>
+
+	<Style Selector="StackPanel.total_tasks_group">
+		<Setter Property="Orientation"  Value="Horizontal"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Spacing" Value="10"/>
+	</Style>
+
+	<!-- TextBlocks -->
+	<Style Selector="TextBlock.total_tasks_group">
+		<Setter Property="FontSize" Value="20"/>
+	</Style>
+
+	<!-- TotalGroupSwitcher -->
+	<Style Selector="ToggleButton.total_group_switcher">
+		<Setter Property="HorizontalAlignment" Value="Right"/>
+	</Style>
+
+	<Style Selector="PathIcon.switcher_icon">
+
+	</Style>
+
 </Styles>
