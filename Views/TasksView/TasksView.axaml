@@ -54,11 +54,11 @@
 				<!-- TabItem template -->
 				<TabControl.ItemTemplate>
 					<DataTemplate>
-						<StackPanel Classes="task_item">
+						<StackPanel Classes="tab_item">
 							<Ellipse Width="{StaticResource TaskItemElipceSize}"
 									Height="{StaticResource TaskItemElipceSize}" 
 									Fill="{DynamicResource TaskItemElipceColor}"/>
-							<TextBlock Classes="task_item"
+							<TextBlock Classes="tab_item"
 										MaxWidth="150"
 										MinWidth="90"
 										Text="home"/>
@@ -74,9 +74,7 @@
 
 				<TabControl.ContentTemplate>
 					<DataTemplate>
-							<StackPanel Grid.Row="0"
-										Grid.Column="0"
-										Orientation="Vertical"
+							<StackPanel Orientation="Vertical"
 										Spacing="12"
 										Background="Transparent"
 										Margin="0 12 0 0">
@@ -133,7 +131,7 @@
 
 								</Panel>
 
-								<!-- Tasks list -->
+								<!--Completed tasks list -->
 								<ItemsControl Height="50" Background="Green" 
 												IsVisible="{Binding IsChecked, ElementName=CompletedGroupSwitcher}">
 									
