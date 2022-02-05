@@ -74,8 +74,31 @@
 
 				<TabControl.ContentTemplate>
 					<DataTemplate>
-						<Panel Margin="0" 
-								Background="{DynamicResource TabContentPanelBackground}"/>
+							<StackPanel Grid.Row="0"
+										Grid.Column="0"
+										Orientation="Vertical"
+										Spacing="12"
+										Background="Green"
+										Margin="0 12 0 0">
+
+								<!-- Total tasks group panel -->
+								<Panel Classes="total_task_group_panel">
+									
+									<StackPanel Classes="total_tasks_group">
+										<TextBlock Text="Total"
+													Classes="total_tasks_group"/>
+										<TextBlock Text="10"
+													Classes="total_tasks_group"/>
+									</StackPanel>
+
+									<ToggleButton Name="TotalGroupSwitcher"
+													Classes="total_group_switcher">
+										<PathIcon Classes="switcher_icon"/>
+									</ToggleButton>
+
+								</Panel>								
+
+							</StackPanel>
 					</DataTemplate>
 				</TabControl.ContentTemplate>
 
