@@ -46,12 +46,14 @@
 		<!-- Main space -->
 		<DockPanel Grid.Row="1">
 
-			<TabControl TabStripPlacement="Left">
+			<TabControl Items="{Binding ProjectViewModels}"
+						SelectedItem="{Binding SelectedProjectViewModel}"
+						TabStripPlacement="Left">
 
 				<TabItem/>
 				<TabItem/>
 
-				<!-- TabItem template -->
+				<!-- Project TabItem template -->
 				<TabControl.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Classes="tab_item">
@@ -66,6 +68,7 @@
 					</DataTemplate>
 				</TabControl.ItemTemplate>
 
+				<!-- TabItems template -->
 				<TabControl.ItemsPanel>
 					<ItemsPanelTemplate>
 							<StackPanel  Background="{DynamicResource TabItemsPanelBackground}"/>
