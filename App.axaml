@@ -9,7 +9,7 @@
     <Application.Styles>
         <FluentTheme Mode="Light"/>
         <!-- Styles -->
-        <StyleInclude Source="/Styles/TotalTasksGroupPanel.axaml"/>
+        <StyleInclude Source="/Styles/TasksGroupPanel.axaml"/>
         <StyleInclude Source="/Styles/TabControl.axaml"/>
         <StyleInclude Source="/Styles/TaskItem.axaml"/>
         <StyleInclude Source="/Styles/Header.axaml"/>

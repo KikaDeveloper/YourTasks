@@ -78,32 +78,84 @@
 										Grid.Column="0"
 										Orientation="Vertical"
 										Spacing="12"
-										Background="Green"
+										Background="Transparent"
 										Margin="0 12 0 0">
 
 								<!-- Total tasks group panel -->
-								<Panel Classes="total_task_group_panel">
+								<Panel Classes="task_group_panel">
 									
-									<StackPanel Classes="total_tasks_group">
+									<StackPanel Classes="tasks_group">
 										<TextBlock Text="Total"
-													Classes="total_tasks_group"/>
+													Classes="tasks_group"/>
 										<TextBlock Text="10"
-													Classes="total_tasks_group"/>
+													Classes="tasks_group"/>
 									</StackPanel>
 
 									<ToggleButton Name="TotalGroupSwitcher"
-													Classes="total_group_switcher">
+													Classes="group_switcher">
 										<PathIcon Classes="switcher_icon"/>
 									</ToggleButton>
 
 								</Panel>								
+
+								<!-- Tasks list -->
+								<ItemsControl Height="50" Background="Red" 
+												IsVisible="{Binding IsChecked, ElementName=TotalGroupSwitcher}">
+									
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<StackPanel Orientation="Horizontal"
+														Height="50">
+												<CheckBox/>
+												<TextBlock Text="Task"/>
+												<TextBlock Text="6 december 12:35"
+															HorizontalAlignment="Right"/>
+											</StackPanel>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+
+								</ItemsControl>
+
+								<!-- Completed tasks group panel -->
+								<Panel Classes="task_group_panel">
+									
+									<StackPanel Classes="tasks_group">
+										<TextBlock Text="Completed"
+													Classes="tasks_group"/>
+										<TextBlock Text="10"
+													Classes="tasks_group"/>
+									</StackPanel>
+
+									<ToggleButton Name="CompletedGroupSwitcher"
+													Classes="group_switcher">
+										<PathIcon Classes="switcher_icon"/>
+									</ToggleButton>
+
+								</Panel>
+
+								<!-- Tasks list -->
+								<ItemsControl Height="50" Background="Green" 
+												IsVisible="{Binding IsChecked, ElementName=CompletedGroupSwitcher}">
+									
+									<ItemsControl.ItemTemplate>
+										<DataTemplate>
+											<StackPanel Orientation="Horizontal"
+														Height="50">
+												<CheckBox/>
+												<TextBlock Text="Task"/>
+												<TextBlock Text="6 december 12:35"
+															HorizontalAlignment="Right"/>
+											</StackPanel>
+										</DataTemplate>
+									</ItemsControl.ItemTemplate>
+
+								</ItemsControl>
 
 							</StackPanel>
 					</DataTemplate>
 				</TabControl.ContentTemplate>
 
 			</TabControl>
-
 		</DockPanel>
 
 	</Grid>

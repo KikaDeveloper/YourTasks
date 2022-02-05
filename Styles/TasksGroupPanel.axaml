@@ -8,12 +8,12 @@
   	</Design.PreviewWith>
 
 	<!-- Panels -->
-	<Style Selector="Panel.total_task_group_panel">
+	<Style Selector="Panel.task_group_panel">
 		<Setter Property="Height" Value="{DynamicResource TotalTasksGroupPanelHeight}"/>
 		<Setter Property="Background" Value="{DynamicResource TotalTasksGroupPanelBackground}"/>
 	</Style>
 
-	<Style Selector="StackPanel.total_tasks_group">
+	<Style Selector="StackPanel.tasks_group">
 		<Setter Property="Orientation"  Value="Horizontal"/>
 		<Setter Property="HorizontalAlignment" Value="Center"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
@@ -21,12 +21,12 @@
 	</Style>
 
 	<!-- TextBlocks -->
-	<Style Selector="TextBlock.total_tasks_group">
+	<Style Selector="TextBlock.tasks_group">
 		<Setter Property="FontSize" Value="20"/>
 	</Style>
 
 	<!-- TotalGroupSwitcher -->
-	<Style Selector="ToggleButton.total_group_switcher">
+	<Style Selector="ToggleButton.group_switcher">
 		<Setter Property="HorizontalAlignment" Value="Right"/>
 	</Style>
 
