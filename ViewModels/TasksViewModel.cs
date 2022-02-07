@@ -31,7 +31,25 @@ namespace YourTasks.ViewModels
                         Name = "Project",
                         EllipseColor="Red"
                     },
-                    TabContentViewModel = new TabContentViewModel()
+                    TabContentViewModel = new TabContentViewModel(){
+                        TotalTasks = new ObservableCollection<Task>(){
+                            new Task(){
+                                Id = Guid.NewGuid(),
+                                Text = "Make button",
+                                Description = "None",
+                                CreationDateTime = DateTime.Today,
+                                IsCompleted = false
+                            },
+                            new Task(){
+                                Id = Guid.NewGuid(),
+                                Text = "Show film",
+                                Description = "Matrix",
+                                CreationDateTime = DateTime.Today,
+                                IsCompleted = true
+                            }
+                        },
+                        CompletedTasks = new ObservableCollection<Task>()
+                    }
                 }
             };
         }
