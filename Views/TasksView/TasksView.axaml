@@ -65,7 +65,7 @@
 					</DataTemplate>
 				</TabControl.ItemTemplate>
 
-				<!-- TabItems template -->
+				<!-- TabItems panel template -->
 				<TabControl.ItemsPanel>
 					<ItemsPanelTemplate>
 							<StackPanel  Background="{DynamicResource TabItemsPanelBackground}"/>
@@ -79,84 +79,8 @@
 										Background="Transparent"
 										Margin="0 12 0 0"
 										DataContext="{Binding TabContentViewModel}">
-
-								<!-- Total tasks group panel -->
-								<Panel Classes="task_group_panel">
-									
-									<StackPanel Classes="tasks_group">
-										<TextBlock Text="Total"
-													Classes="tasks_group"/>
-										<!-- Total tasks count -->
-										<TextBlock Text="{Binding TotalTasks.Count}"
-													Classes="tasks_group"/>
-									</StackPanel>
-
-									<ToggleButton Name="TotalGroupSwitcher"
-													Classes="group_switcher">
-										<PathIcon Classes="switcher_icon"/>
-									</ToggleButton>
-
-								</Panel>								
-
-								<!-- Tasks list -->
-								<ListBox Items="{Binding TotalTasks}"
-												IsVisible="{Binding IsChecked, ElementName=TotalGroupSwitcher}">
-									
-									<ListBox.ItemTemplate>
-										<DataTemplate>
-											<StackPanel Classes="task_item_panel">
-												<!-- IsComleted  -->
-												<CheckBox IsChecked="{Binding IsCompleted}"
-															Classes="task_item_checkbox"/>
-												<!-- Task  -->
-												<TextBlock Text="{Binding Text}"
-															Classes="task_item_text"/>
-												<!-- Date time creation the task -->
-												<TextBlock Text="{Binding CreationDateTime}"
-															Classes="task_item_datetime"/>
-											</StackPanel>
-										</DataTemplate>
-									</ListBox.ItemTemplate>
-
-								</ListBox>
-
-								<!-- Completed tasks group panel -->
-								<Panel Classes="task_group_panel">
-									
-									<StackPanel Classes="tasks_group">
-										<TextBlock Text="Completed"
-													Classes="tasks_group"/>
-										<!-- Comleted tasks count -->
-										<TextBlock Text="{Binding CompletedTasks.Count}"
-													Classes="tasks_group"/>
-									</StackPanel>
-
-									<ToggleButton Name="CompletedGroupSwitcher"
-													Classes="group_switcher">
-										<PathIcon Classes="switcher_icon"/>
-									</ToggleButton>
-
-								</Panel>
-
-								<!--Completed tasks list -->
-								<ListBox Items="{Binding ComletedTasks}" 
-												IsVisible="{Binding IsChecked, ElementName=CompletedGroupSwitcher}">
-									
-									<ListBox.ItemTemplate>
-										<DataTemplate>
-											<StackPanel Orientation="Horizontal"
-														Height="50">
-												<CheckBox IsChecked="{Binding IsComleted}"
-															Classes="task_item_checkbox"/>
-												<TextBlock Text="{Binding Text}"
-															Classes="task_item_text"/>
-												<TextBlock Text="{Binding CreationDateTime}"
-															Classes="task_item_datetime"/>
-											</StackPanel>
-										</DataTemplate>
-									</ListBox.ItemTemplate>
-
-								</ListBox>
+	
+								
 
 							</StackPanel>
 					</DataTemplate>

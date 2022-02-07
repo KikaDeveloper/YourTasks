@@ -5,7 +5,11 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="YourTasks.UserControls.TasksGroup">
 
-	<!-- The control displays a visibility switch and a list of tasks -->
+	<!-- The control displays a visibility switch and a list of tasks 
+		*Стилизовать переключатель
+		*Стилизовать ListBoxItem
+		*Реализовать класс ViewModel для этого контрола
+	-->
 	
 	<UserControl.ContentTemplate>
 		<DataTemplate>
