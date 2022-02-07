@@ -4,4 +4,80 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="YourTasks.UserControls.TasksGroup">
+
+	<!-- The control displays a visibility switch and a list of tasks -->
+	
+	<UserControl.ContentTemplate>
+		<DataTemplate>
+			<DockPanel LastChildFill="True">
+
+				<!-- Visible Switcher -->
+				<ToggleButton Name="VisibleSwitcher"
+							Classes="taskgroup_switcher"
+							DockPanel.Dock="Top">
+					<Panel>
+						<StackPanel Classes="tasks_group">
+							<TextBlock Text="{Binding GroupName}"
+										Classes="tasks_group"/>
+							<!-- Total tasks count -->
+							<TextBlock Text="{Binding Tasks.Count}"
+										Classes="tasks_group"/>
+						</StackPanel>
+
+						<PathIcon Classes="switcher_icon"/>
+					</Panel>
+				</ToggleButton>
+
+				<!-- tasks list -->
+				<ListBox Items="{Binding Tasks}" 
+				IsVisible="{Binding IsChecked, ElementName=VisibleSwitcher}">
+	
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<StackPanel Orientation="Horizontal"
+										Height="50">
+								<CheckBox IsChecked="{Binding IsComleted}"
+											Classes="task_item_checkbox"/>
+								<TextBlock Text="{Binding Text}"
+											Classes="task_item_text"/>
+								<TextBlock Text="{Binding CreationDateTime}"
+											Classes="task_item_datetime"/>
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+
+				</ListBox>
+
+			</DockPanel>
+		</DataTemplate>
+	</UserControl.ContentTemplate>
+
+	<UserControl.Styles>
+
+		<Style Selector="StackPanel.tasks_group">
+			<Setter Property="Orientation"  Value="Horizontal"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="Spacing" Value="10"/>
+		</Style>
+	
+		<!-- TextBlocks -->
+		<Style Selector="TextBlock.tasks_group">
+			<Setter Property="FontSize" Value="18"/>
+		</Style>
+	
+		<!-- Tasks group switcher -->
+		<Style Selector="ToggleButton.taskgroup_switcher">
+			<Setter Property="Background" Value="{DynamicResource TasksGroupBackground}"/>
+			<Setter Property="Height" Value="{DynamicResource TasksGroupHeight}"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+	
+		<Style Selector="PathIcon.switcher_icon">
+			<Setter Property="Margin" Value="0 0 10 0"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+		</Style>
+	
+	</UserControl.Styles>
+
 </UserControl>
