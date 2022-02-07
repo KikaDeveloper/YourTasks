@@ -46,12 +46,9 @@
 		<!-- Main space -->
 		<DockPanel Grid.Row="1">
 
-			<TabControl Items="{Binding ProjectViewModels}"
-						SelectedItem="{Binding SelectedProjectViewModel}"
+			<TabControl Items="{Binding TabItemViewModels}"
+						SelectedItem="{Binding SelectedTabItemViewModel}"
 						TabStripPlacement="Left">
-
-				<TabItem/>
-				<TabItem/>
 
 				<!-- Project TabItem template -->
 				<TabControl.ItemTemplate>
@@ -59,11 +56,11 @@
 						<StackPanel Classes="tab_item">
 							<Ellipse Width="{StaticResource TaskItemElipceSize}"
 									Height="{StaticResource TaskItemElipceSize}" 
-									Fill="{DynamicResource TaskItemElipceColor}"/>
+									Fill="{Binding Project.EllipseColor}"/>
 							<TextBlock Classes="tab_item"
 										MaxWidth="150"
 										MinWidth="90"
-										Text="home"/>
+										Text="{Binding Project.Name}"/>
 						</StackPanel>
 					</DataTemplate>
 				</TabControl.ItemTemplate>

@@ -1,5 +1,7 @@
 using ReactiveUI;
+using System;
 using System.Collections.ObjectModel;
+using YourTasks.Models;
 
 namespace YourTasks.ViewModels
 {
@@ -22,7 +24,16 @@ namespace YourTasks.ViewModels
 
         public TasksViewModel()
         {
-
+            TabItemViewModels = new ObservableCollection<TabItemViewModel>(){
+                new TabItemViewModel(){
+                    Project = new Project(){
+                        Id = Guid.NewGuid(),
+                        Name = "Project",
+                        EllipseColor="Red"
+                    },
+                    TabContentViewModel = new TabContentViewModel()
+                }
+            };
         }
     }
 }
