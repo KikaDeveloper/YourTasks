@@ -99,10 +99,10 @@
 								</Panel>								
 
 								<!-- Tasks list -->
-								<ItemsControl Items="{Binding TotalTasks}"
+								<ListBox Items="{Binding TotalTasks}"
 												IsVisible="{Binding IsChecked, ElementName=TotalGroupSwitcher}">
 									
-									<ItemsControl.ItemTemplate>
+									<ListBox.ItemTemplate>
 										<DataTemplate>
 											<StackPanel Classes="task_item_panel">
 												<!-- IsComleted  -->
@@ -116,9 +116,9 @@
 															Classes="task_item_datetime"/>
 											</StackPanel>
 										</DataTemplate>
-									</ItemsControl.ItemTemplate>
+									</ListBox.ItemTemplate>
 
-								</ItemsControl>
+								</ListBox>
 
 								<!-- Completed tasks group panel -->
 								<Panel Classes="task_group_panel">
@@ -139,10 +139,10 @@
 								</Panel>
 
 								<!--Completed tasks list -->
-								<ItemsControl Items="{Binding ComletedTasks}" 
+								<ListBox Items="{Binding ComletedTasks}" 
 												IsVisible="{Binding IsChecked, ElementName=CompletedGroupSwitcher}">
 									
-									<ItemsControl.ItemTemplate>
+									<ListBox.ItemTemplate>
 										<DataTemplate>
 											<StackPanel Orientation="Horizontal"
 														Height="50">
@@ -154,9 +154,9 @@
 															Classes="task_item_datetime"/>
 											</StackPanel>
 										</DataTemplate>
-									</ItemsControl.ItemTemplate>
+									</ListBox.ItemTemplate>
 
-								</ItemsControl>
+								</ListBox>
 
 							</StackPanel>
 					</DataTemplate>
