@@ -77,7 +77,8 @@
 							<StackPanel Orientation="Vertical"
 										Spacing="12"
 										Background="Transparent"
-										Margin="0 12 0 0">
+										Margin="0 12 0 0"
+										DataContext="{Binding TabContentViewModel}">
 
 								<!-- Total tasks group panel -->
 								<Panel Classes="task_group_panel">
@@ -85,7 +86,8 @@
 									<StackPanel Classes="tasks_group">
 										<TextBlock Text="Total"
 													Classes="tasks_group"/>
-										<TextBlock Text="10"
+										<!-- Total tasks count -->
+										<TextBlock Text="{Binding TotalTasks.Count}"
 													Classes="tasks_group"/>
 									</StackPanel>
 
@@ -97,16 +99,20 @@
 								</Panel>								
 
 								<!-- Tasks list -->
-								<ItemsControl Height="50" Background="Red" 
+								<ItemsControl Items="{Binding TotalTasks}"
 												IsVisible="{Binding IsChecked, ElementName=TotalGroupSwitcher}">
 									
 									<ItemsControl.ItemTemplate>
 										<DataTemplate>
 											<StackPanel Classes="task_item_panel">
-												<CheckBox Classes="task_item_checkbox"/>
-												<TextBlock Text="Task"
+												<!-- IsComleted  -->
+												<CheckBox IsChecked="{Binding IsCompleted}"
+															Classes="task_item_checkbox"/>
+												<!-- Task  -->
+												<TextBlock Text="{Binding Text}"
 															Classes="task_item_text"/>
-												<TextBlock Text="6 december 12:35"
+												<!-- Date time creation the task -->
+												<TextBlock Text="{Binding CreationDateTime}"
 															Classes="task_item_datetime"/>
 											</StackPanel>
 										</DataTemplate>
@@ -120,7 +126,8 @@
 									<StackPanel Classes="tasks_group">
 										<TextBlock Text="Completed"
 													Classes="tasks_group"/>
-										<TextBlock Text="10"
+										<!-- Comleted tasks count -->
+										<TextBlock Text="{Binding CompletedTasks.Count}"
 													Classes="tasks_group"/>
 									</StackPanel>
 
@@ -132,17 +139,19 @@
 								</Panel>
 
 								<!--Completed tasks list -->
-								<ItemsControl Height="50" Background="Green" 
+								<ItemsControl Items="{Binding ComletedTasks}" 
 												IsVisible="{Binding IsChecked, ElementName=CompletedGroupSwitcher}">
 									
 									<ItemsControl.ItemTemplate>
 										<DataTemplate>
 											<StackPanel Orientation="Horizontal"
 														Height="50">
-												<CheckBox/>
-												<TextBlock Text="Task"/>
-												<TextBlock Text="6 december 12:35"
-															HorizontalAlignment="Right"/>
+												<CheckBox IsChecked="{Binding IsComleted}"
+															Classes="task_item_checkbox"/>
+												<TextBlock Text="{Binding Text}"
+															Classes="task_item_text"/>
+												<TextBlock Text="{Binding CreationDateTime}"
+															Classes="task_item_datetime"/>
 											</StackPanel>
 										</DataTemplate>
 									</ItemsControl.ItemTemplate>
