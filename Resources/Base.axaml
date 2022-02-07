@@ -14,6 +14,6 @@
 	<!-- Header -->
 	<x:Double x:Key="HeaderDescriptionFontSize">18</x:Double>
 
-	<!-- TotalTaskGroupPanel -->
-	<x:Double x:Key="TotalTasksGroupPanelHeight">40</x:Double>
+	<!-- TaskGroup -->
+	<x:Double x:Key="TasksGroupHeight">40</x:Double>
 </ResourceDictionary>

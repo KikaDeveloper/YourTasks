@@ -30,7 +30,7 @@
 	<!-- Setting icon -->
 	<SolidColorBrush x:Key="SettingIconColor" Color="{StaticResource Color2}"/>
 
-	<!-- TotalTasksGroupPanel -->
-	<SolidColorBrush x:Key="TotalTasksGroupPanelBackground" Color="{StaticResource Color5}"/>
+	<!-- TasksGroup -->
+	<SolidColorBrush x:Key="TasksGroupBackground" Color="{StaticResource Color5}"/>
 
 </ResourceDictionary>
