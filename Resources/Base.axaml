@@ -18,6 +18,6 @@
 	<x:Double x:Key="TasksGroupHeight">40</x:Double>
 	
 	<!-- Switch icon for TasksGroup -->
-	<StreamGeometry x:Key="SwitchIcon">M1.51,6.079a1.492,1.492,0,0,1,1.06.44l7.673,7.672a2.5,2.5,0,0,0,3.536,0L21.44,6.529A1.5,1.5,0,1,1,23.561,8.65L15.9,16.312a5.505,5.505,0,0,1-7.778,0L.449,8.64A1.5,1.5,0,0,1,1.51,6.079Z</StreamGeometry>
+	<StreamGeometry x:Key="SwitchIcon">M12,15.5a1.993,1.993,0,0,1-1.414-.585L5.293,9.621,6.707,8.207,12,13.5l5.293-5.293,1.414,1.414-5.293,5.293A1.993,1.993,0,0,1,12,15.5Z</StreamGeometry>
 
 </ResourceDictionary>
