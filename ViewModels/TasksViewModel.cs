@@ -32,23 +32,31 @@ namespace YourTasks.ViewModels
                         EllipseColor="Red"
                     },
                     TabContentViewModel = new TabContentViewModel(){
-                        TotalTasks = new ObservableCollection<Task>(){
-                            new Task(){
-                                Id = Guid.NewGuid(),
-                                Text = "Make button",
-                                Description = "None",
-                                CreationDateTime = DateTime.Today,
-                                IsCompleted = false
-                            },
-                            new Task(){
-                                Id = Guid.NewGuid(),
-                                Text = "Show film",
-                                Description = "Matrix",
-                                CreationDateTime = DateTime.Today,
-                                IsCompleted = true
+                        Tasks = new TaskGroupViewModel()
+                        {
+                            GroupName = "Total",
+                            Tasks = new ObservableCollection<Task>(){
+                                new Task(){
+                                    Id = Guid.NewGuid(),
+                                    Text = "Make button",
+                                    Description = "None",
+                                    CreationDateTime = DateTime.Today,
+                                    IsCompleted = false
+                                },
+                                new Task(){
+                                    Id = Guid.NewGuid(),
+                                    Text = "Show film",
+                                    Description = "Matrix",
+                                    CreationDateTime = DateTime.Today,
+                                    IsCompleted = true
+                                }
                             }
                         },
-                        CompletedTasks = new ObservableCollection<Task>()
+                        CompletedTasks = new TaskGroupViewModel()
+                        {
+                            GroupName = "Completed",
+                            Tasks = new ObservableCollection<Task>()
+                        }
                     }
                 }
             };
