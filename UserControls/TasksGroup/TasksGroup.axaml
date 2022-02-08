@@ -6,7 +6,6 @@
              x:Class="YourTasks.UserControls.TasksGroup">
 
 	<!-- The control displays a visibility switch and a list of tasks 
-		*Стилизовать переключатель
 		*Стилизовать ListBoxItem
 		*Реализовать класс ViewModel для этого контрола
 	-->
@@ -28,7 +27,14 @@
 										Classes="tasks_group"/>
 					</StackPanel>
 
-					<PathIcon Classes="switcher_icon"/>
+					<Path Data="{DynamicResource SwitchIconUp}"
+							Classes="switcher_icon"
+							IsVisible="{Binding IsChecked, ElementName=VisibleSwitcher}"/>
+
+					<Path Data="{DynamicResource SwitchIconDown}"
+							Classes="switcher_icon"
+							IsVisible="{Binding !IsChecked, ElementName=VisibleSwitcher}"/>
+
 				</Panel>
 			</ToggleButton>
 
@@ -74,7 +80,8 @@
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 		</Style>
 	
-		<Style Selector="PathIcon.switcher_icon">
+		<Style Selector="Path.switcher_icon">
+			<Setter Property="Fill" Value="DarkGray"/>
 			<Setter Property="Margin" Value="0 0 10 0"/>
 			<Setter Property="HorizontalAlignment" Value="Right"/>
 		</Style>
