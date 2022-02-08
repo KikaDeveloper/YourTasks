@@ -11,50 +11,47 @@
 		*Реализовать класс ViewModel для этого контрола
 	-->
 	
-	<UserControl.ContentTemplate>
-		<DataTemplate>
-			<DockPanel LastChildFill="True">
+		<DockPanel LastChildFill="True">
 
-				<!-- Visible Switcher -->
-				<ToggleButton Name="VisibleSwitcher"
+			<!-- Visible Switcher -->
+			<ToggleButton Name="VisibleSwitcher"
 							Classes="taskgroup_switcher"
 							DockPanel.Dock="Top">
-					<Panel>
-						<StackPanel Classes="tasks_group">
-							<TextBlock Text="{Binding GroupName}"
+				<Panel>
+					<StackPanel Classes="tasks_group">
+							
+							<!-- Group name -->
+						<TextBlock Text="{Binding GroupName}"
 										Classes="tasks_group"/>
 							<!-- Total tasks count -->
-							<TextBlock Text="{Binding Tasks.Count}"
+						<TextBlock Text="{Binding Tasks.Count}"
 										Classes="tasks_group"/>
-						</StackPanel>
+					</StackPanel>
 
-						<PathIcon Classes="switcher_icon"/>
-					</Panel>
-				</ToggleButton>
+					<PathIcon Classes="switcher_icon"/>
+				</Panel>
+			</ToggleButton>
 
 				<!-- tasks list -->
-				<ListBox Items="{Binding Tasks}" 
-				IsVisible="{Binding IsChecked, ElementName=VisibleSwitcher}">
+			<ListBox Items="{Binding Tasks}" 
+					IsVisible="{Binding IsChecked, ElementName=VisibleSwitcher}">
 	
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<StackPanel Orientation="Horizontal"
+				<ListBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Orientation="Horizontal"
 										Height="50">
-								<CheckBox IsChecked="{Binding IsComleted}"
+							<CheckBox IsChecked="{Binding IsCompleted}"
 											Classes="task_item_checkbox"/>
-								<TextBlock Text="{Binding Text}"
+							<TextBlock Text="{Binding Text}"
 											Classes="task_item_text"/>
-								<TextBlock Text="{Binding CreationDateTime}"
+							<TextBlock Text="{Binding CreationDateTime}"
 											Classes="task_item_datetime"/>
-							</StackPanel>
-						</DataTemplate>
-					</ListBox.ItemTemplate>
+						</StackPanel>
+					</DataTemplate>
+				</ListBox.ItemTemplate>
 
-				</ListBox>
-
-			</DockPanel>
-		</DataTemplate>
-	</UserControl.ContentTemplate>
+			</ListBox>
+		</DockPanel>
 
 	<UserControl.Styles>
 
