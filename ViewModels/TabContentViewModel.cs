@@ -6,19 +6,19 @@ namespace YourTasks.ViewModels
 {
     public class TabContentViewModel : ViewModelBase
     {
-        private ObservableCollection<Task>? _totalTasks;
-        private ObservableCollection<Task>? _comletedTasks;
+        private TaskGroupViewModel? _tasks;
+        private TaskGroupViewModel? _completedTasks;
 
-        public ObservableCollection<Task> TotalTasks
+        public TaskGroupViewModel Tasks
         {
-            get => _totalTasks!;
-            set => this.RaiseAndSetIfChanged(ref _totalTasks, value);
+            get => _tasks!;
+            set => this.RaiseAndSetIfChanged(ref _tasks, value); 
         }
 
-        public ObservableCollection<Task> CompletedTasks
+        public TaskGroupViewModel CompletedTasks
         {
-            get => _comletedTasks!;
-            set => this.RaiseAndSetIfChanged(ref _comletedTasks, value);
+            get => _completedTasks!;
+            set => this.RaiseAndSetIfChanged(ref _completedTasks, value);
         }
 
         public TabContentViewModel()
