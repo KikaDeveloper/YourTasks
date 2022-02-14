@@ -1,27 +1,56 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  	<Design.PreviewWith>
-    	<Border Padding="20">
-      	<!-- Add Controls for Previewer Here -->
-    	</Border>
-  	</Design.PreviewWith>
-
-	<Style Selector="StackPanel.task_item_panel">
-		<Setter Property="Orientation" Value="Horizontal"/>
-		<Setter Property="Height" Value="50"/>
+	
+	<Style Selector="ListBoxItem">
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
 	</Style>
 
+	<Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="Padding" Value="0"/>	
+	</Style>
+
+	<!-- Grid -->
+	<Style Selector="Grid.task_item_grid">
+		<Setter Property="Height" Value="30"/>
+	</Style>
+
+	<!-- Checkbox -->
 	<Style Selector="CheckBox.task_item_checkbox">
+        <Setter Property="Width" Value="{DynamicResource CheckBoxSize}"/>
+        <Setter Property="Height" Value="{DynamicResource CheckBoxSize}"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
 	</Style>
 
+	<!-- Task text -->
 	<Style Selector="TextBlock.task_item_text">
 		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
 	</Style>
 
+	<!-- Task datetime  -->
 	<Style Selector="TextBlock.task_item_datetime">
+		<Setter Property="Margin" Value="0 0 10 0"/>
 		<Setter Property="FontSize" Value="18"/>
 		<Setter Property="HorizontalAlignment" Value="Right"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
 	</Style>
 
+	<!-- Delete button -->
+	<Style Selector="Button.delete_button">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Width" Value="{DynamicResource DeleteButtonSize}"/>
+        <Setter Property="Height" Value="{DynamicResource DeleteButtonSize}"/>
+    </Style>
+
+	<!-- Delete icon -->
+    <Style Selector="PathIcon.delete_icon">
+        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="Width" Value="{DynamicResource DeleteIconSize}"/>
+        <Setter Property="Height" Value="{DynamicResource DeleteIconSize}"/>
+    </Style>
 
 </Styles>
