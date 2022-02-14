@@ -47,10 +47,10 @@
 						<StackPanel Orientation="Vertical">
 
 							<!-- Displays task data -->
-							<controls:TaskPresenter/>
+							<controls:TaskPresenter DataContext="{Binding Task}"/>
 
 							<!-- Sub tasks list -->
-							<ItemsControl Items="{Binding}">
+							<ItemsControl Items="{Binding SubTasks}">
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>
 										<controls:TaskPresenter/>
