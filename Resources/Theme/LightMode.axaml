@@ -36,4 +36,6 @@
 	<!-- Tasks ListBoxItem -->
 	<SolidColorBrush x:Key="TaskListBoxItemBackground" Color="{StaticResource Color1}"/>
 
+	<!-- Sub task ItemsControl item -->
+	<SolidColorBrush x:Key="SubTaskPresenterBackground" Color="{StaticResource Color3}"/>
 </ResourceDictionary>
