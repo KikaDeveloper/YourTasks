@@ -9,6 +9,11 @@
     <Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
         <Setter Property="Padding" Value="0"/>	
     </Style>
+ 
+    <!-- Override ListBoxItem background, if it in SelectedState  -->
+    <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{DynamicResource TaskListBoxItemBackground}"/>
+    </Style>
 
     <!-- switching the visibility of the ItemsControl element -->
     <Style Selector="ListBoxItem[IsSelected=true] > StackPanel > ItemsControl">
