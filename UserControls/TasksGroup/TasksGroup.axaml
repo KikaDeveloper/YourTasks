@@ -50,10 +50,13 @@
 							<controls:TaskPresenter DataContext="{Binding Task}"/>
 
 							<!-- Sub tasks list -->
-							<ItemsControl Items="{Binding SubTasks}">
+							<ItemsControl Items="{Binding SubTasks}"
+											Classes="subtask_list">
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>
-										<controls:TaskPresenter/>
+										<Border Classes="task_presenter_border">
+											<controls:TaskPresenter/>
+										</Border>
 									</DataTemplate>
 								</ItemsControl.ItemTemplate>
 							</ItemsControl>
