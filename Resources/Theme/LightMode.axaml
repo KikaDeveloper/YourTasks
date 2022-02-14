@@ -20,6 +20,10 @@
 	<SolidColorBrush x:Key="TabItemsPanelBackground" Color="{StaticResource Color1}"/>
 	<SolidColorBrush x:Key="TabContentPanelBackground" Color="{StaticResource Color4}"/>
 
+	<!-- TabItem -->
+	<SolidColorBrush x:Key="TabItemSelectedBackground" Color="{StaticResource Color3}"/>
+	<SolidColorBrush x:Key="TabItemPointerOverBackground" Color="{StaticResource Color3}"/>
+
 	<!-- Task category -->
 	<SolidColorBrush x:Key="TaskCategoryBackground" Color="{StaticResource Color5}"/>
 

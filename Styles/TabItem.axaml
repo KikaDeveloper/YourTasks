@@ -15,4 +15,12 @@
 		<Setter Property="FontSize" Value="{DynamicResource TaskItemFontSize}"/>
 	</Style>
 
+	<Style Selector="TabItem:selected">
+		<Setter Property="Background" Value="{DynamicResource TabItemSelectedBackground}"/>
+	</Style>
+
+	<Style Selector="TabItem:pointerover">
+		<Setter Property="Background" Value="{DynamicResource TabItemPointerOverBackground}"/>
+	</Style>
+
 </Styles>
