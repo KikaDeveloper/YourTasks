@@ -1,0 +1,22 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="ListBoxItem">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="{DynamicResource TaskListBoxItemBackground}"/>
+    </Style>
+    
+    <Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Padding" Value="0"/>	
+    </Style>
+
+    <!-- switching the visibility of the ItemsControl element -->
+    <Style Selector="ListBoxItem[IsSelected=true] > StackPanel > ItemsControl">
+        <Setter Property="IsVisible" Value="true"/>
+    </Style>
+
+    <Style Selector="ListBoxItem[IsSelected=false] > StackPanel > ItemsControl">
+        <Setter Property="IsVisible" Value="false"/>
+    </Style>
+
+</Styles>
