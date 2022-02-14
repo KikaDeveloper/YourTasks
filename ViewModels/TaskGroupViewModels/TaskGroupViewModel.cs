@@ -7,7 +7,7 @@ namespace YourTasks.ViewModels
     public class TaskGroupViewModel : ViewModelBase
     {
         private string? _groupName;
-        private ObservableCollection<Task>? _tasks;
+        private ObservableCollection<TaskViewModel>? _tasks;
 
         public string GroupName
         {
@@ -15,7 +15,7 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _groupName, value);
         }
 
-        public ObservableCollection<Task> Tasks
+        public ObservableCollection<TaskViewModel> Tasks
         {
             get => _tasks!;
             set => this.RaiseAndSetIfChanged(ref _tasks, value);
