@@ -6,9 +6,7 @@
              x:Class="YourTasks.UserControls.TasksGroup">
 
 	<!-- The control displays a visibility switch and a list of tasks 
-		*Стилизовать ListBoxItem
-		*Реализовать класс ViewModel для этого контрола
-	-->
+		visibility of which is binded on the switcher-->
 	
 		<DockPanel LastChildFill="True">
 
@@ -19,10 +17,10 @@
 				<Panel>
 					<StackPanel Classes="tasks_group">
 							
-							<!-- Group name -->
+						<!-- Group name -->
 						<TextBlock Text="{Binding GroupName}"
 										Classes="tasks_group"/>
-							<!-- Total tasks count -->
+						<!-- Total tasks count -->
 						<TextBlock Text="{Binding Tasks.Count}"
 										Classes="tasks_group"/>
 					</StackPanel>
