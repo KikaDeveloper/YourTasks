@@ -32,7 +32,7 @@ namespace YourTasks.ViewModels
                         EllipseColor="Red"
                     },
                     TabContentViewModel = new TabContentViewModel(){
-                        Tasks = new TaskGroupViewModel()
+                        Tasks = new TotalTasksViewModel()
                         {
                             GroupName = "Total",
                             Tasks = new ObservableCollection<TaskViewModel>()
@@ -58,7 +58,7 @@ namespace YourTasks.ViewModels
                                 }
                             }
                         },
-                        CompletedTasks = new TaskGroupViewModel()
+                        CompletedTasks = new CompletedTasksViewModel()
                         {
                             GroupName = "Completed",
                             Tasks = new ObservableCollection<TaskViewModel>()
