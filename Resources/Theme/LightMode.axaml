@@ -33,4 +33,7 @@
 	<!-- TasksGroup -->
 	<SolidColorBrush x:Key="TasksGroupBackground" Color="{StaticResource Color5}"/>
 
+	<!-- Tasks ListBoxItem -->
+	<SolidColorBrush x:Key="TaskListBoxItemBackground" Color="{StaticResource Color1}"/>
+
 </ResourceDictionary>

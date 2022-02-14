@@ -3,6 +3,7 @@
 	
 	<Style Selector="ListBoxItem">
 		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="Background" Value="{DynamicResource TaskListBoxItemBackground}"/>
 	</Style>
 
 	<Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
