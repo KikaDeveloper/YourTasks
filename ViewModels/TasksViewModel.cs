@@ -64,6 +64,18 @@ namespace YourTasks.ViewModels
                             Tasks = new ObservableCollection<TaskViewModel>()
                         }
                     }
+                },
+                new TabItemViewModel(){
+                    Project = new Project()
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "DataBase",
+                        EllipseColor = "Green"
+                    },
+                    TabContentViewModel = new TabContentViewModel()
+                    {
+                        
+                    }                    
                 }
             };
         }
