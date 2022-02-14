@@ -46,12 +46,21 @@
 					<DataTemplate>
 						<StackPanel Orientation="Horizontal"
 										Height="50">
+							<!-- CheckBox -->
 							<CheckBox IsChecked="{Binding IsCompleted}"
 											Classes="task_item_checkbox"/>
+							<!-- Task -->
 							<TextBlock Text="{Binding Text}"
 											Classes="task_item_text"/>
+							<!-- Date time creation -->
 							<TextBlock Text="{Binding CreationDateTime}"
 											Classes="task_item_datetime"/>
+							<!-- Delete Button -->
+							<Button Command="{Binding}"
+									Classes="delete_button">
+								<Path Data="{DynamicResource DeleteButtonIcon}"
+										Classes="delete_icon"/>
+							</Button>
 						</StackPanel>
 					</DataTemplate>
 				</ListBox.ItemTemplate>
