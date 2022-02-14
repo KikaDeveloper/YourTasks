@@ -59,33 +59,4 @@
 			</ListBox>
 		</DockPanel>
 
-	<UserControl.Styles>
-
-		<Style Selector="StackPanel.tasks_group">
-			<Setter Property="Orientation"  Value="Horizontal"/>
-			<Setter Property="HorizontalAlignment" Value="Center"/>
-			<Setter Property="Spacing" Value="10"/>
-		</Style>
-	
-		<!-- TextBlocks -->
-		<Style Selector="TextBlock.tasks_group">
-			<Setter Property="FontSize" Value="18"/>
-		</Style>
-	
-		<!-- Tasks group switcher -->
-		<Style Selector="ToggleButton.taskgroup_switcher">
-			<Setter Property="Background" Value="{DynamicResource TasksGroupBackground}"/>
-			<Setter Property="Height" Value="{DynamicResource TasksGroupHeight}"/>
-			<Setter Property="HorizontalAlignment" Value="Stretch"/>
-			<Setter Property="VerticalContentAlignment" Value="Center"/>
-		</Style>
-	
-		<Style Selector="Path.switcher_icon">
-			<Setter Property="Fill" Value="DarkGray"/>
-			<Setter Property="Margin" Value="0 0 10 0"/>
-			<Setter Property="HorizontalAlignment" Value="Right"/>
-		</Style>
-	
-	</UserControl.Styles>
-
 </UserControl>

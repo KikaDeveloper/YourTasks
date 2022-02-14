@@ -1,0 +1,36 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  		
+	<Style Selector="StackPanel.tasks_group">
+			<Setter Property="Orientation"  Value="Horizontal"/>
+			<Setter Property="HorizontalAlignment" Value="Center"/>
+			<Setter Property="Spacing" Value="10"/>
+		</Style>
+	
+		<!-- TextBlocks -->
+		<Style Selector="TextBlock.tasks_group">
+			<Setter Property="FontSize" Value="18"/>
+		</Style>
+	
+		<Style Selector="Path.switcher_icon">
+			<Setter Property="Fill" Value="DarkGray"/>
+			<Setter Property="Margin" Value="0 0 10 0"/>
+			<Setter Property="HorizontalAlignment" Value="Right"/>
+		</Style>
+
+		<!-- Tasks group switcher -->
+		<Style Selector="ToggleButton.taskgroup_switcher">
+			<Setter Property="Background" Value="{DynamicResource TasksGroupBackground}"/>
+			<Setter Property="Height" Value="{DynamicResource TasksGroupHeight}"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+	
+		<!-- trigger checked animation override -->
+		<Style Selector="ToggleButton.taskgroup_switcher:checked /template/ ContentPresenter#PART_ContentPresenter">
+			<Setter Property="Background" Value="{DynamicResource TasksGroupBackground}"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource ToggleButtonBorderBrush}"/>
+			<Setter Property="TextBlock.Foreground" Value="Black"/>
+		</Style>
+
+</Styles>
