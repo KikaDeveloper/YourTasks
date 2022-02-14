@@ -35,27 +35,33 @@ namespace YourTasks.ViewModels
                         Tasks = new TaskGroupViewModel()
                         {
                             GroupName = "Total",
-                            Tasks = new ObservableCollection<Task>(){
-                                new Task(){
-                                    Id = Guid.NewGuid(),
-                                    Text = "Make button",
-                                    Description = "None",
-                                    CreationDateTime = DateTime.Today,
-                                    IsCompleted = false
-                                },
-                                new Task(){
-                                    Id = Guid.NewGuid(),
-                                    Text = "Show film",
-                                    Description = "Matrix",
-                                    CreationDateTime = DateTime.Today,
-                                    IsCompleted = true
+                            Tasks = new ObservableCollection<TaskViewModel>()
+                            {
+                                new TaskViewModel(){
+                                    Task = new Task(){
+                                        Id = Guid.NewGuid(),
+                                        Text = "Add project",
+                                        Description = "",
+                                        CreationDateTime = DateTime.Today,
+                                        IsCompleted = false
+                                    },
+                                    SubTasks = new ObservableCollection<Task>()
+                                    {
+                                        new Task(){
+                                            Id = Guid.NewGuid(),
+                                            Text = "new files",
+                                            Description = "",
+                                            CreationDateTime = DateTime.Today,
+                                            IsCompleted = false
+                                        }
+                                    }
                                 }
                             }
                         },
                         CompletedTasks = new TaskGroupViewModel()
                         {
                             GroupName = "Completed",
-                            Tasks = new ObservableCollection<Task>()
+                            Tasks = new ObservableCollection<TaskViewModel>()
                         }
                     }
                 }
