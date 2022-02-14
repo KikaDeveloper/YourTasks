@@ -50,7 +50,7 @@
 							<controls:TaskPresenter/>
 
 							<!-- Sub tasks list -->
-							<ItemsControl>
+							<ItemsControl Items="{Binding}">
 								<ItemsControl.ItemTemplate>
 									<DataTemplate>
 										<controls:TaskPresenter/>
