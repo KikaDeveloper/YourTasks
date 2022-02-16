@@ -59,6 +59,19 @@
 										</Border>
 									</DataTemplate>
 								</ItemsControl.ItemTemplate>
+
+								<ItemsControl.ItemsPanel>
+									<ItemsPanelTemplate>
+										<StackPanel Classes="items_panel">
+											<!-- Sub task add button -->
+											<Button Classes="add_task_button">
+												<PathIcon Data="{DynamicResource AddTaskButtonIcon}"
+														Classes="add_button_icon"/>
+											</Button>
+										</StackPanel>
+									</ItemsPanelTemplate>
+								</ItemsControl.ItemsPanel>
+
 							</ItemsControl>
 
 						</StackPanel>
@@ -67,9 +80,13 @@
 
 				<ListBox.ItemsPanel>
 					<ItemsPanelTemplate>
-						<StackPanel Orientation="Vertical"
-									Spacing="12"
-									Margin="0 12 0 0"/>
+						<StackPanel Classes="items_panel">
+								<!-- Task add button -->
+								<Button Classes="add_task_button">
+									<PathIcon Data="{DynamicResource AddTaskButtonIcon}"
+											Classes="add_button_icon"/>
+								</Button>
+						</StackPanel>
 					</ItemsPanelTemplate>
 				</ListBox.ItemsPanel>
 
