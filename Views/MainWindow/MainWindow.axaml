@@ -44,7 +44,7 @@
 					<!-- Description -->
 					<Border Grid.Column="1"
 							Classes="header_description">
-						<TextBlock Text="Description" 
+						<TextBlock Text="{Binding SelectedProject.Description}" 
 									Classes="header_description"/>
 					</Border>
 
