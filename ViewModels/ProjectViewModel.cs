@@ -40,6 +40,7 @@ namespace YourTasks.ViewModels
         {
             Name = project.Name!;
             EllipseColor = project.EllipseColor!;
+            Description = project.Description!;
 
             Tasks = new ObservableCollection<TaskViewModel>();
             foreach(var task in project.Tasks!)
