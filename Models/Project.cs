@@ -8,6 +8,7 @@ namespace YourTasks.Models
         public Guid Id { get; set; }
         public string? Name { get; set; }
         public string? EllipseColor { get; set; }
+        public string? Description { get; set; }
         public ObservableCollection<Task>? Tasks { get; set; }
     }
 }

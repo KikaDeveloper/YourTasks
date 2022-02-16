@@ -8,6 +8,7 @@ namespace YourTasks.ViewModels
     public class ProjectViewModel : ViewModelBase
     {
         private string? _name;
+        private string? _description;
         private string? _ellipseColor;
         private ObservableCollection<TaskViewModel>? _tasks;
 
@@ -21,6 +22,12 @@ namespace YourTasks.ViewModels
         {
             get => _ellipseColor!;
             set => this.RaiseAndSetIfChanged(ref _ellipseColor, value);
+        }
+
+        public string Description
+        {
+            get => _description!;
+            set => this.RaiseAndSetIfChanged(ref _description, value);
         }
 
         public ObservableCollection<TaskViewModel> Tasks
