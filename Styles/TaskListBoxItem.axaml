@@ -1,6 +1,13 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <!-- ItemsPanel for task list and subtask itemscontrol -->
+    <Style Selector="StackPanel.items_panel">
+        <Setter Property="Orientation" Value="Vertical"/>
+        <Setter Property="Spacing" Value="12"/>
+        <Setter Property="Margin" Value="0 12 0 0"/> 
+    </Style>    
+
     <Style Selector="ListBoxItem">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="{DynamicResource TaskListBoxItemBackground}"/>
