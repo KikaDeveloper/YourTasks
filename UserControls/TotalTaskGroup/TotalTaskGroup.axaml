@@ -64,7 +64,8 @@
 									<ItemsPanelTemplate>
 										<StackPanel Classes="items_panel">
 											<!-- Sub task add button -->
-											<Button Classes="add_task_button">
+											<Button Command="{Binding AddSubTaskCommand}"
+													Classes="add_task_button">
 												<PathIcon Data="{DynamicResource AddTaskButtonIcon}"
 														Classes="add_button_icon"/>
 											</Button>
@@ -82,7 +83,8 @@
 					<ItemsPanelTemplate>
 						<StackPanel Classes="items_panel">
 								<!-- Task add button -->
-								<Button Classes="add_task_button">
+								<Button Command="{Binding AddTaskCommand}" 
+									Classes="add_task_button">
 									<PathIcon Data="{DynamicResource AddTaskButtonIcon}"
 											Classes="add_button_icon"/>
 								</Button>
