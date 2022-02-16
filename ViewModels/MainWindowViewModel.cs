@@ -15,6 +15,17 @@ namespace YourTasks.ViewModels
         
         public MainWindowViewModel()
         {
+            Projects = new ObservableCollection<ProjectViewModel>()
+            {
+                new ProjectViewModel(new Models.Project()
+                    {
+                        Id = System.Guid.NewGuid(),
+                        Name = "Database",
+                        EllipseColor = "Red",
+                        Tasks = new ObservableCollection<Models.Task>()
+                    }
+                )
+            };
         }
     }
 }
