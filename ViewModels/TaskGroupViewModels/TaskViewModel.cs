@@ -21,9 +21,13 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _subTasks, value);
         }
 
+        public IReactiveCommand? AddSubTaskCommand { get; private set;}
+
         public TaskViewModel()
         {
-            
+            AddSubTaskCommand = ReactiveCommand.Create(()=>{
+                System.Console.WriteLine("Add new subtask");
+            });
         }
 
     }

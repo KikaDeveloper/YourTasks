@@ -18,5 +18,13 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _tasks, value); 
         }
 
+        public IReactiveCommand AddTaskCommand { get; private set; } 
+        public TotalTasksViewModel()
+        {
+            AddTaskCommand = ReactiveCommand.Create(()=>{
+                System.Console.WriteLine("Add new task");
+            });
+        }
+
     }
 }
