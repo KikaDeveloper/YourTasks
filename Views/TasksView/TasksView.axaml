@@ -78,7 +78,6 @@
 							<StackPanel Orientation="Vertical"
 										Spacing="12"
 										Background="Transparent"
-										Margin="0 12 0 0"
 										DataContext="{Binding TabContentViewModel}">
 	
 								<taskgroup:TotalTaskGroup DataContext="{Binding Tasks}"/>
