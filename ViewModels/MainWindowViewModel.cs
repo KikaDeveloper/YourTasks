@@ -1,10 +1,13 @@
 ﻿using ReactiveUI;
+using System.Linq;
 using System.Collections.ObjectModel;
+using YourTasks.Models;
 
 namespace YourTasks.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private ProjectViewModel? _selectedProject;
         private ObservableCollection<ProjectViewModel>? _projects;
 
         public ObservableCollection<ProjectViewModel> Projects
@@ -13,6 +16,12 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _projects, value);
         }
         
+        public ProjectViewModel SelectedProject
+        {
+            get => _selectedProject!;
+            set => this.RaiseAndSetIfChanged(ref _selectedProject, value);
+        }
+
         public MainWindowViewModel()
         {
             Projects = new ObservableCollection<ProjectViewModel>()
@@ -21,11 +30,14 @@ namespace YourTasks.ViewModels
                     {
                         Id = System.Guid.NewGuid(),
                         Name = "Database",
+                        Description = "Create a database for app.",
                         EllipseColor = "Red",
                         Tasks = new ObservableCollection<Models.Task>()
                     }
                 )
             };
+
+            SelectedProject = Projects.First();
         }
     }
 }
