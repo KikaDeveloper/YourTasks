@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-			 xmlns:controls="using:YourTasks.UserControls"
+			 xmlns:taskgroup="using:YourTasks.TaskGroup"
              x:Class="YourTasks.Views.TasksView">
   
 	<Grid RowDefinitions="40, *">
@@ -81,9 +81,9 @@
 										Margin="0 12 0 0"
 										DataContext="{Binding TabContentViewModel}">
 	
-								<controls:TasksGroup DataContext="{Binding Tasks}"/>
+								<taskgroup:TotalTaskGroup DataContext="{Binding Tasks}"/>
 
-								<controls:TasksGroup DataContext="{Binding CompletedTasks}"/>
+								<taskgroup:CompletedTaskGroup DataContext="{Binding CompletedTasks}"/>
 
 							</StackPanel>
 					</DataTemplate>
