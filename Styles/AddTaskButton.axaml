@@ -1,0 +1,24 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ 
+	<Style Selector="Button.add_task_button">
+		<Setter Property="Background" Value="{DynamicResource AddTaskButtonBackground}"/>
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="Width" Value="{DynamicResource AddButtonSize}"/>
+		<Setter Property="Height" Value="{DynamicResource AddButtonSize}"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+	</Style>
+
+	<Style Selector="Button.add_task_button /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="CornerRadius" Value="15"/>
+		<Setter Property="Padding" Value="0"/>
+	</Style>
+
+	<Style Selector="PathIcon.add_button_icon">
+		<Setter Property="Foreground" Value="Gray"/>
+		<Setter Property="Width" Value="{DynamicResource AddButtonIconSize}"/>
+		<Setter Property="Height" Value="{DynamicResource AddButtonIconSize}"/>
+	</Style>
+
+</Styles>

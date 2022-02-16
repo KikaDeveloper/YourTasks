@@ -16,6 +16,7 @@
         <StyleInclude Source="/Styles/VisibleSwitcher.axaml"/>
         <StyleInclude Source="/Styles/TaskListBoxItem.axaml"/>
         <StyleInclude Source="/Styles/SubTaskList.axaml"/>
+        <StyleInclude Source="/Styles/AddTaskButton.axaml"/>
     </Application.Styles>
 
     <!-- App resources -->
