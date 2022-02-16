@@ -9,6 +9,7 @@ namespace YourTasks.ViewModels
     {
         private string? _name;
         private string? _ellipseColor;
+        private ObservableCollection<TaskViewModel>? _tasks;
 
         public string Name
         {
@@ -22,10 +23,20 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _ellipseColor, value);
         }
 
+        public ObservableCollection<TaskViewModel> Tasks
+        {
+            get => _tasks!;
+            set => this.RaiseAndSetIfChanged(ref _tasks, value);
+        }
+
         public ProjectViewModel(Project project)
         {
             Name = project.Name!;
             EllipseColor = project.EllipseColor!;
+
+            Tasks = new ObservableCollection<TaskViewModel>();
+            foreach(var task in project.Tasks!)
+                Tasks.Add(new TaskViewModel(task));
         }
 
     }

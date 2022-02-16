@@ -1,4 +1,5 @@
 using System;
+using System.Collections.ObjectModel;
 
 namespace YourTasks.Models
 {
@@ -7,5 +8,6 @@ namespace YourTasks.Models
         public Guid Id { get; set; }
         public string? Name { get; set; }
         public string? EllipseColor { get; set; }
+        public ObservableCollection<Task>? Tasks { get; set; }
     }
 }
