@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="900" Height="450"
-        xmlns:views="using:YourTasks.Views"
+        xmlns:controls="using:YourTasks.UserControls"
         x:Class="YourTasks.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="YourTasks">
@@ -14,6 +14,91 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <views:TasksView DataContext="{Binding TasksViewModel}"/>
+    <Grid RowDefinitions="40, *">
+
+		<!-- Header decorator -->
+		<Border Grid.Row="0"
+				Classes="header_decorator">
+
+			<!-- Header -->
+			<ContentControl Background="{DynamicResource HeaderBackground}"
+							VerticalContentAlignment="Center">
+				<Grid ColumnDefinitions="22*, 78*">
+					
+					<!-- Settings -->
+					<StackPanel Grid.Column="0"
+								Classes="settings_panel">
+
+						<!-- Setting button -->
+						<Button Classes="settings_button">
+							<PathIcon Classes="settings_icon"
+									Data="{StaticResource SettingIcon}"/>
+						</Button>
+
+						<!-- Theme mode button -->
+						<ToggleSwitch Classes="theme_mode">
+
+						</ToggleSwitch>
+					</StackPanel>
+
+					<!-- Description -->
+					<Border Grid.Column="1"
+							Classes="header_description">
+						<TextBlock Text="Description" 
+									Classes="header_description"/>
+					</Border>
+
+				</Grid>
+			</ContentControl>
+		</Border>
+
+		<!-- Main space -->
+		<DockPanel Grid.Row="1">
+
+			<TabControl Items="{Binding Projects}"
+						SelectedItem="{Binding SelectedProject}"
+						TabStripPlacement="Left">
+
+				<!-- Project TabItem template -->
+				<TabControl.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Classes="tab_item">
+							<Ellipse Width="{StaticResource TaskItemElipceSize}"
+									Height="{StaticResource TaskItemElipceSize}" 
+									Fill="{Binding EllipseColor}"/>
+							<TextBlock Classes="tab_item"
+										MaxWidth="150"
+										MinWidth="90"
+										Text="{Binding Name}"/>
+						</StackPanel>
+					</DataTemplate>
+				</TabControl.ItemTemplate>
+
+				<!-- TabItems panel template -->
+				<TabControl.ItemsPanel>
+					<ItemsPanelTemplate>
+							<StackPanel  Background="{DynamicResource TabItemsPanelBackground}"/>
+					</ItemsPanelTemplate>
+				</TabControl.ItemsPanel>
+
+				<TabControl.ContentTemplate>
+					<DataTemplate>
+							<StackPanel Orientation="Vertical"
+										Spacing="12"
+										Background="Transparent"
+										DataContext="{Binding TabContentViewModel}">
+	
+								<!-- <controls:TotalTaskGroup DataContext="{Binding Tasks}"/> -->
+
+								<!-- <controls:CompletedTaskGroup DataContext="{Binding CompletedTasks}"/> -->
+
+							</StackPanel>
+					</DataTemplate>
+				</TabControl.ContentTemplate>
+
+			</TabControl>
+		</DockPanel>
+
+	</Grid>
 
 </Window>
