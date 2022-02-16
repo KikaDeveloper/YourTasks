@@ -67,9 +67,7 @@
 
 				<ListBox.ItemsPanel>
 					<ItemsPanelTemplate>
-						<StackPanel Orientation="Vertical"
-									Spacing="12"
-									Margin="0 12 0 0"/>
+						<StackPanel Classes="items_panel"/>
 					</ItemsPanelTemplate>
 				</ListBox.ItemsPanel>
 
