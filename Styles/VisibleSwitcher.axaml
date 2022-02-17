@@ -26,6 +26,14 @@
 			<Setter Property="VerticalContentAlignment" Value="Center"/>
 		</Style>
 	
+		<Style Selector="ToggleButton.taskgroup_switcher[IsChecked=true]">
+			<Setter Property="DockPanel.Dock" Value="Top"/>
+		</Style>
+
+		<Style Selector="ToggleButton.taskgroup_switcher[IsChecked=false]">
+			<Setter Property="DockPanel.Dock" Value="Bottom"/>
+		</Style>
+
 		<!-- trigger checked animation override -->
 		<Style Selector="ToggleButton.taskgroup_switcher:checked /template/ ContentPresenter#PART_ContentPresenter">
 			<Setter Property="Background" Value="{DynamicResource TasksGroupBackground}"/>
