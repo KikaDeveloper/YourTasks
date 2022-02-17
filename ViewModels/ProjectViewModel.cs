@@ -11,6 +11,7 @@ namespace YourTasks.ViewModels
         private string? _description;
         private string? _ellipseColor;
         private ObservableCollection<TaskViewModel>? _tasks;
+        private ObservableCollection<TaskViewModel>? _completedTasks;
 
         public string Name
         {
@@ -36,6 +37,12 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _tasks, value);
         }
 
+        public ObservableCollection<TaskViewModel> CompletedTasks
+        {
+            get => _completedTasks!;
+            set => this.RaiseAndSetIfChanged(ref _completedTasks, value);
+        }
+
         public ProjectViewModel(Project project)
         {
             Name = project.Name!;
@@ -45,17 +52,48 @@ namespace YourTasks.ViewModels
             Tasks = new ObservableCollection<TaskViewModel>();
             foreach(var task in project.Tasks!)
             {
-                var newTaskVM = new TaskViewModel(task);
+                var newtask = new TaskViewModel(task);
                 // подписка на событие выполнения задачи
-                newTaskVM.TaskCompletedEvent += EventHandler;
-                Tasks.Add(newTaskVM);
+                newtask.TaskCompletedEvent += TaskCompletedEventHandler;
+                Tasks.Add(newtask);
             }
-                
+
+            CompletedTasks = new ObservableCollection<TaskViewModel>();
+
+            UpdateCompletedTasks();
         }
 
-        private void EventHandler(object? sender, EventArgs e)
+        private void TaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
         {
-            System.Console.WriteLine("Checked");
+            var task = (TaskViewModel) sender!;
+            switch(e.IsCompleted)
+            {
+                case true:
+                    MoveCompletedTask(task);
+                break;
+
+                case false:
+                    CompletedTasks.Remove(task);
+                    Tasks.Add(task);
+                break;
+            }
+        }
+
+        private void UpdateCompletedTasks()
+        {
+            foreach(var task in Tasks)
+            {
+                if(task.IsCompleted == true)
+                {
+                    MoveCompletedTask(task);
+                }
+            }
+        }
+
+        private void MoveCompletedTask(TaskViewModel task)
+        {
+            Tasks.Remove(task);
+            CompletedTasks.Add(task);
         }
 
     }
