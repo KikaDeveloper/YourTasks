@@ -83,16 +83,83 @@
 
 				<TabControl.ContentTemplate>
 					<DataTemplate>
-							<StackPanel Orientation="Vertical"
-										Spacing="12"
+							<DockPanel Margin="0 12 0 0">
+
+								<ListBox DockPanel.Dock="Top" Items="{Binding Tasks}"
 										Background="Transparent"
-										DataContext="{Binding TabContentViewModel}">
-	
-								<!-- <controls:TotalTaskGroup DataContext="{Binding Tasks}"/> -->
+										SelectionMode="Single, Toggle"
+										IsVisible="{Binding !IsChecked, ElementName=VisibleSwitcher}">
 
-								<!-- <controls:CompletedTaskGroup DataContext="{Binding CompletedTasks}"/> -->
+									<ListBox.ItemTemplate>
+										<DataTemplate>
+											<controls:TaskPresenter/>
+										</DataTemplate>
+									</ListBox.ItemTemplate>
 
-							</StackPanel>
+								</ListBox>
+
+								<!-- Visible Switcher -->
+								<ToggleButton Name="VisibleSwitcher"
+											Classes="taskgroup_switcher">
+									<Panel>
+										<StackPanel Classes="tasks_group">
+											<!-- Group name -->
+											<TextBlock Text="Completed"
+															Classes="tasks_group"/>
+											<!-- Total tasks count -->
+											<TextBlock Text="{Binding Tasks.Count}"
+															Classes="tasks_group"/>
+										</StackPanel>
+					
+										<Path Data="{DynamicResource SwitchIconUp}"
+												Classes="switcher_icon"
+												IsVisible="{Binding IsChecked, ElementName=VisibleSwitcher}"/>
+					
+										<Path Data="{DynamicResource SwitchIconDown}"
+												Classes="switcher_icon"
+												IsVisible="{Binding !IsChecked, ElementName=VisibleSwitcher}"/>
+					
+									</Panel>
+								</ToggleButton>
+
+								<!-- tasks list -->
+								<ListBox Items="{Binding CompletedTasks}"
+										Background="Transparent"
+										SelectionMode="Single, Toggle"
+										IsVisible="{Binding IsChecked, ElementName=VisibleSwitcher}">
+							
+										<ListBox.ItemTemplate>
+											<DataTemplate>
+												<StackPanel Orientation="Vertical">
+						
+													<!-- Displays task data -->
+													<controls:TaskPresenter/>
+						
+													<!-- Sub tasks list -->
+													<ItemsControl Items="{Binding SubTasks}"
+																	Classes="subtask_list">
+														<ItemsControl.ItemTemplate>
+															<DataTemplate>
+																<Border Classes="task_presenter_border">
+																	<controls:TaskPresenter/>
+																</Border>
+															</DataTemplate>
+														</ItemsControl.ItemTemplate>
+													</ItemsControl>
+						
+												</StackPanel>
+											</DataTemplate>
+										</ListBox.ItemTemplate>
+						
+										<ListBox.ItemsPanel>
+											<ItemsPanelTemplate>
+												<StackPanel Classes="items_panel"/>
+											</ItemsPanelTemplate>
+										</ListBox.ItemsPanel>
+						
+									</ListBox>
+
+						</DockPanel>
 					</DataTemplate>
 				</TabControl.ContentTemplate>
 
