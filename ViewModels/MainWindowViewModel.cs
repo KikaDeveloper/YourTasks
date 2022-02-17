@@ -32,7 +32,24 @@ namespace YourTasks.ViewModels
                         Name = "Database",
                         Description = "Create a database for app.",
                         EllipseColor = "Red",
-                        Tasks = new ObservableCollection<Models.Task>()
+                        Tasks = new ObservableCollection<Models.Task>(){
+                            new Task()
+                            {
+                                Id = System.Guid.NewGuid(),
+                                Text = "Create db.",
+                                CreationDateTime = System.DateTime.Today,
+                                Description = "",
+                                IsCompleted = false
+                            },
+                            new Task()
+                            {
+                                Id = System.Guid.NewGuid(),
+                                Text = "Make commit.",
+                                CreationDateTime = System.DateTime.Today,
+                                Description = "",
+                                IsCompleted = false
+                            },
+                        }
                     }
                 )
             };
