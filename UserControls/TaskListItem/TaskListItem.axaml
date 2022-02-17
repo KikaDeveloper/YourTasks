@@ -22,6 +22,20 @@
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
+
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical">
+                             <!-- Add Task Button -->
+                        <Button Command="{Binding}"
+                                Classes="add_task_button">
+                            <PathIcon Data="{DynamicResource AddTaskButtonIcon}"
+                                     Classes="add_button_icon"/>
+                        </Button>
+                    </StackPanel>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
         </ItemsControl>
 
     </StackPanel>
