@@ -22,11 +22,11 @@
     </Style>
 
     <!-- switching the visibility of the ItemsControl element -->
-    <Style Selector="ListBoxItem[IsSelected=true] > StackPanel > ItemsControl">
+    <Style Selector="ListBoxItem[IsSelected=true]  ItemsControl#SubTaskList">
         <Setter Property="IsVisible" Value="true"/>
     </Style>
 
-    <Style Selector="ListBoxItem[IsSelected=false] > StackPanel > ItemsControl">
+    <Style Selector="ListBoxItem[IsSelected=false] ItemsControl#SubTaskList">
         <Setter Property="IsVisible" Value="false"/>
     </Style>
 
