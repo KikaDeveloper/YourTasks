@@ -44,7 +44,18 @@ namespace YourTasks.ViewModels
 
             Tasks = new ObservableCollection<TaskViewModel>();
             foreach(var task in project.Tasks!)
-                Tasks.Add(new TaskViewModel(task));
+            {
+                var newTaskVM = new TaskViewModel(task);
+                // подписка на событие выполнения задачи
+                newTaskVM.TaskCompletedEvent += EventHandler;
+                Tasks.Add(newTaskVM);
+            }
+                
+        }
+
+        private void EventHandler(object? sender, EventArgs e)
+        {
+            System.Console.WriteLine("Checked");
         }
 
     }
