@@ -83,8 +83,10 @@
 
 				<TabControl.ContentTemplate>
 					<DataTemplate>
-							<DockPanel Margin="0 12 0 0">
-
+							<DockPanel Margin="0 12 0 0"
+										HorizontalAlignment="Stretch"
+										VerticalAlignment="Stretch">
+								<!-- Tasks list -->
 								<ListBox DockPanel.Dock="Top" Items="{Binding Tasks}"
 										Background="Transparent"
 										SelectionMode="Single, Toggle"
@@ -92,13 +94,19 @@
 
 									<ListBox.ItemTemplate>
 										<DataTemplate>
-											<controls:TaskPresenter/>
+											<controls:TaskListItem/>
 										</DataTemplate>
 									</ListBox.ItemTemplate>
 
+									<ListBox.ItemsPanel>
+										<ItemsPanelTemplate>
+											<StackPanel Classes="items_panel"/>
+										</ItemsPanelTemplate>
+									</ListBox.ItemsPanel>
+
 								</ListBox>
 
-								<!-- Visible Switcher -->
+								<!-- Switcher -->
 								<ToggleButton Name="VisibleSwitcher"
 											Classes="taskgroup_switcher">
 									<Panel>
@@ -107,22 +115,22 @@
 											<TextBlock Text="Completed"
 															Classes="tasks_group"/>
 											<!-- Total tasks count -->
-											<TextBlock Text="{Binding Tasks.Count}"
+											<TextBlock Text="{Binding CompletedTasks.Count}"
 															Classes="tasks_group"/>
 										</StackPanel>
 					
 										<Path Data="{DynamicResource SwitchIconUp}"
 												Classes="switcher_icon"
-												IsVisible="{Binding IsChecked, ElementName=VisibleSwitcher}"/>
+												IsVisible="{Binding !IsChecked, ElementName=VisibleSwitcher}"/>
 					
 										<Path Data="{DynamicResource SwitchIconDown}"
 												Classes="switcher_icon"
-												IsVisible="{Binding !IsChecked, ElementName=VisibleSwitcher}"/>
+												IsVisible="{Binding IsChecked, ElementName=VisibleSwitcher}"/>
 					
 									</Panel>
 								</ToggleButton>
 
-								<!-- tasks list -->
+								<!-- Completed tasks list -->
 								<ListBox Items="{Binding CompletedTasks}"
 										Background="Transparent"
 										SelectionMode="Single, Toggle"
@@ -130,24 +138,7 @@
 							
 										<ListBox.ItemTemplate>
 											<DataTemplate>
-												<StackPanel Orientation="Vertical">
-						
-													<!-- Displays task data -->
-													<controls:TaskPresenter/>
-						
-													<!-- Sub tasks list -->
-													<ItemsControl Items="{Binding SubTasks}"
-																	Classes="subtask_list">
-														<ItemsControl.ItemTemplate>
-															<DataTemplate>
-																<Border Classes="task_presenter_border">
-																	<controls:TaskPresenter/>
-																</Border>
-															</DataTemplate>
-														</ItemsControl.ItemTemplate>
-													</ItemsControl>
-						
-												</StackPanel>
+												<controls:TaskListItem/>
 											</DataTemplate>
 										</ListBox.ItemTemplate>
 						
