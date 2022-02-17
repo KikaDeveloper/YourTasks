@@ -23,9 +23,8 @@ namespace YourTasks.ViewModels
         {
             get => _isCompleted;
             set {
-                if(value == true)
-                    TaskCompletedEvent?.Invoke(this, new EventArgs());
                 this.RaiseAndSetIfChanged(ref _isCompleted, value);
+                TaskCompletedEvent?.Invoke(this, new TaskCompletedArgs(value));
             }
         }
     
@@ -47,7 +46,7 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _subTasks, value);
         }
 
-        public event EventHandler? TaskCompletedEvent;
+        public event EventHandler<TaskCompletedArgs>? TaskCompletedEvent;
 
         public TaskViewModel(Task task)
         {
