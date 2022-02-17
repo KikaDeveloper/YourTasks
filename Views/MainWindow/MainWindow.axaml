@@ -86,25 +86,38 @@
 							<DockPanel Margin="0 12 0 0"
 										HorizontalAlignment="Stretch"
 										VerticalAlignment="Stretch">
-								<!-- Tasks list -->
-								<ListBox DockPanel.Dock="Top" Items="{Binding Tasks}"
-										Background="Transparent"
-										SelectionMode="Single, Toggle"
-										IsVisible="{Binding !IsChecked, ElementName=VisibleSwitcher}">
 
-									<ListBox.ItemTemplate>
-										<DataTemplate>
-											<controls:TaskListItem/>
-										</DataTemplate>
-									</ListBox.ItemTemplate>
+								<StackPanel DockPanel.Dock="Top"
+											HorizontalAlignment="Stretch"
+											Orientation="Vertical"
+											Spacing="10"
+											IsVisible="{Binding !IsChecked, ElementName=VisibleSwitcher}">
+									<!-- Tasks list -->
+									<ListBox DockPanel.Dock="Top" Items="{Binding Tasks}"
+											Background="Transparent"
+											SelectionMode="Single, Toggle">
 
-									<ListBox.ItemsPanel>
-										<ItemsPanelTemplate>
-											<StackPanel Classes="items_panel"/>
-										</ItemsPanelTemplate>
-									</ListBox.ItemsPanel>
+										<ListBox.ItemTemplate>
+											<DataTemplate>
+												<controls:TaskListItem/>
+											</DataTemplate>
+										</ListBox.ItemTemplate>
 
-								</ListBox>
+										<ListBox.ItemsPanel>
+											<ItemsPanelTemplate>
+												<StackPanel Classes="items_panel"/>
+											</ItemsPanelTemplate>
+										</ListBox.ItemsPanel>
+
+									</ListBox>
+									
+									<!-- Add Task Button -->
+									<Button Command="{Binding}"
+											Classes="add_task_button">
+										<PathIcon Data="{DynamicResource AddTaskButtonIcon}"
+												Classes="add_button_icon"/>
+									</Button>
+								</StackPanel>
 
 								<!-- Switcher -->
 								<ToggleButton Name="VisibleSwitcher"
@@ -148,7 +161,7 @@
 											</ItemsPanelTemplate>
 										</ListBox.ItemsPanel>
 						
-									</ListBox>
+								</ListBox>
 
 						</DockPanel>
 					</DataTemplate>
