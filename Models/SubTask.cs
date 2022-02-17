@@ -10,7 +10,6 @@ namespace YourTasks.Models
         public override DateTime CreationDateTime { get; set; }
         public override bool IsCompleted { get; set; }
         public override string? Description { get; set; }
-
         public Guid TaskId { get; set; }
     }
 }
