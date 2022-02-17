@@ -3,7 +3,7 @@
 	
 	<!-- Grid -->
 	<Style Selector="Grid.task_item_grid">
-		<Setter Property="Height" Value="30"/>
+		<Setter Property="Height" Value="25"/>
 	</Style>
 
 	<!-- Checkbox -->
