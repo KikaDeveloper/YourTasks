@@ -22,10 +22,10 @@ namespace YourTasks.Services
         protected AppRepository()
         {
             connection = new SQLiteAsyncConnection("tasks.db");
-            System.Threading.Tasks.Task.Run(async() => await EnsureCreateTables());
+            // System.Threading.Tasks.Task.Run(async() => await EnsureCreateTables());
         }
 
-        private async System.Threading.Tasks.Task EnsureCreateTables()
+        public async System.Threading.Tasks.Task EnsureCreateTables()
         {
             await connection.CreateTableAsync<Project>().ContinueWith((result)=>{
                 System.Console.WriteLine("Project Table created!");
