@@ -25,9 +25,15 @@ namespace YourTasks.Services
 
         private async System.Threading.Tasks.Task EnsureCreateTables()
         {
-            await connection.CreateTableAsync<YourTasks.Models.Task>();
-            await connection.CreateTableAsync<Project>();
-            await connection.CreateTableAsync<SubTask>();
+            await connection.CreateTableAsync<Project>().ContinueWith((result)=>{
+                System.Console.WriteLine("Project Table created!");
+            });
+            await connection.CreateTableAsync<YourTasks.Models.Task>().ContinueWith((result)=>{
+                System.Console.WriteLine("Tasks Table created!");
+            });
+            await connection.CreateTableAsync<SubTask>().ContinueWith((result)=>{
+                System.Console.WriteLine("SubTasks Table created!");
+            });
         }
 
         public async System.Threading.Tasks.Task InsertEntity<TEntity>(TEntity entity) where TEntity : class
