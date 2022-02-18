@@ -18,7 +18,8 @@ namespace YourTasks.Models
         public override bool IsCompleted { get; set; }
         [Column("description")]
         public override string? Description { get; set; }
-        // public ObservableCollection<SubTask>? SubTasks { get; set;}
+        [Ignore()]
+        public ObservableCollection<SubTask>? SubTasks { get; set;}
         [Indexed]
         [Column("porject_id")]
         public int ProjectId { get; set; }

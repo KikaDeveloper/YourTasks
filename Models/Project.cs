@@ -1,4 +1,5 @@
 using SQLite;
+using System.Collections.ObjectModel;
 
 namespace YourTasks.Models
 {
@@ -14,5 +15,7 @@ namespace YourTasks.Models
         public string? EllipseColor { get; set; }
         [Column("description")]
         public string? Description { get; set; }
+        [Ignore]
+        public ObservableCollection<Task>? Tasks { get; set; }
     }
 }
