@@ -1,16 +1,26 @@
 using System;
 using System.Collections.ObjectModel;
+using SQLite;
 
 namespace YourTasks.Models
 {
+    [Table("Tasks")]
     public class Task : TaskBase
     {
-        public override Guid Id { get; set; }
+        [PrimaryKey, AutoIncrement]
+        [Column("id")]
+        public override int Id { get; set; }
+        [Column("text")]
         public override string? Text { get; set; }
-        public override DateTime CreationDateTime { get; set; }
+        [Column("creation_dateTime")]
+        public override string? CreationDateTime { get; set; }
+        [Column("is_completed")]
         public override bool IsCompleted { get; set; }
+        [Column("description")]
         public override string? Description { get; set; }
-        public ObservableCollection<SubTask>? SubTasks { get; set;}
-        public Guid ProjectId { get; set; }
+        // public ObservableCollection<SubTask>? SubTasks { get; set;}
+        [Indexed]
+        [Column("porject_id")]
+        public int ProjectId { get; set; }
     }
 }
