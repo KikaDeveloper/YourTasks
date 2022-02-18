@@ -22,6 +22,7 @@
                     Classes="task_item_datetime"/>
         <!-- Delete Button -->
         <Button Command="{Binding}"
+                IsVisible="{Binding !IsCompleted}"
                 Grid.Column="3"
                 Classes="delete_button">
             <PathIcon Data="{DynamicResource DeleteButtonIcon}"
