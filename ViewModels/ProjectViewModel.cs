@@ -1,5 +1,5 @@
 using ReactiveUI;
-using System;
+using System.Linq;
 using System.Collections.ObjectModel;
 using YourTasks.Models;
 
@@ -49,18 +49,18 @@ namespace YourTasks.ViewModels
             EllipseColor = project.EllipseColor!;
             Description = project.Description!;
 
-            // Tasks = new ObservableCollection<TaskViewModel>();
-            // foreach(var task in project.Tasks!)
-            // {
-            //     var newtask = new TaskViewModel(task);
-            //     // подписка на событие выполнения задачи
-            //     newtask.TaskCompletedEvent += TaskCompletedEventHandler;
-            //     Tasks.Add(newtask);
-            // }
+            Tasks = new ObservableCollection<TaskViewModel>();
+            foreach(var task in project.Tasks!)
+            {
+                var newtask = new TaskViewModel(task);
+                // подписка на событие выполнения задачи
+                newtask.TaskCompletedEvent += TaskCompletedEventHandler;
+                Tasks.Add(newtask);
+            }
 
-            CompletedTasks = new ObservableCollection<TaskViewModel>();
-
-            UpdateCompletedTasks();
+            CompletedTasks = new ObservableCollection<TaskViewModel>(
+                Tasks.Where(taskVM => taskVM.IsCompleted == true)
+            );
         }
 
         private void TaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
@@ -69,7 +69,8 @@ namespace YourTasks.ViewModels
             switch(e.IsCompleted)
             {
                 case true:
-                    MoveCompletedTask(task);
+                    Tasks.Remove(task);
+                    CompletedTasks.Add(task);
                 break;
 
                 case false:
@@ -78,23 +79,5 @@ namespace YourTasks.ViewModels
                 break;
             }
         }
-
-        private void UpdateCompletedTasks()
-        {
-            foreach(var task in Tasks)
-            {
-                if(task.IsCompleted == true)
-                {
-                    MoveCompletedTask(task);
-                }
-            }
-        }
-
-        private void MoveCompletedTask(TaskViewModel task)
-        {
-            Tasks.Remove(task);
-            CompletedTasks.Add(task);
-        }
-
     }
 }
