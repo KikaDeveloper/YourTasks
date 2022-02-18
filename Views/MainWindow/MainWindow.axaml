@@ -112,7 +112,7 @@
 									</ListBox>
 									
 									<!-- Add Task Button -->
-									<Button Command="{Binding}"
+									<Button Command="{Binding AddNewTaskCommand}"
 											Classes="add_task_button">
 										<PathIcon Data="{DynamicResource AddTaskButtonIcon}"
 												Classes="add_button_icon"/>
