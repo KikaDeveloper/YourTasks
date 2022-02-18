@@ -1,7 +1,9 @@
 using ReactiveUI;
+using System;
 using System.Linq;
 using System.Collections.ObjectModel;
 using YourTasks.Models;
+using YourTasks.Services;
 
 namespace YourTasks.ViewModels
 {
@@ -43,6 +45,8 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _completedTasks, value);
         }
 
+        public IReactiveCommand? AddNewTaskCommand { get; private set; }
+
         public ProjectViewModel(Project project)
         {
             Name = project.Name!;
@@ -61,6 +65,17 @@ namespace YourTasks.ViewModels
             CompletedTasks = new ObservableCollection<TaskViewModel>(
                 Tasks.Where(taskVM => taskVM.IsCompleted == true)
             );
+            var repo = AppRepository.Instance;
+            AddNewTaskCommand = ReactiveCommand.CreateFromTask(async() => await repo.InsertEntity<Task>(
+                new Task{
+                    Text = "Name",
+                    CreationDateTime = DateTime.Today.ToString(),
+                    Description = "",
+                    IsCompleted = false,
+                    ProjectId = 1,
+                    SubTasks = null
+                }
+            ));
         }
 
         private void TaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
