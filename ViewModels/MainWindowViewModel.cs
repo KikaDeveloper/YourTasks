@@ -25,7 +25,7 @@ namespace YourTasks.ViewModels
         public MainWindowViewModel()
         {
             Projects = new ObservableCollection<ProjectViewModel>();
-            Services.AppRepository repo = new Services.AppRepository();
+            Services.AppRepository repo = Services.AppRepository.Instance;
         }
     }
 }
