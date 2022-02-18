@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Collections.ObjectModel;
 using YourTasks.Models;
+using YourTasks.Views;
 using YourTasks.Services;
 
 namespace YourTasks.ViewModels
@@ -65,17 +66,17 @@ namespace YourTasks.ViewModels
             CompletedTasks = new ObservableCollection<TaskViewModel>(
                 Tasks.Where(taskVM => taskVM.IsCompleted == true)
             );
-            var repo = AppRepository.Instance;
-            AddNewTaskCommand = ReactiveCommand.CreateFromTask(async() => await repo.InsertEntity<Task>(
-                new Task{
-                    Text = "Name",
-                    CreationDateTime = DateTime.Today.ToString(),
-                    Description = "",
-                    IsCompleted = false,
-                    ProjectId = 1,
-                    SubTasks = null
+            AddNewTaskCommand = ReactiveCommand.CreateFromTask(
+                async()=> await OpenNewTaskDialog());
+        }
+
+        private async System.Threading.Tasks.Task OpenNewTaskDialog()
+        {
+            var newTask = await DialogService.ShowDialogAsync<Task>(
+                new NewTaskWindow{
+                    DataContext = new NewTaskWindowViewModel()
                 }
-            ));
+            );
         }
 
         private void TaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
