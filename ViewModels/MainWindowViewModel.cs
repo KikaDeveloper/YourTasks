@@ -24,37 +24,8 @@ namespace YourTasks.ViewModels
 
         public MainWindowViewModel()
         {
-            Projects = new ObservableCollection<ProjectViewModel>()
-            {
-                new ProjectViewModel(new Models.Project()
-                    {
-                        Id = System.Guid.NewGuid(),
-                        Name = "Database",
-                        Description = "Create a database for app.",
-                        EllipseColor = "Red",
-                        Tasks = new ObservableCollection<Models.Task>(){
-                            new Task()
-                            {
-                                Id = System.Guid.NewGuid(),
-                                Text = "Create db.",
-                                CreationDateTime = System.DateTime.Today,
-                                Description = "",
-                                IsCompleted = false
-                            },
-                            new Task()
-                            {
-                                Id = System.Guid.NewGuid(),
-                                Text = "Make commit.",
-                                CreationDateTime = System.DateTime.Today,
-                                Description = "",
-                                IsCompleted = false
-                            },
-                        }
-                    }
-                )
-            };
-
-            SelectedProject = Projects.First();
+            Projects = new ObservableCollection<ProjectViewModel>();
+            Services.AppRepository repo = new Services.AppRepository();
         }
     }
 }

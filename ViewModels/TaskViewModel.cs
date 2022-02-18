@@ -52,9 +52,9 @@ namespace YourTasks.ViewModels
         {
             Text = task.Text!;
             Description = task.Description!;
-            CreationDateTime = task.CreationDateTime;
+            CreationDateTime = DateTime.Parse(task.CreationDateTime!);
             IsCompleted = task.IsCompleted;
-            SubTasks = task.SubTasks!;
+            //SubTasks = task.SubTasks!;
         }
 
     }

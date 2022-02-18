@@ -49,14 +49,14 @@ namespace YourTasks.ViewModels
             EllipseColor = project.EllipseColor!;
             Description = project.Description!;
 
-            Tasks = new ObservableCollection<TaskViewModel>();
-            foreach(var task in project.Tasks!)
-            {
-                var newtask = new TaskViewModel(task);
-                // подписка на событие выполнения задачи
-                newtask.TaskCompletedEvent += TaskCompletedEventHandler;
-                Tasks.Add(newtask);
-            }
+            // Tasks = new ObservableCollection<TaskViewModel>();
+            // foreach(var task in project.Tasks!)
+            // {
+            //     var newtask = new TaskViewModel(task);
+            //     // подписка на событие выполнения задачи
+            //     newtask.TaskCompletedEvent += TaskCompletedEventHandler;
+            //     Tasks.Add(newtask);
+            // }
 
             CompletedTasks = new ObservableCollection<TaskViewModel>();
 
