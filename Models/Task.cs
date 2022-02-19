@@ -21,7 +21,7 @@ namespace YourTasks.Models
         [Ignore()]
         public ObservableCollection<SubTask>? SubTasks { get; set;}
         [Indexed]
-        [Column("porject_id")]
+        [Column("project_id")]
         public int ProjectId { get; set; }
     }
 }
