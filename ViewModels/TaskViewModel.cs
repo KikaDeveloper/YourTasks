@@ -54,7 +54,7 @@ namespace YourTasks.ViewModels
             Description = task.Description!;
             CreationDateTime = DateTime.Parse(task.CreationDateTime!);
             IsCompleted = task.IsCompleted;
-            //SubTasks = task.SubTasks!;
+            SubTasks = task.SubTasks!;
         }
 
     }
