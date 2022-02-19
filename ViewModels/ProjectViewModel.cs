@@ -77,6 +77,9 @@ namespace YourTasks.ViewModels
                     DataContext = new NewTaskWindowViewModel()
                 }
             );
+
+            if(newTask != null)
+                Tasks.Add(new TaskViewModel(newTask));
         }
 
         private void TaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
