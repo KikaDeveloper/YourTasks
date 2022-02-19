@@ -28,6 +28,11 @@ namespace YourTasks
                 };
 
                 DialogService.SetOwner(ref desktop);
+
+                desktop.ShutdownMode = Avalonia.Controls.ShutdownMode.OnMainWindowClose;
+                desktop.MainWindow.Closing += async (sender, e) => {
+                    await repo.CloseConnection();
+                };
             }
 
             base.OnFrameworkInitializationCompleted();
