@@ -77,7 +77,14 @@
 				<!-- TabItems panel template -->
 				<TabControl.ItemsPanel>
 					<ItemsPanelTemplate>
-							<StackPanel  Background="{DynamicResource TabItemsPanelBackground}"/>
+							<StackPanel Width="200"
+										Background="{DynamicResource TabItemsPanelBackground}">
+								<Button Command="{Binding}"
+                                		Classes="add_task_button">
+                            		<PathIcon Data="{DynamicResource AddTaskButtonIcon}"
+                                    		Classes="add_button_icon"/>
+                        		</Button>
+							</StackPanel>
 					</ItemsPanelTemplate>
 				</TabControl.ItemsPanel>
 
