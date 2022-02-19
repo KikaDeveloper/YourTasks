@@ -40,7 +40,7 @@ namespace YourTasks.ViewModels
     
         public EventHandler? SubTaskDeleteEvent;
         public EventHandler<TaskCompletedArgs>? SubTaskCompletedEvent;
-        public IReactiveCommand SubTaskDeleteCommand { get; }
+        public IReactiveCommand DeleteTaskCommand { get; }
 
         public SubTaskViewModel(SubTask task)
         {
@@ -49,7 +49,7 @@ namespace YourTasks.ViewModels
             CreationDateTime = task.CreationDateTime!;
             IsCompleted = task.IsCompleted!;
 
-            SubTaskDeleteCommand = ReactiveCommand.Create(()=>{
+            DeleteTaskCommand = ReactiveCommand.Create(()=>{
                 SubTaskDeleteEvent?.Invoke(this, new EventArgs());
             });
         }

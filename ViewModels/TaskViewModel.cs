@@ -81,12 +81,12 @@ namespace YourTasks.ViewModels
 
         private void SubTaskDeleteEventHandler(object? sender, EventArgs e)
         {
-            
+            Console.WriteLine("Delete subtask");
         }
 
         private void SubTaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
         {
-
+            Console.WriteLine("Completed subtask");
         }
 
     }
