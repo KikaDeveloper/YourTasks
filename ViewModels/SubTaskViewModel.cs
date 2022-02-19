@@ -39,7 +39,7 @@ namespace YourTasks.ViewModels
         }
     
         public EventHandler? SubTaskDeleteEvent;
-        public EventHandler? SubTaskCompletedEvent;
+        public EventHandler<TaskCompletedArgs>? SubTaskCompletedEvent;
         public IReactiveCommand SubTaskDeleteCommand { get; }
 
         public SubTaskViewModel(SubTask task)
