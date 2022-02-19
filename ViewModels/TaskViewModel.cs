@@ -9,7 +9,7 @@ namespace YourTasks.ViewModels
     {
         private string? _text;
         private string? _description;
-        private DateTime _creationDateTime;
+        private string? _creationDateTime;
         private bool _isCompleted;
         private ObservableCollection<SubTask>? _subTasks;
 
@@ -34,9 +34,9 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _description, value);
         }
     
-        public DateTime CreationDateTime
+        public string CreationDateTime
         {
-            get => _creationDateTime;
+            get => _creationDateTime!;
             set => this.RaiseAndSetIfChanged(ref _creationDateTime, value);
         }
 
@@ -52,7 +52,7 @@ namespace YourTasks.ViewModels
         {
             Text = task.Text!;
             Description = task.Description!;
-            CreationDateTime = DateTime.Parse(task.CreationDateTime!);
+            CreationDateTime = task.CreationDateTime!;
             IsCompleted = task.IsCompleted;
             SubTasks = task.SubTasks!;
         }
