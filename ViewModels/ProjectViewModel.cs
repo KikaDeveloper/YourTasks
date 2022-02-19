@@ -10,6 +10,7 @@ namespace YourTasks.ViewModels
 {
     public class ProjectViewModel : ViewModelBase
     {
+        private int _projectId;
         private string? _name;
         private string? _description;
         private string? _ellipseColor;
@@ -50,6 +51,7 @@ namespace YourTasks.ViewModels
 
         public ProjectViewModel(Project project)
         {
+            _projectId = project.Id;
             Name = project.Name!;
             EllipseColor = project.EllipseColor!;
             Description = project.Description!;
@@ -78,8 +80,13 @@ namespace YourTasks.ViewModels
                 }
             );
 
+            newTask.ProjectId = _projectId;
+
             if(newTask != null)
+            {
                 Tasks.Add(new TaskViewModel(newTask));
+                await AppRepository.Instance.InsertEntity<Task>(newTask);
+            }
         }
 
         private void TaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
