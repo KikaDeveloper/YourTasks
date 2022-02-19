@@ -1,5 +1,6 @@
 using ReactiveUI;
-
+using System.Reactive;
+using YourTasks.Models;
 namespace YourTasks.ViewModels
 {
     public class NewTaskWindowViewModel : ViewModelBase
@@ -20,11 +21,11 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _description, value);
         }        
 
-        public IReactiveCommand AddNewTaskCommand { get; }
+        public ReactiveCommand<Unit, Task> AddNewTaskCommand { get; }
 
         public NewTaskWindowViewModel()
         {
-            AddNewTaskCommand = ReactiveCommand.Create(()=>{});
+            AddNewTaskCommand = ReactiveCommand.Create<Task>(()=> {return new Task();});
         }
     }
 }
