@@ -19,6 +19,18 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _text, value);
         }
 
+        public string Description
+        {
+            get => _description!;
+            set => this.RaiseAndSetIfChanged(ref _description, value);
+        }
+        
+        public string CreationDateTime
+        {
+            get => _creationDateTime!;
+            set => this.RaiseAndSetIfChanged(ref _creationDateTime, value);
+        }
+
         public bool IsCompleted
         {
             get => _isCompleted;
@@ -28,18 +40,6 @@ namespace YourTasks.ViewModels
             }
         }
     
-        public string Description
-        {
-            get => _description!;
-            set => this.RaiseAndSetIfChanged(ref _description, value);
-        }
-    
-        public string CreationDateTime
-        {
-            get => _creationDateTime!;
-            set => this.RaiseAndSetIfChanged(ref _creationDateTime, value);
-        }
-
         public ObservableCollection<SubTask> SubTasks
         {
             get => _subTasks!;
@@ -49,6 +49,8 @@ namespace YourTasks.ViewModels
         public event EventHandler<TaskCompletedArgs>? TaskCompletedEvent;
 
         public IReactiveCommand DeleteTaskCommand { get; }
+
+        public IReactiveCommand AddSubTaskCommand { get; }
 
         public TaskViewModel(Task task)
         {
@@ -61,6 +63,8 @@ namespace YourTasks.ViewModels
             DeleteTaskCommand = ReactiveCommand.Create(()=>{
                 Console.WriteLine("Delete");
             });
+
+            AddSubTaskCommand = ReactiveCommand.Create(()=>{});
         }
 
     }
