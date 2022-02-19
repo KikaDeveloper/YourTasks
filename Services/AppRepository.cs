@@ -71,7 +71,7 @@ namespace YourTasks.Services
             
             foreach(var project in projects)
             {
-                var projectTasks = tasks.Where(task => task.Id == project.Id);
+                var projectTasks = tasks.Where<Task>(task => task.ProjectId == project.Id);
                 foreach(var task in projectTasks)
                 {
                     task.SubTasks = new ObservableCollection<SubTask>(subTasks.Where(subTask => subTask.TaskId == task.Id));
