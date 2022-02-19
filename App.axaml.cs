@@ -26,6 +26,8 @@ namespace YourTasks
                 {
                     DataContext = new MainWindowViewModel(),
                 };
+
+                DialogService.SetOwner(ref desktop);
             }
 
             base.OnFrameworkInitializationCompleted();
