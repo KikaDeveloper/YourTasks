@@ -30,7 +30,7 @@
 	<x:Double x:Key="DeleteButtonSize">22</x:Double>
 
 	<!-- Add task button and icon  -->
-	<StreamGeometry x:Key="AddTaskButtonIcon">M23,11H13V1a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1V11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H11V23a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13H23a1,1,0,0,0,1-1h0A1,1,0,0,0,23,11Z</StreamGeometry>
+	<StreamGeometry x:Key="AddButtonIcon">M23,11H13V1a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1V11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H11V23a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13H23a1,1,0,0,0,1-1h0A1,1,0,0,0,23,11Z</StreamGeometry>
 	<x:Double x:Key="AddButtonIconSize">12</x:Double>
 	<x:Double x:Key="AddButtonSize">30</x:Double>
 

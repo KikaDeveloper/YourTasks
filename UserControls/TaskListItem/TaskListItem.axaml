@@ -28,8 +28,8 @@
                     <StackPanel Orientation="Vertical">
                              <!-- Add Sub Task Button -->
                         <Button Command="{Binding}"
-                                Classes="add_task_button">
-                            <PathIcon Data="{DynamicResource AddTaskButtonIcon}"
+                                Classes="add_button">
+                            <PathIcon Data="{DynamicResource AddButtonIcon}"
                                      Classes="add_button_icon"/>
                         </Button>
                     </StackPanel>

@@ -81,8 +81,8 @@
 							<StackPanel Width="200"
 										Background="{DynamicResource TabItemsPanelBackground}">
 								<Button Command="{Binding}"
-                                		Classes="add_task_button">
-                            		<PathIcon Data="{DynamicResource AddTaskButtonIcon}"
+                                		Classes="add_button">
+                            		<PathIcon Data="{DynamicResource AddButtonIcon}"
                                     		Classes="add_button_icon"/>
                         		</Button>
 							</StackPanel>
@@ -121,8 +121,9 @@
 									
 									<!-- Add Task Button -->
 									<Button Command="{Binding AddNewTaskCommand}"
-											Classes="add_task_button">
-										<PathIcon Data="{DynamicResource AddTaskButtonIcon}"
+											Classes="add_button"
+											Margin="0">
+										<PathIcon Data="{DynamicResource AddButtonIcon}"
 												Classes="add_button_icon"/>
 									</Button>
 								</StackPanel>

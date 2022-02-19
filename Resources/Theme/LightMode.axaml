@@ -43,6 +43,6 @@
 	<!-- Sub task ItemsControl item -->
 	<SolidColorBrush x:Key="SubTaskPresenterBackground" Color="{StaticResource Color3}"/>
 
-	<!-- Add Task Button -->
-	<SolidColorBrush x:Key="AddTaskButtonBackground" Color="{StaticResource Color1}"/>
+	<!-- Add Button -->
+	<SolidColorBrush x:Key="AddButtonBackground" Color="{StaticResource Color1}"/>
 </ResourceDictionary>
