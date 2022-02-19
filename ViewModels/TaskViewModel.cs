@@ -48,6 +48,8 @@ namespace YourTasks.ViewModels
 
         public event EventHandler<TaskCompletedArgs>? TaskCompletedEvent;
 
+        public IReactiveCommand DeleteTaskCommand { get; }
+
         public TaskViewModel(Task task)
         {
             Text = task.Text!;
@@ -55,6 +57,10 @@ namespace YourTasks.ViewModels
             CreationDateTime = task.CreationDateTime!;
             IsCompleted = task.IsCompleted;
             SubTasks = task.SubTasks!;
+
+            DeleteTaskCommand = ReactiveCommand.Create(()=>{
+                Console.WriteLine("Delete");
+            });
         }
 
     }
