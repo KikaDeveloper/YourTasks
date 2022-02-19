@@ -25,6 +25,11 @@ namespace YourTasks.Services
             // System.Threading.Tasks.Task.Run(async() => await EnsureCreateTables());
         }
 
+        public async System.Threading.Tasks.Task CloseConnection()
+        {
+            await connection.CloseAsync();
+        }
+
         public async System.Threading.Tasks.Task EnsureCreateTables()
         {
             await connection.CreateTableAsync<Project>().ContinueWith((result)=>{
