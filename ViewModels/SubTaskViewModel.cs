@@ -6,11 +6,11 @@ namespace YourTasks.ViewModels
 {  
     public class SubTaskViewModel : ViewModelBase
     {
-        private SubTask? _subTask;
-        public SubTask SubTask
+        private SubTask? _task;
+        public SubTask Task
         {
-            get => _subTask!;
-            set => this.RaiseAndSetIfChanged(ref _subTask, value);
+            get => _task!;
+            set => this.RaiseAndSetIfChanged(ref _task, value);
         }
     
         public EventHandler? SubTaskDeleteEvent;
@@ -18,7 +18,7 @@ namespace YourTasks.ViewModels
 
         public SubTaskViewModel(SubTask task)
         {
-            SubTask = task;
+            Task = task;
 
             DeleteTaskCommand = ReactiveCommand.Create(()=>{
                 SubTaskDeleteEvent?.Invoke(this, new EventArgs());
