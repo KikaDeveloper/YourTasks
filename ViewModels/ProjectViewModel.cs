@@ -59,7 +59,7 @@ namespace YourTasks.ViewModels
         {
             var newTask = (Task) await DialogService.ShowDialogAsync<TaskBase>(
                 new NewTaskWindow{
-                    DataContext = new NewTaskViewModel()
+                    DataContext = new NewTaskViewModel(true)
                 }
             );
 

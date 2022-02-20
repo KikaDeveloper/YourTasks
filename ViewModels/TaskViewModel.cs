@@ -77,7 +77,7 @@ namespace YourTasks.ViewModels
         private async System.Threading.Tasks.Task AddSubTask()
         {
             var newTask = (SubTask) await DialogService.ShowDialogAsync<TaskBase>(new NewTaskWindow{
-                DataContext = new NewTaskViewModel()
+                DataContext = new NewTaskViewModel(false)
             });
 
             var newSubTaskVM = new SubTaskViewModel(newTask);
