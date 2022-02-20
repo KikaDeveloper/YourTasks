@@ -2,44 +2,21 @@ using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
 using YourTasks.Models;
+using YourTasks.Services;
 
 namespace YourTasks.ViewModels
 {  
     public class TaskViewModel : ViewModelBase
     {
-        private string? _text;
-        private string? _description;
-        private string? _creationDateTime;
-        private bool _isCompleted;
+        private Task? _task;
         private ObservableCollection<SubTaskViewModel>? _subTasks;
-
-        public string Text
-        {
-            get => _text!;
-            set => this.RaiseAndSetIfChanged(ref _text, value);
-        }
-
-        public string Description
-        {
-            get => _description!;
-            set => this.RaiseAndSetIfChanged(ref _description, value);
-        }
         
-        public string CreationDateTime
+        public Task Task
         {
-            get => _creationDateTime!;
-            set => this.RaiseAndSetIfChanged(ref _creationDateTime, value);
-        }
-
-        public bool IsCompleted
-        {
-            get => _isCompleted;
-            set {
-                this.RaiseAndSetIfChanged(ref _isCompleted, value);
-                TaskCompletedEvent?.Invoke(this, new TaskCompletedArgs(value));
-            }
-        }
-    
+            get => _task!;
+            set => this.RaiseAndSetIfChanged(ref _task, value);
+        }  
+      
         public ObservableCollection<SubTaskViewModel> SubTasks
         {
             get => _subTasks!;
@@ -54,10 +31,7 @@ namespace YourTasks.ViewModels
 
         public TaskViewModel(Task task)
         {
-            Text = task.Text!;
-            Description = task.Description!;
-            CreationDateTime = task.CreationDateTime!;
-            IsCompleted = task.IsCompleted;
+            Task = task;
             
             SubTasks = new ObservableCollection<SubTaskViewModel>();
             foreach(var subTask in task.SubTasks!)
@@ -66,7 +40,7 @@ namespace YourTasks.ViewModels
                 // subscribe to subtask delete event
                 newSubTaskVM.SubTaskDeleteEvent += SubTaskDeleteEventHandler;
                 // subscribe to subtask completed event
-                newSubTaskVM.SubTaskCompletedEvent += SubTaskCompletedEventHandler;
+                newSubTaskVM.SubTask.TaskCompletedEvent += SubTaskCompletedEventHandler;
                 SubTasks.Add(newSubTaskVM);
             }
 
@@ -79,14 +53,19 @@ namespace YourTasks.ViewModels
             });
         }
 
-        private void SubTaskDeleteEventHandler(object? sender, EventArgs e)
+        private async void SubTaskDeleteEventHandler(object? sender, EventArgs e)
         {
             Console.WriteLine("Delete subtask");
+            var subTask = (SubTaskViewModel)sender!;
+
+            SubTasks.Remove(subTask);
+            await AppRepository.Instance.DeleteEntity<SubTask>(subTask.SubTask);
         }
 
         private void SubTaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
         {
             Console.WriteLine("Completed subtask");
+            
         }
 
     }
