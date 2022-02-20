@@ -1,10 +1,13 @@
+using System;
 using Avalonia;
-using Avalonia.Controls;
+using Avalonia.ReactiveUI;
 using Avalonia.Markup.Xaml;
+using YourTasks.ViewModels;
+using ReactiveUI;
 
 namespace YourTasks.Views
 {
-    public partial class NewProjectWindow : Window
+    public partial class NewProjectWindow : ReactiveWindow<NewProjectViewModel>
     {
         public NewProjectWindow()
         {
@@ -12,6 +15,7 @@ namespace YourTasks.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
+            this.WhenActivated(d => ViewModel!.AddNewProjectCommand.Subscribe(Close));
         }
 
         private void InitializeComponent()
