@@ -23,8 +23,6 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _subTasks, value);
         }
 
-        public event EventHandler<TaskCompletedArgs>? TaskCompletedEvent;
-
         public IReactiveCommand DeleteTaskCommand { get; }
 
         public IReactiveCommand AddSubTaskCommand { get; }
