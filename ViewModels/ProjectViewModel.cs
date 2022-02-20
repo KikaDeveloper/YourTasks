@@ -64,6 +64,8 @@ namespace YourTasks.ViewModels
             );
 
             newTask.ProjectId = Project.Id;
+            var taskVM = new TaskViewModel(newTask);
+            taskVM.Task.TaskCompletedEvent += TaskCompletedEventHandler;
 
             if(newTask != null)
             {
