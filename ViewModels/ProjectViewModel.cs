@@ -14,7 +14,7 @@ namespace YourTasks.ViewModels
         private ObservableCollection<TaskViewModel>? _tasks;
         private ObservableCollection<TaskViewModel>? _completedTasks;
 
-       public Project Project
+        public Project Project
        {
            get => _project!;
            set => this.RaiseAndSetIfChanged(ref _project, value);
