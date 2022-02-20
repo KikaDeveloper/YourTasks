@@ -10,30 +10,15 @@ namespace YourTasks.ViewModels
 {
     public class ProjectViewModel : ViewModelBase
     {
-        private int _projectId;
-        private string? _name;
-        private string? _description;
-        private string? _ellipseColor;
+        private Project? _project; 
         private ObservableCollection<TaskViewModel>? _tasks;
         private ObservableCollection<TaskViewModel>? _completedTasks;
 
-        public string Name
-        {
-            get => _name!;
-            set => this.RaiseAndSetIfChanged(ref _name, value);
-        }
-
-        public string EllipseColor
-        {
-            get => _ellipseColor!;
-            set => this.RaiseAndSetIfChanged(ref _ellipseColor, value);
-        }
-
-        public string Description
-        {
-            get => _description!;
-            set => this.RaiseAndSetIfChanged(ref _description, value);
-        }
+       public Project Project
+       {
+           get => _project!;
+           set => this.RaiseAndSetIfChanged(ref _project, value);
+       }
 
         public ObservableCollection<TaskViewModel> Tasks
         {
@@ -47,27 +32,25 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _completedTasks, value);
         }
 
-        public IReactiveCommand? AddNewTaskCommand { get; private set; }
+        public IReactiveCommand? AddNewTaskCommand { get; }
 
         public ProjectViewModel(Project project)
         {
-            _projectId = project.Id;
-            Name = project.Name!;
-            EllipseColor = project.EllipseColor!;
-            Description = project.Description!;
+            Project = project;
 
             Tasks = new ObservableCollection<TaskViewModel>();
             foreach(var task in project.Tasks!)
             {
                 var newtask = new TaskViewModel(task);
                 // подписка на событие выполнения задачи
-                newtask.TaskCompletedEvent += TaskCompletedEventHandler;
+                newtask.Task.TaskCompletedEvent += TaskCompletedEventHandler;
                 Tasks.Add(newtask);
             }
 
             CompletedTasks = new ObservableCollection<TaskViewModel>(
-                Tasks.Where(taskVM => taskVM.IsCompleted == true)
+                Tasks.Where(taskVM => taskVM.Task.IsCompleted == true)
             );
+
             AddNewTaskCommand = ReactiveCommand.CreateFromTask(
                 async()=> await OpenNewTaskDialog());
         }
@@ -80,7 +63,7 @@ namespace YourTasks.ViewModels
                 }
             );
 
-            newTask.ProjectId = _projectId;
+            newTask.ProjectId = Project.Id;
 
             if(newTask != null)
             {
