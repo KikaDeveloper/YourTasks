@@ -5,7 +5,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
 		WindowStartupLocation="CenterOwner"
         CanResize="False"
-		MaxWidth="310"
+		MaxWidth="350"
 		SizeToContent="Height"
         x:Class="YourTasks.Views.NewProjectWindow"
         Title="NewProjectWindow">
@@ -35,16 +35,17 @@
 						</StackPanel>
 					</DataTemplate>
 				</ComboBox.ItemTemplate>
-			
-				<ComboBoxItem/>
-				<ComboBoxItem/>
-				<ComboBoxItem/>
 			</ComboBox>
 
-			<TextBox Text="{Binding EllipceColor}"
+			<TextBox Text="{Binding}"
 					Watermark="Like #E4E4E4"
 					Classes="input_field"/>
 		</StackPanel>
+
+		<Button Command="{Binding AddProjectCommand}"
+				Content="Add"
+				Classes="add_new_entity"/>
+
 	</StackPanel>
 
 	<Window.Styles>
@@ -66,11 +67,16 @@
 		</Style>
 
 		<Style Selector="StackPanel.color_setter">
-			<Setter Property="Orientation" Value="Vertical"/>
+			<Setter Property="Orientation" Value="Horizontal"/>
 			<Setter Property="HorizontalAlignment" Value="Stretch"/>
 			<Setter Property="Spacing" Value="20"/>
 		</Style>
 
+		<Style Selector="Button.add_new_entity">
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		</Style>
+		
 	</Window.Styles>
 
 </Window>
