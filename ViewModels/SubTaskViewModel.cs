@@ -13,6 +13,12 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _task, value);
         }
     
+        public bool IsCompleted
+        {
+            get => _task!.IsCompleted;
+            set => _task!.IsCompleted = value;
+        }
+
         public EventHandler? SubTaskDeleteEvent;
         public IReactiveCommand DeleteTaskCommand { get; }
 
