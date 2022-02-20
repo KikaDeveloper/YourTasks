@@ -1,7 +1,7 @@
 ﻿using ReactiveUI;
-using System.Linq;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using YourTasks.Services;
+using YourTasks.Views;
 using YourTasks.Models;
 
 namespace YourTasks.ViewModels
@@ -23,6 +23,8 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedProject, value);
         }
 
+        public IReactiveCommand AddProjectCommand { get; }
+
         public MainWindowViewModel()
         {
             Services.AppRepository repo = Services.AppRepository.Instance;
@@ -31,6 +33,23 @@ namespace YourTasks.ViewModels
             var temp_projects = System.Threading.Tasks.Task.Run(async()=> await repo.GetAllProjects()).Result;
             foreach(var p in temp_projects)
                 Projects.Add(new ProjectViewModel(p));
+
+            AddProjectCommand = ReactiveCommand.CreateFromTask(
+                async() => await AddProject()
+            );
         }
+
+        private async System.Threading.Tasks.Task AddProject()
+        {
+            var newProject = await OpenAddDialog();
+        }
+
+        private async System.Threading.Tasks.Task<Project> OpenAddDialog()
+            => await DialogService.ShowDialogAsync<Project>(
+                new NewProjectWindow
+                {
+                    DataContext = new NewProjectViewModel()
+                }
+            );
     }
 }
