@@ -44,6 +44,7 @@ namespace YourTasks.ViewModels
                 var newtask = new TaskViewModel(task);
                 // подписка на событие выполнения задачи
                 newtask.Task.TaskCompletedEvent += TaskCompletedEventHandler;
+                newtask.TaskDeleteEvent += TaskDeleteEventHandler;
                 Tasks.Add(newtask);
             }
 
@@ -86,6 +87,14 @@ namespace YourTasks.ViewModels
                     Tasks.Add(task);
                 break;
             }
+        }
+
+        private async void TaskDeleteEventHandler(object? sender, EventArgs e)
+        {
+            var taskVM = (TaskViewModel)sender!;
+
+            Tasks.Remove(taskVM);
+            await AppRepository.Instance.DeleteEntity<Task>(taskVM.Task);
         }
 
         private async System.Threading.Tasks.Task<TaskBase> OpenAddDialog() 
