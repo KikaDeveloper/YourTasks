@@ -17,6 +17,15 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _task, value);
         }  
       
+        public bool IsCompleted
+        {
+            get => _task!.IsCompleted;
+            set {
+                _task!.IsCompleted = value;
+                Task.TaskCompletedEvent?.Invoke(this, new TaskCompletedArgs(value));
+            }
+        }
+
         public ObservableCollection<SubTaskViewModel> SubTasks
         {
             get => _subTasks!;
@@ -26,11 +35,11 @@ namespace YourTasks.ViewModels
         public IReactiveCommand DeleteTaskCommand { get; }
 
         public IReactiveCommand AddSubTaskCommand { get; }
-
+        
         public TaskViewModel(Task task)
         {
             Task = task;
-            
+
             SubTasks = new ObservableCollection<SubTaskViewModel>();
             foreach(var subTask in task.SubTasks!)
             {
@@ -38,7 +47,7 @@ namespace YourTasks.ViewModels
                 // subscribe to subtask delete event
                 newSubTaskVM.SubTaskDeleteEvent += SubTaskDeleteEventHandler;
                 // subscribe to subtask completed event
-                newSubTaskVM.SubTask.TaskCompletedEvent += SubTaskCompletedEventHandler;
+                newSubTaskVM.Task.TaskCompletedEvent += SubTaskCompletedEventHandler;
                 SubTasks.Add(newSubTaskVM);
             }
 
@@ -57,13 +66,12 @@ namespace YourTasks.ViewModels
             var subTask = (SubTaskViewModel)sender!;
 
             SubTasks.Remove(subTask);
-            await AppRepository.Instance.DeleteEntity<SubTask>(subTask.SubTask);
+            await AppRepository.Instance.DeleteEntity<SubTask>(subTask.Task);
         }
 
         private void SubTaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
         {
             Console.WriteLine("Completed subtask");
-            
         }
 
     }
