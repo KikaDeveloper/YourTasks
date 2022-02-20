@@ -33,10 +33,7 @@ namespace YourTasks.Models
         public override bool IsCompleted 
         { 
             get => _isCompleted; 
-            set {
-                this.RaiseAndSetIfChanged(ref _isCompleted, value);
-                TaskCompletedEvent?.Invoke(this, new TaskCompletedArgs(value));
-            } 
+            set => this.RaiseAndSetIfChanged(ref _isCompleted, value);
         }
 
         [Column("description")]
