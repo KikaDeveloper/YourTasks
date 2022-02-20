@@ -2,6 +2,7 @@ using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
 using YourTasks.Models;
+using YourTasks.Views;
 using YourTasks.Services;
 
 namespace YourTasks.ViewModels
@@ -55,9 +56,8 @@ namespace YourTasks.ViewModels
                 Console.WriteLine("Delete");
             });
 
-            AddSubTaskCommand = ReactiveCommand.Create(()=>{
-                Console.WriteLine("add new subtask");
-            });
+            AddSubTaskCommand = ReactiveCommand.CreateFromTask(async() 
+                => await AddSubTask());
         }
 
         private async void SubTaskDeleteEventHandler(object? sender, EventArgs e)
@@ -72,6 +72,22 @@ namespace YourTasks.ViewModels
         private void SubTaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
         {
             Console.WriteLine("Completed subtask");
+        }
+
+        private async System.Threading.Tasks.Task AddSubTask()
+        {
+            var newTask = (SubTask) await DialogService.ShowDialogAsync<TaskBase>(new NewTaskWindow{
+                DataContext = new NewTaskViewModel()
+            });
+
+            var newSubTaskVM = new SubTaskViewModel(newTask);
+            newSubTaskVM.Task.TaskId = Task.Id;
+
+            if(newTask != null)
+            {
+                SubTasks.Add(newSubTaskVM);
+                await AppRepository.Instance.InsertEntity<SubTask>(newSubTaskVM.Task);
+            }
         }
 
     }
