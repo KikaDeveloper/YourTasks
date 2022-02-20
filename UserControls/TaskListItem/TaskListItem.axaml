@@ -27,7 +27,7 @@
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Vertical">
                              <!-- Add Sub Task Button -->
-                        <Button Command="{Binding}"
+                        <Button Command="{Binding AddSubTaskCommand}"
                                 Classes="add_button">
                             <PathIcon Data="{DynamicResource AddButtonIcon}"
                                      Classes="add_button_icon"/>
