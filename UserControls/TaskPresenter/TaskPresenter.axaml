@@ -9,15 +9,15 @@
     <Grid ColumnDefinitions="30, 40*, 30*, 30" 
             Classes="task_item_grid">
         <!-- CheckBox -->
-        <CheckBox IsChecked="{Binding IsCompleted}"
+        <CheckBox IsChecked="{Binding Task.IsCompleted}"
                     Grid.Column="0"
                     Classes="task_item_checkbox"/>
         <!-- Task -->
-        <TextBlock Text="{Binding Text}"
+        <TextBlock Text="{Binding Task.Text}"
                     Grid.Column="1"
                     Classes="task_item_text"/>
         <!-- Date time creation -->
-        <TextBlock Text="{Binding CreationDateTime}"
+        <TextBlock Text="{Binding Task.CreationDateTime}"
                     Grid.Column="2"
                     Classes="task_item_datetime"/>
         <!-- Delete Button -->
