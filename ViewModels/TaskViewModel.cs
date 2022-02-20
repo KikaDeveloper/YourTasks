@@ -81,6 +81,7 @@ namespace YourTasks.ViewModels
 
             var newSubTaskVM = new SubTaskViewModel(newTask);
             newSubTaskVM.Task.TaskId = Task.Id;
+            newSubTaskVM.SubTaskDeleteEvent += SubTaskDeleteEventHandler;
 
             if(newTask != null)
             {
