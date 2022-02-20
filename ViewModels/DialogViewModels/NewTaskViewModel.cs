@@ -9,7 +9,6 @@ namespace YourTasks.ViewModels
 {
     public class NewTaskViewModel : ViewModelBase, IValidatableViewModel
     {
-
         private string? _text;
         private string? _description;
 
@@ -29,7 +28,7 @@ namespace YourTasks.ViewModels
 
         public ReactiveCommand<Unit, TaskBase> AddNewTaskCommand { get; }
 
-        public NewTaskViewModel()
+        public NewTaskViewModel(bool isTask)
         {
             // field validation
             var textIsValid = this.WhenAnyValue(
@@ -38,13 +37,28 @@ namespace YourTasks.ViewModels
             );
 
             AddNewTaskCommand = ReactiveCommand.Create<TaskBase>(
-                () => new Task {
-                    Text = Text,
-                    Description = Description,
-                    CreationDateTime = DateTime.Today.ToString("d MMMM yyyy"),
-                    IsCompleted = false
+                () => {
+                    if(isTask)
+                        return NewTask();
+                    else return NewSubTask();
                 },
-                textIsValid);
+            textIsValid);
         }
+
+        private Task NewTask() => new Task 
+        {
+            Text = Text,
+            Description = Description,
+            CreationDateTime = DateTime.Today.ToString("d MMMM yyyy"),
+            IsCompleted = false
+        };
+
+        private SubTask NewSubTask() => new SubTask 
+        {
+            Text = Text,
+            Description = Description,
+            CreationDateTime = DateTime.Today.ToString("d MMMM yyyy"),
+            IsCompleted = false
+        };
     }
 }
