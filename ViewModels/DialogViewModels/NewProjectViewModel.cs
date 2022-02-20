@@ -33,7 +33,7 @@ namespace YourTasks.ViewModels
 
         public ValidationContext ValidationContext { get; } = new ValidationContext();
 
-        public ReactiveCommand<Unit, Project> AddNewProjectCommand { get; }
+        public ReactiveCommand<Unit, Project> AddProjectCommand { get; }
 
         public NewProjectViewModel()
         {
@@ -47,7 +47,7 @@ namespace YourTasks.ViewModels
                 (color) => !string.IsNullOrEmpty(color)
             );
 
-            AddNewProjectCommand = ReactiveCommand.Create(() 
+            AddProjectCommand = ReactiveCommand.Create(() 
                 => new Project());
         }
     }

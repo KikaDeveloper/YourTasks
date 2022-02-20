@@ -15,7 +15,7 @@ namespace YourTasks.Views
 #if DEBUG
             this.AttachDevTools();
 #endif
-            this.WhenActivated(d => ViewModel!.AddNewProjectCommand.Subscribe(Close));
+            this.WhenActivated(d => ViewModel!.AddProjectCommand.Subscribe(Close));
         }
 
         private void InitializeComponent()
