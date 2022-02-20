@@ -7,7 +7,7 @@ using YourTasks.Models;
 
 namespace YourTasks.ViewModels
 {
-    public class NewTaskWindowViewModel : ViewModelBase, IValidatableViewModel
+    public class NewTaskViewModel : ViewModelBase, IValidatableViewModel
     {
 
         private string? _text;
@@ -27,9 +27,9 @@ namespace YourTasks.ViewModels
 
         public ValidationContext ValidationContext { get; } = new ValidationContext(); 
 
-        public ReactiveCommand<Unit, Task> AddNewTaskCommand { get; }
+        public ReactiveCommand<Unit, TaskBase> AddNewTaskCommand { get; }
 
-        public NewTaskWindowViewModel()
+        public NewTaskViewModel()
         {
             // field validation
             var textIsValid = this.WhenAnyValue(
@@ -37,14 +37,13 @@ namespace YourTasks.ViewModels
                 (text) => !string.IsNullOrEmpty(text) 
             );
 
-            AddNewTaskCommand = ReactiveCommand.Create<Task>(
-                () => {return new Task{
+            AddNewTaskCommand = ReactiveCommand.Create<TaskBase>(
+                () => new Task {
                     Text = Text,
                     Description = Description,
                     CreationDateTime = DateTime.Today.ToString("d MMMM yyyy"),
-                    IsCompleted = false,
-                    SubTasks = new System.Collections.ObjectModel.ObservableCollection<SubTask>()
-                };},
+                    IsCompleted = false
+                },
                 textIsValid);
         }
     }
