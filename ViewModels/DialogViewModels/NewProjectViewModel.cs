@@ -10,7 +10,6 @@ namespace YourTasks.ViewModels
     public class NewProjectViewModel : ViewModelBase, IValidatableViewModel
     {
         private string? _name;  
-
         private string? _ellipseColor;
         private string? _description; 
 
@@ -51,8 +50,5 @@ namespace YourTasks.ViewModels
             AddNewProjectCommand = ReactiveCommand.Create(() 
                 => new Project());
         }
-
-
-
     }
 }
