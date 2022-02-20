@@ -1,6 +1,6 @@
-using System;
 using System.Collections.ObjectModel;
 using SQLite;
+using ReactiveUI;
 
 namespace YourTasks.Models
 {
@@ -9,19 +9,60 @@ namespace YourTasks.Models
     {
         [PrimaryKey, AutoIncrement]
         [Column("id")]
-        public override int Id { get; set; }
+        public override int Id 
+        { 
+            get => _id;
+            set => this.RaiseAndSetIfChanged(ref _id, value);
+        }
+
         [Column("text")]
-        public override string? Text { get; set; }
+        public override string? Text 
+        { 
+            get => _text!;
+            set => this.RaiseAndSetIfChanged(ref _text, value);
+        }
+
         [Column("creation_dateTime")]
-        public override string? CreationDateTime { get; set; }
+        public override string? CreationDateTime 
+        { 
+            get => _creationDateTime!;
+            set => this.RaiseAndSetIfChanged(ref _creationDateTime, value); 
+        }
+
         [Column("is_completed")]
-        public override bool IsCompleted { get; set; }
+        public override bool IsCompleted 
+        { 
+            get => _isCompleted; 
+            set {
+                this.RaiseAndSetIfChanged(ref _isCompleted, value);
+                TaskCompletedEvent?.Invoke(this, new TaskCompletedArgs(value));
+            } 
+        }
+
         [Column("description")]
-        public override string? Description { get; set; }
+        public override string? Description 
+        { 
+            get => _description!; 
+            set => this.RaiseAndSetIfChanged(ref _description, value); 
+        }
+
         [Ignore()]
-        public ObservableCollection<SubTask>? SubTasks { get; set;}
+        public ObservableCollection<SubTask>? SubTasks 
+        { 
+            get => _subTasks!; 
+            set => this.RaiseAndSetIfChanged(ref _subTasks, value);
+        }
+        
+        protected ObservableCollection<SubTask>? _subTasks;
+
         [Indexed]
         [Column("project_id")]
-        public int ProjectId { get; set; }
+        public int ProjectId 
+        { 
+            get => _projectId; 
+            set => this.RaiseAndSetIfChanged(ref _projectId, value); 
+        }
+
+        protected int _projectId;
     }
 }
