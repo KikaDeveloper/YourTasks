@@ -57,19 +57,20 @@ namespace YourTasks.ViewModels
 
         private async System.Threading.Tasks.Task OpenNewTaskDialog()
         {
-            var newTask = await DialogService.ShowDialogAsync<Task>(
+            var newTask = (Task) await DialogService.ShowDialogAsync<TaskBase>(
                 new NewTaskWindow{
-                    DataContext = new NewTaskWindowViewModel()
+                    DataContext = new NewTaskViewModel()
                 }
             );
 
-            newTask.ProjectId = Project.Id;
+            newTask.SubTasks = new ObservableCollection<SubTask>();
             var taskVM = new TaskViewModel(newTask);
+            taskVM.Task.ProjectId = Project.Id;
             taskVM.Task.TaskCompletedEvent += TaskCompletedEventHandler;
 
             if(newTask != null)
             {
-                Tasks.Add(new TaskViewModel(newTask));
+                Tasks.Add(taskVM);
                 await AppRepository.Instance.InsertEntity<Task>(newTask);
             }
         }
