@@ -64,6 +64,7 @@ namespace YourTasks.ViewModels
             var taskVM = new TaskViewModel(newTask);
             taskVM.Task.ProjectId = Project.Id;
             taskVM.Task.TaskCompletedEvent += TaskCompletedEventHandler;
+            taskVM.TaskDeleteEvent += TaskDeleteEventHandler;
 
             if(newTask != null)
             {
@@ -100,7 +101,7 @@ namespace YourTasks.ViewModels
         private async System.Threading.Tasks.Task<TaskBase> OpenAddDialog() 
             => await DialogService.ShowDialogAsync<TaskBase>(
                     new NewTaskWindow{
-                        DataContext = new NewTaskViewModel(false)
+                        DataContext = new NewTaskViewModel(true)
                     }
                 );
     }
