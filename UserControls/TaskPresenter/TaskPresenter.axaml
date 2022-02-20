@@ -9,7 +9,7 @@
     <Grid ColumnDefinitions="30, 40*, 30*, 30" 
             Classes="task_item_grid">
         <!-- CheckBox -->
-        <CheckBox IsChecked="{Binding Task.IsCompleted}"
+        <CheckBox IsChecked="{Binding IsCompleted}"
                     Grid.Column="0"
                     Classes="task_item_checkbox"/>
         <!-- Task -->
