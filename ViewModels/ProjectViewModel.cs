@@ -52,16 +52,12 @@ namespace YourTasks.ViewModels
             );
 
             AddNewTaskCommand = ReactiveCommand.CreateFromTask(
-                async()=> await OpenNewTaskDialog());
+                async()=> await AddNewTask());
         }
 
-        private async System.Threading.Tasks.Task OpenNewTaskDialog()
+        private async System.Threading.Tasks.Task AddNewTask()
         {
-            var newTask = (Task) await DialogService.ShowDialogAsync<TaskBase>(
-                new NewTaskWindow{
-                    DataContext = new NewTaskViewModel(true)
-                }
-            );
+            var newTask = (Task) await OpenAddDialog();
 
             newTask.SubTasks = new ObservableCollection<SubTask>();
             var taskVM = new TaskViewModel(newTask);
@@ -91,5 +87,12 @@ namespace YourTasks.ViewModels
                 break;
             }
         }
+
+        private async System.Threading.Tasks.Task<TaskBase> OpenAddDialog() 
+            => await DialogService.ShowDialogAsync<TaskBase>(
+                    new NewTaskWindow{
+                        DataContext = new NewTaskViewModel(false)
+                    }
+                );
     }
 }

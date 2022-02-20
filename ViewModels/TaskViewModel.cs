@@ -57,12 +57,11 @@ namespace YourTasks.ViewModels
             });
 
             AddSubTaskCommand = ReactiveCommand.CreateFromTask(async() 
-                => await AddSubTask());
+                => await AddNewSubTask());
         }
 
         private async void SubTaskDeleteEventHandler(object? sender, EventArgs e)
         {
-            Console.WriteLine("Delete subtask");
             var subTask = (SubTaskViewModel)sender!;
 
             SubTasks.Remove(subTask);
@@ -74,11 +73,9 @@ namespace YourTasks.ViewModels
             Console.WriteLine("Completed subtask");
         }
 
-        private async System.Threading.Tasks.Task AddSubTask()
+        private async System.Threading.Tasks.Task AddNewSubTask()
         {
-            var newTask = (SubTask) await DialogService.ShowDialogAsync<TaskBase>(new NewTaskWindow{
-                DataContext = new NewTaskViewModel(false)
-            });
+            var newTask = (SubTask) await OpenAddDialog();
 
             var newSubTaskVM = new SubTaskViewModel(newTask);
             newSubTaskVM.Task.TaskId = Task.Id;
@@ -89,6 +86,13 @@ namespace YourTasks.ViewModels
                 await AppRepository.Instance.InsertEntity<SubTask>(newSubTaskVM.Task);
             }
         }
+
+        private async System.Threading.Tasks.Task<TaskBase> OpenAddDialog() 
+            => await DialogService.ShowDialogAsync<TaskBase>(
+                    new NewTaskWindow{
+                        DataContext = new NewTaskViewModel(false)
+                    }
+                );
 
     }
 }
