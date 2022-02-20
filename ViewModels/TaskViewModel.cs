@@ -33,8 +33,9 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _subTasks, value);
         }
 
-        public IReactiveCommand DeleteTaskCommand { get; }
+        public EventHandler? TaskDeleteEvent;
 
+        public IReactiveCommand DeleteTaskCommand { get; }
         public IReactiveCommand AddSubTaskCommand { get; }
         
         public TaskViewModel(Task task)
@@ -54,6 +55,7 @@ namespace YourTasks.ViewModels
 
             DeleteTaskCommand = ReactiveCommand.Create(()=>{
                 Console.WriteLine("Delete");
+                TaskDeleteEvent?.Invoke(this, new EventArgs());
             });
 
             AddSubTaskCommand = ReactiveCommand.CreateFromTask(async() 
