@@ -64,16 +64,25 @@
 				<TabControl.ItemTemplate>
 					<DataTemplate>
 						<StackPanel Classes="tab_item">
+							<!-- Colored ellipse -->
 							<Ellipse Width="{StaticResource ProjectEllipseSize}"
 									Height="{StaticResource ProjectEllipseSize}" 
 									Fill="{Binding Project.EllipseColor}"
 									StrokeThickness="3"
 									Stroke="LightGray"
 									Stretch="UniformToFill"/>
+							<!--Project Name -->
 							<TextBlock Classes="tab_item"
 										MaxWidth="150"
 										MinWidth="90"
 										Text="{Binding Project.Name}"/>
+							<!-- Delete Button -->
+							<Button Command="{Binding DeleteProjectCommand}"
+									Grid.Column="3"
+									Classes="delete_button">
+								<PathIcon Data="{DynamicResource DeleteButtonIcon}"
+										Classes="delete_icon"/>
+							</Button>
 						</StackPanel>
 					</DataTemplate>
 				</TabControl.ItemTemplate>
@@ -123,7 +132,7 @@
 									</ListBox>
 									
 									<!-- Add Task Button -->
-									<Button Command="{Binding AddNewTaskCommand}"
+									<Button Command="{Binding AddTaskCommand}"
 											Classes="add_button"
 											Margin="0">
 										<PathIcon Data="{DynamicResource AddButtonIcon}"
