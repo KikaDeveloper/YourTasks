@@ -32,7 +32,11 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _completedTasks, value);
         }
 
-        public IReactiveCommand? AddNewTaskCommand { get; }
+        public IReactiveCommand AddTaskCommand { get; }
+
+        public IReactiveCommand DeleteProjectCommand { get; }
+
+        public EventHandler? DeleteProjectEvent;
 
         public ProjectViewModel(Project project)
         {
@@ -52,8 +56,12 @@ namespace YourTasks.ViewModels
                 Tasks.Where(taskVM => taskVM.Task.IsCompleted == true)
             );
 
-            AddNewTaskCommand = ReactiveCommand.CreateFromTask(
+            AddTaskCommand = ReactiveCommand.CreateFromTask(
                 async()=> await AddNewTask());
+
+            DeleteProjectCommand = ReactiveCommand.Create(
+                () => DeleteProjectEvent?.Invoke(this, new EventArgs())
+            );
         }
 
         private async System.Threading.Tasks.Task AddNewTask()
@@ -63,6 +71,7 @@ namespace YourTasks.ViewModels
             if(newTask != null)
             {
                 newTask.SubTasks = new ObservableCollection<SubTask>();
+
                 var taskVM = new TaskViewModel(newTask);
                 taskVM.Task.ProjectId = Project.Id;
                 taskVM.Task.TaskCompletedEvent += TaskCompletedEventHandler;
