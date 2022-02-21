@@ -35,7 +35,7 @@
 
 	</Style>
 
-	<!-- Task Group Descrition -->
+	<!-- Task Group Description -->
 	<Style Selector="Border.header_description">
 		<Setter Property="HorizontalAlignment" Value="Center"/>
 		<Setter Property="VerticalAlignment" Value="Center"/>
@@ -43,6 +43,8 @@
 
 	<Style Selector="TextBlock.header_description">
 		<Setter Property="FontSize" Value="{DynamicResource HeaderDescriptionFontSize}"/>
+		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+		<Setter Property="Margin" Value="25 0"/>
 	</Style>
 
 </Styles>

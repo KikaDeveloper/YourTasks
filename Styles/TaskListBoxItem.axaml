@@ -4,7 +4,7 @@
     <!-- ItemsPanel for task list and subtask itemscontrol -->
     <Style Selector="StackPanel.items_panel">
         <Setter Property="Orientation" Value="Vertical"/>
-        <Setter Property="Spacing" Value="12"/>
+        <Setter Property="Spacing" Value="5"/>
     </Style>    
 
     <Style Selector="ListBoxItem">

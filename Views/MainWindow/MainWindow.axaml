@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        Width="900" Height="450"
+        Width="900" Height="450" 
+		MinHeight="300"
         xmlns:controls="using:YourTasks.UserControls"
         x:Class="YourTasks.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
@@ -23,7 +24,7 @@
 			<!-- Header -->
 			<ContentControl Background="{DynamicResource HeaderBackground}"
 							VerticalContentAlignment="Center">
-				<Grid ColumnDefinitions="22*, 78*">
+				<Grid ColumnDefinitions="25*, 78*">
 					
 					<!-- Settings -->
 					<StackPanel Grid.Column="0"
@@ -43,8 +44,14 @@
 
 					<!-- Description -->
 					<Border Grid.Column="1"
-							Classes="header_description">
-						<TextBlock Text="{Binding SelectedProject.Description}" 
+							Classes="header_description"
+							ToolTip.Placement="Bottom">
+						<ToolTip.Tip>
+							<TextBlock Text="{Binding SelectedProject.Project.Description}"
+										FontSize="14"/>
+						</ToolTip.Tip>
+
+						<TextBlock Text="{Binding SelectedProject.Project.Description}" 
 									Classes="header_description"/>
 					</Border>
 
@@ -62,29 +69,64 @@
 				<!-- Project TabItem template -->
 				<TabControl.ItemTemplate>
 					<DataTemplate>
-						<StackPanel Classes="tab_item">
-							<Ellipse Width="{StaticResource TaskItemElipceSize}"
-									Height="{StaticResource TaskItemElipceSize}" 
-									Fill="{Binding EllipseColor}"/>
-							<TextBlock Classes="tab_item"
-										MaxWidth="150"
-										MinWidth="90"
-										Text="{Binding Name}"/>
-						</StackPanel>
+						<Grid ColumnDefinitions="35, 120, 30">
+							<!-- Colored ellipse -->
+							<Ellipse Grid.Column="0"
+									Margin="12 0" 
+									Width="{StaticResource ProjectEllipseSize}"
+									Height="{StaticResource ProjectEllipseSize}" 
+									Fill="{Binding Project.EllipseColor}"
+									StrokeThickness="3"
+									Stroke="LightGray"
+									Stretch="UniformToFill"/>
+
+							<!-- Tool tip for name -->
+							<Border Grid.Column="1"
+									ToolTip.Placement="Top"
+									ToolTip.VerticalOffset="-12"
+									ToolTip.ShowDelay="200">
+
+								<ToolTip.Tip>
+									<TextBlock Text="{Binding Project.Name}"
+												FontSize="14"/>
+								</ToolTip.Tip>
+
+								<!--Project Name -->
+								<TextBlock Text="{Binding Project.Name}"
+											Classes="tab_item"/>
+							</Border>
+
+							<!-- Delete Button -->
+							<Button Command="{Binding DeleteProjectCommand}"
+									Grid.Column="2"
+									Classes="delete_button"
+									HorizontalAlignment="Right"
+									Margin="10 0">
+								<PathIcon Data="{DynamicResource DeleteButtonIcon}"
+										Classes="delete_icon"/>
+							</Button>
+						</Grid>
 					</DataTemplate>
 				</TabControl.ItemTemplate>
 
 				<!-- TabItems panel template -->
 				<TabControl.ItemsPanel>
 					<ItemsPanelTemplate>
-							<StackPanel  Background="{DynamicResource TabItemsPanelBackground}"/>
+							<StackPanel Width="215"
+										Background="{DynamicResource TabItemsPanelBackground}">
+								<Button Command="{Binding AddProjectCommand}"
+										Margin="0 5"
+                                		Classes="add_button">
+                            		<PathIcon Data="{DynamicResource AddButtonIcon}"
+                                    		Classes="add_button_icon"/>
+                        		</Button>
+							</StackPanel>
 					</ItemsPanelTemplate>
 				</TabControl.ItemsPanel>
 
 				<TabControl.ContentTemplate>
 					<DataTemplate>
-							<DockPanel Margin="0 12 0 0"
-										HorizontalAlignment="Stretch"
+							<DockPanel HorizontalAlignment="Stretch"
 										VerticalAlignment="Stretch">
 
 								<StackPanel DockPanel.Dock="Top"
@@ -112,9 +154,10 @@
 									</ListBox>
 									
 									<!-- Add Task Button -->
-									<Button Command="{Binding}"
-											Classes="add_task_button">
-										<PathIcon Data="{DynamicResource AddTaskButtonIcon}"
+									<Button Command="{Binding AddTaskCommand}"
+											Classes="add_button"
+											Margin="0">
+										<PathIcon Data="{DynamicResource AddButtonIcon}"
 												Classes="add_button_icon"/>
 									</Button>
 								</StackPanel>

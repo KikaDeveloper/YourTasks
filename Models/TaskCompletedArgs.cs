@@ -1,6 +1,6 @@
 using System;
 
-namespace YourTasks.ViewModels
+namespace YourTasks.Models
 {
     public class TaskCompletedArgs : EventArgs
     {

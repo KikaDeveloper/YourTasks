@@ -1,0 +1,58 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		WindowStartupLocation="CenterOwner"
+        CanResize="False"
+		MaxWidth="330"
+		SizeToContent="Height"
+        x:Class="YourTasks.Views.NewProjectWindow"
+        Title="NewProjectWindow">
+	
+	<StackPanel Classes="dialog">
+		<!-- Name -->
+		<TextBox Text="{Binding Name}"
+				Watermark="Name"
+				MaxLength="39"
+				Classes="input input_name_project"/>
+		<!-- Description -->
+		<TextBox Text="{Binding Description}"
+				Watermark="Descirption"
+				MaxLength="195"
+				Classes="input input_description"/>
+
+		<StackPanel Classes="color_setter">
+
+			<ComboBox Items="{Binding Colors}"
+						SelectedItem="{Binding SelectedColor}"
+						MaxDropDownHeight="250">
+				<ComboBox.ItemTemplate>
+					<DataTemplate>
+						<StackPanel Classes="combobox_item">
+							<Ellipse Width="{StaticResource ProjectEllipseSize}"
+									Height="{StaticResource ProjectEllipseSize}" 
+									Fill="{Binding ColorValue}"/>
+							<TextBlock Text="{Binding Name}"
+										Classes="color_name"/>
+						</StackPanel>
+					</DataTemplate>
+				</ComboBox.ItemTemplate>
+			</ComboBox>
+
+			<TextBlock Text="or"
+						VerticalAlignment="Center"
+						FontSize="{DynamicResource DialogInputFontSize}"/>
+
+			<TextBox Text="{Binding EllipseColor}"
+					Watermark="{Binding SelectedColor.ColorValue}"
+					Classes="input input_ellipse_color"/>
+		</StackPanel>
+
+		<Button Command="{Binding AddProjectCommand}"
+				Content="Add"
+				Classes="add_new_button"/>
+
+	</StackPanel>
+
+</Window>

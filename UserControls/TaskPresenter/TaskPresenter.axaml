@@ -13,18 +13,18 @@
                     Grid.Column="0"
                     Classes="task_item_checkbox"/>
         <!-- Task -->
-        <TextBlock Text="{Binding Text}"
+        <TextBlock Text="{Binding Task.Text}"
                     Grid.Column="1"
                     Classes="task_item_text"/>
         <!-- Date time creation -->
-        <TextBlock Text="{Binding CreationDateTime}"
+        <TextBlock Text="{Binding Task.CreationDateTime}"
                     Grid.Column="2"
                     Classes="task_item_datetime"/>
         <!-- Delete Button -->
-        <Button Command="{Binding}"
-                IsVisible="{Binding !IsCompleted}"
+        <Button Command="{Binding DeleteTaskCommand}"
                 Grid.Column="3"
-                Classes="delete_button">
+                Classes="delete_button"
+                IsVisible="{Binding !IsCompleted}">
             <PathIcon Data="{DynamicResource DeleteButtonIcon}"
                     Classes="delete_icon"/>
         </Button>

@@ -1,0 +1,27 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		WindowStartupLocation="CenterOwner"
+        CanResize="False"
+		MaxWidth="310"
+		SizeToContent="Height"
+        x:Class="YourTasks.Views.NewTaskWindow"
+        Title="NewTaskWindow">
+  
+	<StackPanel Classes="dialog">
+		<TextBox Text="{Binding Text}"
+					Watermark="Task"
+					MaxLength="120"
+					Classes="input"/>
+		<TextBox Text="{Binding Description}"
+					Watermark="Description"
+					MaxLength="180"
+					Classes="input input_description"/>
+		<Button Command="{Binding AddNewTaskCommand}"
+				Content="Add"
+				Classes="add_new_button"/>
+	</StackPanel>
+
+</Window>

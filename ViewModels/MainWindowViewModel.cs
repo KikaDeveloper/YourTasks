@@ -1,6 +1,8 @@
 ﻿using ReactiveUI;
-using System.Linq;
+using System;
 using System.Collections.ObjectModel;
+using YourTasks.Services;
+using YourTasks.Views;
 using YourTasks.Models;
 
 namespace YourTasks.ViewModels
@@ -22,39 +24,56 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedProject, value);
         }
 
+        public IReactiveCommand AddProjectCommand { get; }
+
         public MainWindowViewModel()
         {
-            Projects = new ObservableCollection<ProjectViewModel>()
-            {
-                new ProjectViewModel(new Models.Project()
-                    {
-                        Id = System.Guid.NewGuid(),
-                        Name = "Database",
-                        Description = "Create a database for app.",
-                        EllipseColor = "Red",
-                        Tasks = new ObservableCollection<Models.Task>(){
-                            new Task()
-                            {
-                                Id = System.Guid.NewGuid(),
-                                Text = "Create db.",
-                                CreationDateTime = System.DateTime.Today,
-                                Description = "",
-                                IsCompleted = false
-                            },
-                            new Task()
-                            {
-                                Id = System.Guid.NewGuid(),
-                                Text = "Make commit.",
-                                CreationDateTime = System.DateTime.Today,
-                                Description = "",
-                                IsCompleted = false
-                            },
-                        }
-                    }
-                )
-            };
+            Services.AppRepository repo = Services.AppRepository.Instance;
+            Projects = new ObservableCollection<ProjectViewModel>();
 
-            SelectedProject = Projects.First();
+            var temp_projects = System.Threading.Tasks.Task.Run(async()=> await repo.GetAllProjects()).Result;
+            foreach(var project in temp_projects)
+            {
+                var projectVM = new ProjectViewModel(project);
+                // subscribe to delete event
+                projectVM.DeleteProjectEvent += DeleteProjectEventHandler;
+                Projects.Add(projectVM);
+            }
+
+            AddProjectCommand = ReactiveCommand.CreateFromTask(
+                async() => await AddProject()
+            );
         }
+
+        private async System.Threading.Tasks.Task AddProject()
+        {
+            var newProject = await OpenAddDialog();
+
+            if(newProject != null)
+            {
+                var newProjectVM = new ProjectViewModel(newProject);
+                // subscribe to delete event
+                newProjectVM.DeleteProjectEvent += DeleteProjectEventHandler;
+
+                Projects.Add(newProjectVM);
+                await AppRepository.Instance.InsertEntity<Project>(newProject);
+            }
+        }
+
+        private async void DeleteProjectEventHandler(object? sender, EventArgs e)
+        {
+            var projectVM = (ProjectViewModel) sender!;
+
+            Projects.Remove(projectVM);
+            await AppRepository.Instance.DeleteEntity<Project>(projectVM.Project);
+        }
+
+        private async System.Threading.Tasks.Task<Project> OpenAddDialog()
+            => await DialogService.ShowDialogAsync<Project>(
+                new NewProjectWindow
+                {
+                    DataContext = new NewProjectViewModel()
+                }
+            );
     }
 }

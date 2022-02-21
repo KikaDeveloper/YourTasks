@@ -1,35 +1,25 @@
 using ReactiveUI;
 using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using YourTasks.Models;
+using YourTasks.Views;
+using YourTasks.Services;
 
 namespace YourTasks.ViewModels
 {
     public class ProjectViewModel : ViewModelBase
     {
-        private string? _name;
-        private string? _description;
-        private string? _ellipseColor;
+        private Project? _project; 
         private ObservableCollection<TaskViewModel>? _tasks;
         private ObservableCollection<TaskViewModel>? _completedTasks;
 
-        public string Name
-        {
-            get => _name!;
-            set => this.RaiseAndSetIfChanged(ref _name, value);
-        }
-
-        public string EllipseColor
-        {
-            get => _ellipseColor!;
-            set => this.RaiseAndSetIfChanged(ref _ellipseColor, value);
-        }
-
-        public string Description
-        {
-            get => _description!;
-            set => this.RaiseAndSetIfChanged(ref _description, value);
-        }
+        public Project Project
+       {
+           get => _project!;
+           set => this.RaiseAndSetIfChanged(ref _project, value);
+       }
 
         public ObservableCollection<TaskViewModel> Tasks
         {
@@ -43,24 +33,67 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _completedTasks, value);
         }
 
+        public IReactiveCommand AddTaskCommand { get; }
+
+        public IReactiveCommand DeleteProjectCommand { get; }
+
+        public EventHandler? DeleteProjectEvent;
+
         public ProjectViewModel(Project project)
         {
-            Name = project.Name!;
-            EllipseColor = project.EllipseColor!;
-            Description = project.Description!;
+            Project = project;
 
-            Tasks = new ObservableCollection<TaskViewModel>();
-            foreach(var task in project.Tasks!)
+            Tasks = new ObservableCollection<TaskViewModel>(
+                InitTasks(false)
+            );
+            
+            CompletedTasks = new ObservableCollection<TaskViewModel>(
+                InitTasks(true)
+            );
+
+            AddTaskCommand = ReactiveCommand.CreateFromTask(
+                async()=> await AddNewTask());
+
+            DeleteProjectCommand = ReactiveCommand.Create(
+                () => DeleteProjectEvent?.Invoke(this, new EventArgs())
+            );
+        }
+
+        private IEnumerable<TaskViewModel> InitTasks(bool isCompletedTasks)
+        {
+            var tasks = Project.Tasks!.Where(task => task.IsCompleted == isCompletedTasks);
+            var viewModels = new List<TaskViewModel>();
+            
+            foreach(var task in tasks)
             {
-                var newtask = new TaskViewModel(task);
-                // подписка на событие выполнения задачи
-                newtask.TaskCompletedEvent += TaskCompletedEventHandler;
-                Tasks.Add(newtask);
+                var newTask = new TaskViewModel(task);
+                // subscribe to completed task event
+                newTask.Task.TaskCompletedEvent += TaskCompletedEventHandler;
+                // subscribe to delete task event
+                newTask.TaskDeleteEvent += TaskDeleteEventHandler;
+                viewModels.Add(newTask);
             }
 
-            CompletedTasks = new ObservableCollection<TaskViewModel>();
+            return viewModels;
+        }
 
-            UpdateCompletedTasks();
+        private async System.Threading.Tasks.Task AddNewTask()
+        {
+            var newTask = (Task) await OpenAddDialog();
+
+            if(newTask != null)
+            {
+                newTask.SubTasks = new ObservableCollection<SubTask>();
+
+                var taskVM = new TaskViewModel(newTask);
+                taskVM.Task.ProjectId = Project.Id;
+                taskVM.Task.TaskCompletedEvent += TaskCompletedEventHandler;
+                taskVM.TaskDeleteEvent += TaskDeleteEventHandler;
+
+                // adding in db and collection
+                Tasks.Add(taskVM);
+                await AppRepository.Instance.InsertEntity<Task>(newTask);
+            }
         }
 
         private void TaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
@@ -69,7 +102,8 @@ namespace YourTasks.ViewModels
             switch(e.IsCompleted)
             {
                 case true:
-                    MoveCompletedTask(task);
+                    Tasks.Remove(task);
+                    CompletedTasks.Add(task);
                 break;
 
                 case false:
@@ -79,22 +113,19 @@ namespace YourTasks.ViewModels
             }
         }
 
-        private void UpdateCompletedTasks()
+        private async void TaskDeleteEventHandler(object? sender, EventArgs e)
         {
-            foreach(var task in Tasks)
-            {
-                if(task.IsCompleted == true)
-                {
-                    MoveCompletedTask(task);
-                }
-            }
+            var taskVM = (TaskViewModel)sender!;
+
+            Tasks.Remove(taskVM);
+            await AppRepository.Instance.DeleteEntity<Task>(taskVM.Task);
         }
 
-        private void MoveCompletedTask(TaskViewModel task)
-        {
-            Tasks.Remove(task);
-            CompletedTasks.Add(task);
-        }
-
+        private async System.Threading.Tasks.Task<TaskBase> OpenAddDialog() 
+            => await DialogService.ShowDialogAsync<TaskBase>(
+                    new NewTaskWindow{
+                        DataContext = new NewTaskViewModel(true)
+                    }
+                );
     }
 }

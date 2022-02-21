@@ -6,13 +6,13 @@
 	<x:Double x:Key="SettingIconSize">23</x:Double>
 
 	<!-- TaskItem -->
-	<x:Double x:Key="TaskItemElipceSize">20</x:Double>
 	<x:Double x:Key="TaskItemFontSize">20</x:Double>
 
-	<SolidColorBrush x:Key="TaskItemElipceColor" Color="Red"/>
-	
+	<!-- Project -->
+	<x:Double x:Key="ProjectEllipseSize">23</x:Double>
+
 	<!-- CheckBox -->
-	<x:Double x:Key="CheckBoxSize">35</x:Double>
+	<x:Double x:Key="CheckBoxSize">28</x:Double>
 
 	<!-- Header -->
 	<x:Double x:Key="HeaderDescriptionFontSize">18</x:Double>
@@ -30,8 +30,11 @@
 	<x:Double x:Key="DeleteButtonSize">22</x:Double>
 
 	<!-- Add task button and icon  -->
-	<StreamGeometry x:Key="AddTaskButtonIcon">M23,11H13V1a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1V11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H11V23a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13H23a1,1,0,0,0,1-1h0A1,1,0,0,0,23,11Z</StreamGeometry>
+	<StreamGeometry x:Key="AddButtonIcon">M23,11H13V1a1,1,0,0,0-1-1h0a1,1,0,0,0-1,1V11H1a1,1,0,0,0-1,1H0a1,1,0,0,0,1,1H11V23a1,1,0,0,0,1,1h0a1,1,0,0,0,1-1V13H23a1,1,0,0,0,1-1h0A1,1,0,0,0,23,11Z</StreamGeometry>
 	<x:Double x:Key="AddButtonIconSize">12</x:Double>
 	<x:Double x:Key="AddButtonSize">30</x:Double>
+
+	<!-- Dialog -->
+	<x:Double x:Key="DialogInputFontSize">16</x:Double>
 
 </ResourceDictionary>
