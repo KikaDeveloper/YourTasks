@@ -17,6 +17,7 @@
         <StyleInclude Source="/Styles/TaskListBoxItem.axaml"/>
         <StyleInclude Source="/Styles/SubTaskList.axaml"/>
         <StyleInclude Source="/Styles/AddButton.axaml"/>
+        <StyleInclude Source="/Styles/DialogWindow.axaml"/>
     </Application.Styles>
 
     <!-- App resources -->

@@ -1,0 +1,46 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<Style Selector="TextBox.input">
+		<Setter Property="FontSize" Value="{DynamicResource DialogInputFontSize}"/>
+		<Setter Property="TextWrapping" Value="Wrap"/>
+	</Style>
+
+	<Style Selector="TextBox.input_ellipse_color">
+		<Setter Property="Width" Value="100"/>
+	</Style>
+
+	<Style Selector="Button.add_new_button">
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+	</Style>
+
+	<!-- Combo Box and items -->
+	<Style Selector="StackPanel.combobox_item">
+		<Setter Property="HorizontalAlignment" Value="Center"/>
+		<Setter Property="Orientation" Value="Horizontal"/>
+		<Setter Property="MinWidth" Value="110"/>
+		<Setter Property="Spacing" Value="8"/>
+	</Style>
+	
+	<Style Selector="TextBlock.color_name">
+		<Setter Property="FontSize" Value="14"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<!-- Dilaog window styles -->
+	<Style Selector="StackPanel.color_setter">
+		<Setter Property="Orientation" Value="Horizontal"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="Spacing" Value="20"/>
+	</Style>
+
+	<Style Selector="StackPanel.dialog">
+		<Setter Property="Margin" Value="10"/>
+		<Setter Property="HorizontalAlignment" Value="Stretch"/>
+		<Setter Property="VerticalAlignment" Value="Stretch"/>
+		<Setter Property="Spacing" Value="12"/>
+		<Setter Property="Orientation" Value="Vertical"/>
+	</Style>
+
+</Styles>
