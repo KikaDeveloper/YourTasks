@@ -12,7 +12,7 @@
 	<x:Double x:Key="ProjectEllipseSize">23</x:Double>
 
 	<!-- CheckBox -->
-	<x:Double x:Key="CheckBoxSize">35</x:Double>
+	<x:Double x:Key="CheckBoxSize">28</x:Double>
 
 	<!-- Header -->
 	<x:Double x:Key="HeaderDescriptionFontSize">18</x:Double>
