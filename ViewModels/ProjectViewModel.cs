@@ -60,14 +60,15 @@ namespace YourTasks.ViewModels
         {
             var newTask = (Task) await OpenAddDialog();
 
-            newTask.SubTasks = new ObservableCollection<SubTask>();
-            var taskVM = new TaskViewModel(newTask);
-            taskVM.Task.ProjectId = Project.Id;
-            taskVM.Task.TaskCompletedEvent += TaskCompletedEventHandler;
-            taskVM.TaskDeleteEvent += TaskDeleteEventHandler;
-
             if(newTask != null)
             {
+                newTask.SubTasks = new ObservableCollection<SubTask>();
+                var taskVM = new TaskViewModel(newTask);
+                taskVM.Task.ProjectId = Project.Id;
+                taskVM.Task.TaskCompletedEvent += TaskCompletedEventHandler;
+                taskVM.TaskDeleteEvent += TaskDeleteEventHandler;
+
+                // adding in db and collection
                 Tasks.Add(taskVM);
                 await AppRepository.Instance.InsertEntity<Task>(newTask);
             }
