@@ -42,6 +42,14 @@ namespace YourTasks.ViewModels
         private async System.Threading.Tasks.Task AddProject()
         {
             var newProject = await OpenAddDialog();
+
+            if(newProject != null)
+            {
+                var newProjectVM = new ProjectViewModel(newProject);
+                // adding in db and collection
+                Projects.Add(newProjectVM);
+                await AppRepository.Instance.InsertEntity<Project>(newProject);
+            }
         }
 
         private async System.Threading.Tasks.Task<Project> OpenAddDialog()
