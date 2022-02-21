@@ -63,34 +63,37 @@
 				<!-- Project TabItem template -->
 				<TabControl.ItemTemplate>
 					<DataTemplate>
-						<StackPanel Classes="tab_item">
+						<Grid ColumnDefinitions="35, 120, 30">
 							<!-- Colored ellipse -->
-							<Ellipse Width="{StaticResource ProjectEllipseSize}"
+							<Ellipse Grid.Column="0"
+									Margin="12 0" 
+									Width="{StaticResource ProjectEllipseSize}"
 									Height="{StaticResource ProjectEllipseSize}" 
 									Fill="{Binding Project.EllipseColor}"
 									StrokeThickness="3"
 									Stroke="LightGray"
 									Stretch="UniformToFill"/>
 							<!--Project Name -->
-							<TextBlock Classes="tab_item"
-										MaxWidth="150"
-										MinWidth="90"
-										Text="{Binding Project.Name}"/>
+							<TextBlock Grid.Column="1"
+										Text="{Binding Project.Name}"
+										Classes="tab_item"/>
 							<!-- Delete Button -->
 							<Button Command="{Binding DeleteProjectCommand}"
-									Grid.Column="3"
-									Classes="delete_button">
+									Grid.Column="2"
+									Classes="delete_button"
+									HorizontalAlignment="Right"
+									Margin="10 0">
 								<PathIcon Data="{DynamicResource DeleteButtonIcon}"
 										Classes="delete_icon"/>
 							</Button>
-						</StackPanel>
+						</Grid>
 					</DataTemplate>
 				</TabControl.ItemTemplate>
 
 				<!-- TabItems panel template -->
 				<TabControl.ItemsPanel>
 					<ItemsPanelTemplate>
-							<StackPanel Width="200"
+							<StackPanel Width="215"
 										Background="{DynamicResource TabItemsPanelBackground}">
 								<Button Command="{Binding AddProjectCommand}"
                                 		Classes="add_button">
