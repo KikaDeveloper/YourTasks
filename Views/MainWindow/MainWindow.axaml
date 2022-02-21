@@ -115,6 +115,7 @@
 							<StackPanel Width="215"
 										Background="{DynamicResource TabItemsPanelBackground}">
 								<Button Command="{Binding AddProjectCommand}"
+										Margin="0 5"
                                 		Classes="add_button">
                             		<PathIcon Data="{DynamicResource AddButtonIcon}"
                                     		Classes="add_button_icon"/>
