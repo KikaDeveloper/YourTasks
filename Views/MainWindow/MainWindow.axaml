@@ -125,8 +125,7 @@
 
 				<TabControl.ContentTemplate>
 					<DataTemplate>
-							<DockPanel Margin="0 12 0 0"
-										HorizontalAlignment="Stretch"
+							<DockPanel HorizontalAlignment="Stretch"
 										VerticalAlignment="Stretch">
 
 								<StackPanel DockPanel.Dock="Top"
