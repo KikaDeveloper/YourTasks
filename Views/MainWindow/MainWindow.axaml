@@ -24,7 +24,7 @@
 			<!-- Header -->
 			<ContentControl Background="{DynamicResource HeaderBackground}"
 							VerticalContentAlignment="Center">
-				<Grid ColumnDefinitions="22*, 78*">
+				<Grid ColumnDefinitions="25*, 78*">
 					
 					<!-- Settings -->
 					<StackPanel Grid.Column="0"
@@ -44,7 +44,13 @@
 
 					<!-- Description -->
 					<Border Grid.Column="1"
-							Classes="header_description">
+							Classes="header_description"
+							ToolTip.Placement="Bottom">
+						<ToolTip.Tip>
+							<TextBlock Text="{Binding SelectedProject.Project.Description}"
+										FontSize="14"/>
+						</ToolTip.Tip>
+
 						<TextBlock Text="{Binding SelectedProject.Project.Description}" 
 									Classes="header_description"/>
 					</Border>
