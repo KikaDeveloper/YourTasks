@@ -1,6 +1,7 @@
 using ReactiveUI;
 using ReactiveUI.Validation.Contexts;
 using ReactiveUI.Validation.Abstractions;
+using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Reactive;
@@ -42,7 +43,10 @@ namespace YourTasks.ViewModels
         public Color SelectedColor
         {
             get => _selectedColor;
-            set => this.RaiseAndSetIfChanged(ref _selectedColor, value);
+            set { 
+                this.RaiseAndSetIfChanged(ref _selectedColor, value);
+                EllipseColor = value.ColorValue;
+            }
         }
 
         public ValidationContext ValidationContext { get; } = new ValidationContext();
@@ -53,18 +57,38 @@ namespace YourTasks.ViewModels
         {
             SelectedColor = Colors.First();
 
-            var nameIsValid = this.WhenAnyValue(
+            var fieldsisValid = this.WhenAnyValue(
                 x => x.Name,
-                (name) => !string.IsNullOrEmpty(name)
-            );
-
-            var colorIsValid = this.WhenAnyValue(
                 x => x.EllipseColor,
-                (color) => !string.IsNullOrEmpty(color)
+                x => x.Description,
+                (name, color, description) =>
+                {   return CheckFields(name, color, description); }
+                
             );
 
-            AddProjectCommand = ReactiveCommand.Create(() 
-                => new Project());
+            AddProjectCommand = ReactiveCommand.Create<Project>(
+                () => NewProject(),
+                fieldsisValid);
         }
+
+        private Project NewProject()
+            => new Project{
+                Name = Name,
+                EllipseColor = EllipseColor,
+                Description = Description,
+                Tasks = new System.Collections.ObjectModel.ObservableCollection<Task>()
+            };
+
+        private bool CheckFields(string name, string color, string description)
+        {
+            bool nameIsValid = !string.IsNullOrEmpty(name);
+            bool colorIsValid = !string.IsNullOrEmpty(color) && (color[0] == '#') && (color.Length == 7);
+
+            if(string.IsNullOrEmpty(description))
+                Description = "None";
+
+            return nameIsValid && colorIsValid;
+        }
+
     }
 }
