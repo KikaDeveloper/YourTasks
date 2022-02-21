@@ -10,6 +10,8 @@
 	</Style>
 
 	<Style Selector="TextBlock.tab_item">
+		<Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
 		<Setter Property="TextAlignment" Value="Center"/>
 		<Setter Property="TextTrimming" Value="WordEllipsis"/>
 		<Setter Property="FontSize" Value="{DynamicResource TaskItemFontSize}"/>
