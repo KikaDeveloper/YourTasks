@@ -24,6 +24,9 @@ namespace YourTasks.ViewModels
             set {
                 _task!.IsCompleted = value;
                 Task.TaskCompletedEvent?.Invoke(this, new TaskCompletedArgs(value));
+                System.Threading.Tasks.Task.Run(
+                    async() => await UpdateTask() 
+                );
             }
         }
 
@@ -47,22 +50,21 @@ namespace YourTasks.ViewModels
             {
                 var newSubTaskVM = new SubTaskViewModel(subTask);
                 // subscribe to subtask delete event
-                newSubTaskVM.SubTaskDeleteEvent += SubTaskDeleteEventHandler;
+                newSubTaskVM.SubTaskDeleteEvent += DeleteSubTaskEventHandler;
                 // subscribe to subtask completed event
                 newSubTaskVM.Task.TaskCompletedEvent += SubTaskCompletedEventHandler;
                 SubTasks.Add(newSubTaskVM);
             }
 
             DeleteTaskCommand = ReactiveCommand.Create(()=>{
-                Console.WriteLine("Delete");
                 TaskDeleteEvent?.Invoke(this, new EventArgs());
             });
 
             AddSubTaskCommand = ReactiveCommand.CreateFromTask(async() 
-                => await AddNewSubTask());
+                => await AddSubTask());
         }
 
-        private async void SubTaskDeleteEventHandler(object? sender, EventArgs e)
+        private async void DeleteSubTaskEventHandler(object? sender, EventArgs e)
         {
             var subTask = (SubTaskViewModel)sender!;
 
@@ -75,7 +77,7 @@ namespace YourTasks.ViewModels
             Console.WriteLine("Completed subtask");
         }
 
-        private async System.Threading.Tasks.Task AddNewSubTask()
+        private async System.Threading.Tasks.Task AddSubTask()
         {
             var newTask = (SubTask) await OpenAddDialog();
 
@@ -83,11 +85,16 @@ namespace YourTasks.ViewModels
             {
                 var newSubTaskVM = new SubTaskViewModel(newTask);
                 newSubTaskVM.Task.TaskId = Task.Id;
-                newSubTaskVM.SubTaskDeleteEvent += SubTaskDeleteEventHandler;
+                newSubTaskVM.SubTaskDeleteEvent += DeleteSubTaskEventHandler;
            
                 SubTasks.Add(newSubTaskVM);
                 await AppRepository.Instance.InsertEntity<SubTask>(newSubTaskVM.Task);
             }
+        }
+
+        private async  System.Threading.Tasks.Task UpdateTask()
+        {
+            await AppRepository.Instance.UpdateEntity<Task>(Task);
         }
 
         private async System.Threading.Tasks.Task<TaskBase> OpenAddDialog() 
