@@ -14,11 +14,13 @@
 		<!-- Name -->
 		<TextBox Text="{Binding Name}"
 				Watermark="Name"
-				Classes="input_field"/>
+				MaxLength="39"
+				Classes="input input_name_project"/>
 		<!-- Description -->
 		<TextBox Text="{Binding Description}"
 				Watermark="Descirption"
-				Classes="input_field"/>
+				MaxLength="195"
+				Classes="input input_description"/>
 
 		<StackPanel Classes="color_setter">
 
@@ -44,54 +46,13 @@
 
 			<TextBox Text="{Binding EllipseColor}"
 					Watermark="{Binding SelectedColor.ColorValue}"
-					Width="100"
-					Classes="input_field"/>
+					Classes="input input_ellipse_color"/>
 		</StackPanel>
 
 		<Button Command="{Binding AddProjectCommand}"
 				Content="Add"
-				Classes="add_new_entity"/>
+				Classes="add_new_button"/>
 
 	</StackPanel>
-
-	<Window.Styles>
-
-		<Style Selector="TextBox.input_field">
-			<Setter Property="FontSize" Value="{DynamicResource DialogInputFontSize}"/>
-			<Setter Property="TextWrapping" Value="Wrap"/>
-		</Style>
-
-		<Style Selector="TextBlock.color_name">
-			<Setter Property="FontSize" Value="14"/>
-			<Setter Property="VerticalAlignment" Value="Center"/>
-		</Style>
-
-		<Style Selector="StackPanel.dialog">
-			<Setter Property="Margin" Value="10"/>
-			<Setter Property="HorizontalAlignment" Value="Stretch"/>
-			<Setter Property="VerticalAlignment" Value="Stretch"/>
-			<Setter Property="Spacing" Value="12"/>
-			<Setter Property="Orientation" Value="Vertical"/>
-		</Style>
-
-		<Style Selector="StackPanel.color_setter">
-			<Setter Property="Orientation" Value="Horizontal"/>
-			<Setter Property="HorizontalAlignment" Value="Stretch"/>
-			<Setter Property="Spacing" Value="20"/>
-		</Style>
-
-		<Style Selector="Button.add_new_entity">
-			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="HorizontalAlignment" Value="Stretch"/>
-		</Style>
-		
-		<Style Selector="StackPanel.combobox_item">
-			<Setter Property="HorizontalAlignment" Value="Center"/>
-			<Setter Property="Orientation" Value="Horizontal"/>
-			<Setter Property="MinWidth" Value="110"/>
-			<Setter Property="Spacing" Value="8"/>
-		</Style>
-
-	</Window.Styles>
 
 </Window>

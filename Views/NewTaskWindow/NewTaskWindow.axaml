@@ -10,41 +10,18 @@
         x:Class="YourTasks.Views.NewTaskWindow"
         Title="NewTaskWindow">
   
-	<StackPanel Classes="new_task_panel">
+	<StackPanel Classes="dialog">
 		<TextBox Text="{Binding Text}"
 					Watermark="Task"
-					Classes="task_text new_task"/>
+					MaxLength="120"
+					Classes="input"/>
 		<TextBox Text="{Binding Description}"
 					Watermark="Description"
-					Classes="task_descritpion new_task"/>
+					MaxLength="180"
+					Classes="input input_description"/>
 		<Button Command="{Binding AddNewTaskCommand}"
 				Content="Add"
-				Classes="add_new_task"/>
+				Classes="add_new_button"/>
 	</StackPanel>
-
-	<Window.Styles>
-
-		<Style Selector="StackPanel.new_task_panel">
-			<Setter Property="Margin" Value="10"/>
-			<Setter Property="HorizontalAlignment" Value="Stretch"/>
-			<Setter Property="VerticalAlignment" Value="Stretch"/>
-			<Setter Property="Spacing" Value="12"/>
-			<Setter Property="Orientation" Value="Vertical"/>
-		</Style>
-
-		<Style Selector="TextBox.new_task">
-			<Setter Property="FontSize" Value="16"/>
-		</Style>
-
-		<Style Selector="TextBox.task_descritpion">
-			<Setter Property="TextWrapping" Value="Wrap"/>
-		</Style>
-
-		<Style Selector="Button.add_new_task">
-			<Setter Property="HorizontalContentAlignment" Value="Center"/>
-			<Setter Property="HorizontalAlignment" Value="Stretch"/>
-		</Style>
-
-	</Window.Styles>
 
 </Window>
