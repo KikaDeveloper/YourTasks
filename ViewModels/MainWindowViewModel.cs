@@ -1,4 +1,5 @@
 ﻿using ReactiveUI;
+using System;
 using System.Collections.ObjectModel;
 using YourTasks.Services;
 using YourTasks.Views;
@@ -31,8 +32,13 @@ namespace YourTasks.ViewModels
             Projects = new ObservableCollection<ProjectViewModel>();
 
             var temp_projects = System.Threading.Tasks.Task.Run(async()=> await repo.GetAllProjects()).Result;
-            foreach(var p in temp_projects)
-                Projects.Add(new ProjectViewModel(p));
+            foreach(var project in temp_projects)
+            {
+                var projectVM = new ProjectViewModel(project);
+                // subscribe to delete event
+                projectVM.DeleteProjectEvent += DeleteProjectEventHandler;
+                Projects.Add(projectVM);
+            }
 
             AddProjectCommand = ReactiveCommand.CreateFromTask(
                 async() => await AddProject()
@@ -46,10 +52,20 @@ namespace YourTasks.ViewModels
             if(newProject != null)
             {
                 var newProjectVM = new ProjectViewModel(newProject);
-                // adding in db and collection
+                // subscribe to delete event
+                newProjectVM.DeleteProjectEvent += DeleteProjectEventHandler;
+
                 Projects.Add(newProjectVM);
                 await AppRepository.Instance.InsertEntity<Project>(newProject);
             }
+        }
+
+        private async void DeleteProjectEventHandler(object? sender, EventArgs e)
+        {
+            var projectVM = (ProjectViewModel) sender!;
+
+            Projects.Remove(projectVM);
+            await AppRepository.Instance.DeleteEntity<Project>(projectVM.Project);
         }
 
         private async System.Threading.Tasks.Task<Project> OpenAddDialog()
