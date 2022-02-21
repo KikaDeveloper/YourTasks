@@ -25,9 +25,11 @@
 
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical" Classes="items_panel">
+                    <StackPanel Orientation="Vertical" 
+                                Classes="items_panel">
                              <!-- Add Sub Task Button -->
                         <Button Command="{Binding AddSubTaskCommand}"
+                                Margin="0 5"
                                 Classes="add_button">
                             <PathIcon Data="{DynamicResource AddButtonIcon}"
                                      Classes="add_button_icon"/>
@@ -37,6 +39,5 @@
             </ItemsControl.ItemsPanel>
 
         </ItemsControl>
-
     </StackPanel>
 </UserControl>
