@@ -79,12 +79,12 @@ namespace YourTasks.ViewModels
         {
             var newTask = (SubTask) await OpenAddDialog();
 
-            var newSubTaskVM = new SubTaskViewModel(newTask);
-            newSubTaskVM.Task.TaskId = Task.Id;
-            newSubTaskVM.SubTaskDeleteEvent += SubTaskDeleteEventHandler;
-
             if(newTask != null)
             {
+                var newSubTaskVM = new SubTaskViewModel(newTask);
+                newSubTaskVM.Task.TaskId = Task.Id;
+                newSubTaskVM.SubTaskDeleteEvent += SubTaskDeleteEventHandler;
+           
                 SubTasks.Add(newSubTaskVM);
                 await AppRepository.Instance.InsertEntity<SubTask>(newSubTaskVM.Task);
             }
