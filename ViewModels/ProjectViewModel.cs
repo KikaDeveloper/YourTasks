@@ -1,6 +1,7 @@
 using ReactiveUI;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using YourTasks.Models;
 using YourTasks.Views;
@@ -42,18 +43,12 @@ namespace YourTasks.ViewModels
         {
             Project = project;
 
-            Tasks = new ObservableCollection<TaskViewModel>();
-            foreach(var task in project.Tasks!)
-            {
-                var newtask = new TaskViewModel(task);
-                // подписка на событие выполнения задачи
-                newtask.Task.TaskCompletedEvent += TaskCompletedEventHandler;
-                newtask.TaskDeleteEvent += TaskDeleteEventHandler;
-                Tasks.Add(newtask);
-            }
-
+            Tasks = new ObservableCollection<TaskViewModel>(
+                InitTasks(false)
+            );
+            
             CompletedTasks = new ObservableCollection<TaskViewModel>(
-                Tasks.Where(taskVM => taskVM.Task.IsCompleted == true)
+                InitTasks(true)
             );
 
             AddTaskCommand = ReactiveCommand.CreateFromTask(
@@ -62,6 +57,24 @@ namespace YourTasks.ViewModels
             DeleteProjectCommand = ReactiveCommand.Create(
                 () => DeleteProjectEvent?.Invoke(this, new EventArgs())
             );
+        }
+
+        private IEnumerable<TaskViewModel> InitTasks(bool isCompletedTasks)
+        {
+            var tasks = Project.Tasks!.Where(task => task.IsCompleted == isCompletedTasks);
+            var viewModels = new List<TaskViewModel>();
+            
+            foreach(var task in tasks)
+            {
+                var newTask = new TaskViewModel(task);
+                // subscribe to completed task event
+                newTask.Task.TaskCompletedEvent += TaskCompletedEventHandler;
+                // subscribe to delete task event
+                newTask.TaskDeleteEvent += TaskDeleteEventHandler;
+                viewModels.Add(newTask);
+            }
+
+            return viewModels;
         }
 
         private async System.Threading.Tasks.Task AddNewTask()
