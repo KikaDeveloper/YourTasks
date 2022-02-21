@@ -11,12 +11,13 @@
         <!-- Styles -->
         <StyleInclude Source="/Styles/TabControl.axaml"/>
         <StyleInclude Source="/Styles/TabItem.axaml"/>
-        <StyleInclude Source="/Styles/TaskItem.axaml"/>
+        <StyleInclude Source="/Styles/TaskPresenter.axaml"/>
         <StyleInclude Source="/Styles/Header.axaml"/>
         <StyleInclude Source="/Styles/VisibleSwitcher.axaml"/>
         <StyleInclude Source="/Styles/TaskListBoxItem.axaml"/>
         <StyleInclude Source="/Styles/SubTaskList.axaml"/>
         <StyleInclude Source="/Styles/AddButton.axaml"/>
+        <StyleInclude Source="/Styles/DeleteButton.axaml"/>
         <StyleInclude Source="/Styles/DialogWindow.axaml"/>
     </Application.Styles>
 

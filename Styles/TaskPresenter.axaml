@@ -1,0 +1,33 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	
+	<!-- Grid -->
+	<Style Selector="Grid.task_item_grid">
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Height" Value="25"/>
+	</Style>
+
+	<!-- Checkbox -->
+	<Style Selector="CheckBox.task_item_checkbox">
+        <Setter Property="Width" Value="{DynamicResource CheckBoxSize}"/>
+        <Setter Property="Height" Value="{DynamicResource CheckBoxSize}"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<!-- Task text -->
+	<Style Selector="TextBlock.task_item_text">
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="HorizontalAlignment" Value="Left"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+	<!-- Task datetime  -->
+	<Style Selector="TextBlock.task_item_datetime">
+		<Setter Property="Margin" Value="0 0 10 0"/>
+		<Setter Property="FontSize" Value="18"/>
+		<Setter Property="HorizontalAlignment" Value="Right"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+	</Style>
+
+</Styles>
