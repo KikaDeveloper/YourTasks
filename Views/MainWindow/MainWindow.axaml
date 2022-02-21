@@ -73,10 +73,23 @@
 									StrokeThickness="3"
 									Stroke="LightGray"
 									Stretch="UniformToFill"/>
-							<!--Project Name -->
-							<TextBlock Grid.Column="1"
-										Text="{Binding Project.Name}"
-										Classes="tab_item"/>
+
+							<!-- Tool tip for name -->
+							<Border Grid.Column="1"
+									ToolTip.Placement="Top"
+									ToolTip.VerticalOffset="-12"
+									ToolTip.ShowDelay="200">
+
+								<ToolTip.Tip>
+									<TextBlock Text="{Binding Project.Name}"
+												FontSize="14"/>
+								</ToolTip.Tip>
+
+								<!--Project Name -->
+								<TextBlock Text="{Binding Project.Name}"
+											Classes="tab_item"/>
+							</Border>
+
 							<!-- Delete Button -->
 							<Button Command="{Binding DeleteProjectCommand}"
 									Grid.Column="2"
