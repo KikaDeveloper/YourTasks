@@ -30,4 +30,33 @@
         <Setter Property="IsVisible" Value="false"/>
     </Style>
 
+    <Style Selector="ListBoxItem[IsPointerOver=true][IsSelected=false]">
+        <Setter Property="Background" Value="{DynamicResource TaskListBoxItemPointerOverBackground}"/>
+        <Style.Animations>
+            <Animation Duration="0:0:0.2">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Background" Value="{DynamicResource TaskListBoxItemBackground}"/>
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Background" Value="{DynamicResource TaskListBoxItemPointerOverBackground}"/>
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="ListBoxItem[IsPointerOver=false][IsSelected=false]">
+        <Setter Property="Background" Value="{DynamicResource TaskListBoxItemBackground}"/>
+        <Style.Animations>
+            <Animation Duration="0:0:0.2">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Background" Value="{DynamicResource TaskListBoxItemPointerOverBackground}"/>
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Background" Value="{DynamicResource TaskListBoxItemBackground}"/>
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+
 </Styles>
