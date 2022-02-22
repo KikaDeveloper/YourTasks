@@ -10,7 +10,7 @@
         <FluentTheme Mode="Light"/>
         <!-- Styles -->
         <StyleInclude Source="/Styles/TabControl.axaml"/>
-        <StyleInclude Source="/Styles/TabItem.axaml"/>
+        <StyleInclude Source="/Styles/TabControlItem.axaml"/>
         <StyleInclude Source="/Styles/TaskPresenter.axaml"/>
         <StyleInclude Source="/Styles/Header.axaml"/>
         <StyleInclude Source="/Styles/VisibleSwitcher.axaml"/>
