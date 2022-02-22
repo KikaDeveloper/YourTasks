@@ -1,6 +1,7 @@
 using ReactiveUI;
 using System;
 using YourTasks.Models;
+using YourTasks.Services;
 
 namespace YourTasks.ViewModels
 {  
@@ -16,7 +17,12 @@ namespace YourTasks.ViewModels
         public bool IsCompleted
         {
             get => _task!.IsCompleted;
-            set => _task!.IsCompleted = value;
+            set {
+                _task!.IsCompleted = value;
+                System.Threading.Tasks.Task.Run(
+                    async() => await UpdateTask()
+                );
+            }
         }
 
         public EventHandler? SubTaskDeleteEvent;
@@ -29,6 +35,11 @@ namespace YourTasks.ViewModels
             DeleteTaskCommand = ReactiveCommand.Create(()=>{
                 SubTaskDeleteEvent?.Invoke(this, new EventArgs());
             });
+        }
+
+        private async System.Threading.Tasks.Task UpdateTask()
+        {
+            await AppRepository.Instance.UpdateEntity<SubTask>(Task);
         }
     }
 }
