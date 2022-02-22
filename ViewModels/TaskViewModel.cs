@@ -66,6 +66,8 @@ namespace YourTasks.ViewModels
                 SubTasks.Add(newSubTaskVM);
             }
 
+            CanCheckBoxCheck();
+
             DeleteTaskCommand = ReactiveCommand.Create(
                 () => TaskDeleteEvent?.Invoke(this, new EventArgs()));
 
@@ -75,7 +77,7 @@ namespace YourTasks.ViewModels
 
         private void CanCheckBoxCheck()
         {
-            if((!IsCompleted || IsCompleted) && SubTasks.Count == 0)
+            if(SubTasks.Count == 0)
                 CheckBoxEnabled = true;
             else if(!IsCompleted && SubTasks.Count > 0)
                 CheckBoxEnabled = false;
@@ -103,10 +105,7 @@ namespace YourTasks.ViewModels
         }
 
         private void SubTasksCollectionChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
-        {
-            CanCheckBoxCheck();
-        }
-
+            => CanCheckBoxCheck();
         private async System.Threading.Tasks.Task AddSubTask()
         {
             var newTask = (SubTask) await OpenAddDialog();
