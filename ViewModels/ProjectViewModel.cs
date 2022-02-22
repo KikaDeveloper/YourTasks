@@ -84,6 +84,7 @@ namespace YourTasks.ViewModels
             if(newTask != null)
             {
                 newTask.SubTasks = new ObservableCollection<SubTask>();
+                Project.Tasks!.Add(newTask);
 
                 var taskVM = new TaskViewModel(newTask);
                 taskVM.Task.ProjectId = Project.Id;
