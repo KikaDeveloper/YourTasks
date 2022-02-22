@@ -26,41 +26,37 @@ namespace YourTasks.Services
         }
 
         public async System.Threading.Tasks.Task CloseConnection()
-        {
-            await connection.CloseAsync();
-        }
+            => await connection.CloseAsync();
 
         public async System.Threading.Tasks.Task EnsureCreateTables()
         {
-            await connection.CreateTableAsync<Project>().ContinueWith((result)=>{
-                System.Console.WriteLine("Project Table created!");
-            });
-            await connection.CreateTableAsync<YourTasks.Models.Task>().ContinueWith((result)=>{
-                System.Console.WriteLine("Tasks Table created!");
-            });
-            await connection.CreateTableAsync<SubTask>().ContinueWith((result)=>{
-                System.Console.WriteLine("SubTasks Table created!");
-            });
+            await connection.CreateTableAsync<Project>();
+            await connection.CreateTableAsync<YourTasks.Models.Task>();
+            await connection.CreateTableAsync<SubTask>();
         }
 
         public async System.Threading.Tasks.Task InsertEntity<TEntity>(TEntity entity) where TEntity : class
-        {
-            await connection.InsertAsync(entity);
-        }
+            => await connection.InsertAsync(entity);
 
         public async System.Threading.Tasks.Task DeleteEntity<TEntity>(TEntity entity) where TEntity : class
-        {
-            await connection.DeleteAsync(entity);
-        }
+            => await connection.DeleteAsync(entity);
 
         public async System.Threading.Tasks.Task UpdateEntity<TEntity>(TEntity entity) where TEntity : class 
-        {
-            await connection.UpdateAsync(entity);
-        }
+            => await connection.UpdateAsync(entity);
 
         public async System.Threading.Tasks.Task<List<TEntity>> GetAllEntites<TEntity>() where TEntity : new()
+            => await connection.Table<TEntity>().ToListAsync();
+
+        public async System.Threading.Tasks.Task CascadeDeleteProject(Project project)
         {
-            return await connection.Table<TEntity>().ToListAsync();
+            foreach(var task in project.Tasks!)
+            {
+                foreach(var subTask in task.SubTasks!)
+                    await DeleteEntity<SubTask>(subTask);
+
+                await DeleteEntity<Task>(task);
+            }
+            await DeleteEntity<Project>(project);
         }
 
         public async System.Threading.Tasks.Task<List<Project>> GetAllProjects()
