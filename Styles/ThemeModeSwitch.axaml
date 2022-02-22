@@ -1,0 +1,32 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  	
+	<Style Selector="ToggleSwitch /template/ Border#OuterBorder">
+		<Setter Property="Background" Value="{DynamicResource SwitchLightModeBackground}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource SwitchLightModeBorderBrush}"/>
+	</Style>
+
+	<!-- switch Background and border in Dark Mode -->
+	<Style Selector="ToggleSwitch.theme_mode /template/ Border#SwitchKnobBounds">
+		<Setter Property="Background" Value="{DynamicResource SwitchDarkModeBackground}"/>
+		<Setter Property="BorderBrush" Value="{DynamicResource SwitchDarkModeBorderBrush}"/>
+	</Style>
+	
+	<Style Selector="ToggleSwitch.theme_mode /template/ Ellipse#SwitchKnobOn">
+		<Setter Property="Fill" Value="{DynamicResource SwitchEllipseOnFill}"/>
+	</Style>
+	
+	<Style Selector="ToggleSwitch.theme_mode /template/ Ellipse#SwitchKnobOff">
+		<Setter Property="Fill" Value="{DynamicResource SwitchEllipseOffFill}"/>
+	</Style>
+
+	<Style Selector="ToggleSwitch:pointerover /template/ Border#OuterBorder">
+		<Setter Property="BorderBrush" Value="{DynamicResource SwitchLightModeBorderBrush}"/>
+		<Setter Property="Background" Value="{DynamicResource SwitchLightModeBackground}"/>
+	</Style>
+	
+	<Style Selector="ToggleSwitch:pointerover /template/ Ellipse#SwitchKnobOff">
+		<Setter Property="Fill" Value="{DynamicResource SwitchEllipseOffFill}"/>
+	</Style>
+	
+</Styles>

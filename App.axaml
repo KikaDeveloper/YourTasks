@@ -19,6 +19,7 @@
         <StyleInclude Source="/Styles/AddButton.axaml"/>
         <StyleInclude Source="/Styles/DeleteButton.axaml"/>
         <StyleInclude Source="/Styles/DialogWindow.axaml"/>
+        <StyleInclude Source="/Styles/ThemeModeSwitch.axaml"/>
     </Application.Styles>
 
     <!-- App resources -->
