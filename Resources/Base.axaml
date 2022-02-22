@@ -37,4 +37,12 @@
 	<!-- Dialog -->
 	<x:Double x:Key="DialogInputFontSize">16</x:Double>
 
+	<!-- Toggle Theme mode Switch -->
+	<SolidColorBrush x:Key="SwitchLightModeBackground" Color="#0078D6"/>
+	<SolidColorBrush x:Key="SwitchLightModeBorderBrush" Color="#0078D6"/>
+	<SolidColorBrush x:Key="SwitchDarkModeBackground" Color="#424242"/>
+	<SolidColorBrush x:Key="SwitchDarkModeBorderBrush" Color="White"/>
+	<SolidColorBrush x:Key="SwitchEllipseOffFill" Color="White"/>
+	<SolidColorBrush x:Key="SwitchEllipseOnFill" Color="White"/>
+	
 </ResourceDictionary>
