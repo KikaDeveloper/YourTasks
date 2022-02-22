@@ -9,7 +9,31 @@
     <StackPanel Orientation="Vertical">
 						
         <!-- Displays task data -->
-        <controls:TaskPresenter/>
+        <Grid ColumnDefinitions="30, 40*, 30*, 30" 
+            Classes="task_item_grid">
+            <!-- CheckBox -->
+            <CheckBox IsChecked="{Binding IsCompleted}"
+                        Grid.Column="0"
+                        Name="TaskCheckBox"
+                        IsEnabled="{Binding CheckBoxEnabled}"
+                        Classes="task_item_checkbox"/>
+            <!-- Task -->
+            <TextBlock Text="{Binding Task.Text}"
+                        Grid.Column="1"
+                        Classes="task_item_text"/>
+            <!-- Date time creation -->
+            <TextBlock Text="{Binding Task.CreationDateTime}"
+                        Grid.Column="2"
+                        Classes="task_item_datetime"/>
+            <!-- Delete Button -->
+            <Button Command="{Binding DeleteTaskCommand}"
+                    Grid.Column="3"
+                    Classes="delete_button"
+                    IsVisible="{Binding !IsCompleted}">
+                <PathIcon Data="{DynamicResource DeleteButtonIcon}"
+                        Classes="delete_icon"/>
+            </Button>
+        </Grid>
 
         <!-- Sub tasks list -->
         <ItemsControl Items="{Binding SubTasks}"
@@ -18,7 +42,31 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                    	<Border Classes="task_presenter_border">
-                      	<controls:TaskPresenter/>
+                        <!-- Displays task data -->
+                        <Grid ColumnDefinitions="30, 40*, 30*, 30" 
+                            Classes="task_item_grid">
+                            <!-- CheckBox -->
+                            <CheckBox IsChecked="{Binding IsCompleted}"
+                                        Grid.Column="0"
+                                        IsEnabled="{Binding !IsChecked, ElementName=TaskCheckBox}"
+                                        Classes="task_item_checkbox"/>
+                            <!-- Task -->
+                            <TextBlock Text="{Binding Task.Text}"
+                                        Grid.Column="1"
+                                        Classes="task_item_text"/>
+                            <!-- Date time creation -->
+                            <TextBlock Text="{Binding Task.CreationDateTime}"
+                                        Grid.Column="2"
+                                        Classes="task_item_datetime"/>
+                            <!-- Delete Button -->
+                            <Button Command="{Binding DeleteTaskCommand}"
+                                    Grid.Column="3"
+                                    Classes="delete_button"
+                                    IsVisible="{Binding !IsCompleted}">
+                                <PathIcon Data="{DynamicResource DeleteButtonIcon}"
+                                        Classes="delete_icon"/>
+                            </Button>
+                        </Grid>
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

@@ -1,5 +1,7 @@
 using ReactiveUI;
 using System;
+using System.Linq;
+using System.Collections.Specialized;
 using System.Collections.ObjectModel;
 using YourTasks.Models;
 using YourTasks.Views;
@@ -11,6 +13,7 @@ namespace YourTasks.ViewModels
     {
         private Task? _task;
         private ObservableCollection<SubTaskViewModel>? _subTasks;
+        private bool _checkBoxEnabled;
         
         public Task Task
         {
@@ -25,8 +28,8 @@ namespace YourTasks.ViewModels
                 _task!.IsCompleted = value;
                 Task.TaskCompletedEvent?.Invoke(this, new TaskCompletedArgs(value));
                 System.Threading.Tasks.Task.Run(
-                    async() => await UpdateTask() 
-                );
+                    async() => await UpdateTask());
+                CanCheckBoxCheck();
             }
         }
 
@@ -36,16 +39,23 @@ namespace YourTasks.ViewModels
             set => this.RaiseAndSetIfChanged(ref _subTasks, value);
         }
 
+        public bool CheckBoxEnabled
+        {
+            get => _checkBoxEnabled;
+            set => this.RaiseAndSetIfChanged(ref _checkBoxEnabled, value);
+        }
+
         public EventHandler? TaskDeleteEvent;
 
         public IReactiveCommand DeleteTaskCommand { get; }
         public IReactiveCommand AddSubTaskCommand { get; }
-        
+
         public TaskViewModel(Task task)
         {
             Task = task;
 
             SubTasks = new ObservableCollection<SubTaskViewModel>();
+            SubTasks.CollectionChanged += SubTasksCollectionChangedHandler;
             foreach(var subTask in task.SubTasks!)
             {
                 var newSubTaskVM = new SubTaskViewModel(subTask);
@@ -56,12 +66,21 @@ namespace YourTasks.ViewModels
                 SubTasks.Add(newSubTaskVM);
             }
 
-            DeleteTaskCommand = ReactiveCommand.Create(()=>{
-                TaskDeleteEvent?.Invoke(this, new EventArgs());
-            });
+            DeleteTaskCommand = ReactiveCommand.Create(
+                () => TaskDeleteEvent?.Invoke(this, new EventArgs()));
 
-            AddSubTaskCommand = ReactiveCommand.CreateFromTask(async() 
-                => await AddSubTask());
+            AddSubTaskCommand = ReactiveCommand.CreateFromTask(
+                async() => await AddSubTask());
+        }
+
+        private void CanCheckBoxCheck()
+        {
+            if((!IsCompleted || IsCompleted) && SubTasks.Count == 0)
+                CheckBoxEnabled = true;
+            else if(!IsCompleted && SubTasks.Count > 0)
+                CheckBoxEnabled = false;
+            else if(IsCompleted && SubTasks.Count > 0)
+                CheckBoxEnabled = true;
         }
 
         private async void DeleteSubTaskEventHandler(object? sender, EventArgs e)
@@ -75,6 +94,17 @@ namespace YourTasks.ViewModels
         private void SubTaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
         {
             Console.WriteLine("Completed subtask");
+            if(e.IsCompleted)
+            {
+                int completedSubTasks = SubTasks.Where(sub_task => sub_task.IsCompleted == true).Count();
+                if(completedSubTasks == SubTasks.Count)
+                    IsCompleted = true; 
+            }
+        }
+
+        private void SubTasksCollectionChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            CanCheckBoxCheck();
         }
 
         private async System.Threading.Tasks.Task AddSubTask()

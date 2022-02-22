@@ -11,6 +11,7 @@
         <!-- CheckBox -->
         <CheckBox IsChecked="{Binding IsCompleted}"
                     Grid.Column="0"
+                    Name="TaskCheckBox"
                     Classes="task_item_checkbox"/>
         <!-- Task -->
         <TextBlock Text="{Binding Task.Text}"
