@@ -11,6 +11,7 @@ namespace YourTasks.ViewModels
     {
         private ProjectViewModel? _selectedProject;
         private ObservableCollection<ProjectViewModel>? _projects;
+        private bool _themeModeSwitcher;
 
         public ObservableCollection<ProjectViewModel> Projects
         {
@@ -22,6 +23,12 @@ namespace YourTasks.ViewModels
         {
             get => _selectedProject!;
             set => this.RaiseAndSetIfChanged(ref _selectedProject, value);
+        }
+
+        public bool ThemeModeSwitcher
+        {
+            get => _themeModeSwitcher;
+            set => this.RaiseAndSetIfChanged(ref _themeModeSwitcher, value);
         }
 
         public IReactiveCommand AddProjectCommand { get; }
