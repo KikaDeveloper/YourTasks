@@ -37,7 +37,8 @@
 						</Button>
 
 						<!-- Theme mode button -->
-						<ToggleSwitch OffContent="Light"
+						<ToggleSwitch Name="ThemeModeSwitch"
+										OffContent="Light"
 										OnContent="Dark"
 										IsChecked="{Binding ThemeModeSwitcher}"
 										Classes="theme_mode">
