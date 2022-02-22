@@ -72,7 +72,7 @@ namespace YourTasks.ViewModels
             var projectVM = (ProjectViewModel) sender!;
 
             Projects.Remove(projectVM);
-            await AppRepository.Instance.DeleteEntity<Project>(projectVM.Project);
+            await AppRepository.Instance.CascadeDeleteProject(projectVM.Project);
         }
 
         private async System.Threading.Tasks.Task<Project> OpenAddDialog()
