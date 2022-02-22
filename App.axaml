@@ -27,6 +27,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="/Resources/Base.axaml"/>
                 <ResourceInclude Source="/Resources/Theme/LightMode.axaml" />
+                <ResourceInclude Source="/Resources/Theme/DarkMode.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
