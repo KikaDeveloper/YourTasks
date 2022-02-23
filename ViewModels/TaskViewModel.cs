@@ -95,7 +95,6 @@ namespace YourTasks.ViewModels
 
         private void SubTaskCompletedEventHandler(object? sender, TaskCompletedArgs e)
         {
-            Console.WriteLine("Completed subtask");
             if(e.IsCompleted)
             {
                 int completedSubTasks = SubTasks.Where(sub_task => sub_task.IsCompleted == true).Count();
@@ -106,6 +105,7 @@ namespace YourTasks.ViewModels
 
         private void SubTasksCollectionChangedHandler(object? sender, NotifyCollectionChangedEventArgs e)
             => CanCheckBoxCheck();
+
         private async System.Threading.Tasks.Task AddSubTask()
         {
             var newTask = (SubTask) await OpenAddDialog();
@@ -116,6 +116,7 @@ namespace YourTasks.ViewModels
                 var newSubTaskVM = new SubTaskViewModel(newTask);
                 newSubTaskVM.Task.TaskId = Task.Id;
                 newSubTaskVM.SubTaskDeleteEvent += DeleteSubTaskEventHandler;
+                newSubTaskVM.Task.TaskCompletedEvent += SubTaskCompletedEventHandler;
            
                 SubTasks.Add(newSubTaskVM);
                 await AppRepository.Instance.InsertEntity<SubTask>(newSubTaskVM.Task);
