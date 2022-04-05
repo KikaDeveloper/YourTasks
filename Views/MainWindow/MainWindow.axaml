@@ -8,7 +8,7 @@
 		MinHeight="300"
         xmlns:controls="using:YourTasks.UserControls"
         x:Class="YourTasks.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/icon.png"
         Title="YourTasks">
 
     <Design.DataContext>

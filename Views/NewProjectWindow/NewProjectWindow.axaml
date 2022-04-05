@@ -8,6 +8,7 @@
 		MaxWidth="330"
 		SizeToContent="Height"
         x:Class="YourTasks.Views.NewProjectWindow"
+		Icon="/Assets/icon.png"
         Title="NewProjectWindow">
 	
 	<StackPanel Classes="dialog">
